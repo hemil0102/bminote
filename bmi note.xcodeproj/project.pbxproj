@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		930EF80827CFAEB400ADA513 /* HistoryListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930EF80727CFAEB400ADA513 /* HistoryListVC.swift */; };
+		930EF80A27CFAF5400ADA513 /* HistoryListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930EF80927CFAF5400ADA513 /* HistoryListCell.swift */; };
 		D0FCB76127CF917000322DF9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FCB76027CF917000322DF9 /* AppDelegate.swift */; };
 		D0FCB76327CF917000322DF9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FCB76227CF917000322DF9 /* SceneDelegate.swift */; };
 		D0FCB76527CF917000322DF9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FCB76427CF917000322DF9 /* ViewController.swift */; };
@@ -37,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		930EF80727CFAEB400ADA513 /* HistoryListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryListVC.swift; sourceTree = "<group>"; };
+		930EF80927CFAF5400ADA513 /* HistoryListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryListCell.swift; sourceTree = "<group>"; };
 		D0FCB75D27CF917000322DF9 /* bmi note.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "bmi note.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0FCB76027CF917000322DF9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D0FCB76227CF917000322DF9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -105,6 +109,8 @@
 				D0FCB76227CF917000322DF9 /* SceneDelegate.swift */,
 				D0FCB76427CF917000322DF9 /* ViewController.swift */,
 				D0FCB76627CF917000322DF9 /* Main.storyboard */,
+				930EF80727CFAEB400ADA513 /* HistoryListVC.swift */,
+				930EF80927CFAF5400ADA513 /* HistoryListCell.swift */,
 				D0FCB76C27CF917200322DF9 /* Assets.xcassets */,
 				D0FCB76E27CF917200322DF9 /* LaunchScreen.storyboard */,
 				D0FCB77127CF917200322DF9 /* Info.plist */,
@@ -261,7 +267,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				930EF80A27CFAF5400ADA513 /* HistoryListCell.swift in Sources */,
 				D0FCB76527CF917000322DF9 /* ViewController.swift in Sources */,
+				930EF80827CFAEB400ADA513 /* HistoryListVC.swift in Sources */,
 				D0FCB76127CF917000322DF9 /* AppDelegate.swift in Sources */,
 				D0FCB76B27CF917000322DF9 /* bmi_note.xcdatamodeld in Sources */,
 				D0FCB76327CF917000322DF9 /* SceneDelegate.swift in Sources */,

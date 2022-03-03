@@ -8,6 +8,8 @@
 import UIKit
 
 class HistoryListCell: UITableViewCell {
+    
+    
 
     override func awakeFromNib() {
         super.awakeFromNib()

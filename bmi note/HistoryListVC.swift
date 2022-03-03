@@ -7,23 +7,43 @@
 
 import UIKit
 
-class HistoryVC: UIViewController {
+class HistoryListVC: UIViewController {
 
+    @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        /*
+         Todo
+         1. UserDefault.standard 로 저장된 값 가져오기
+         2. 데이터 가져와서 셋팅하기ㅡㅡ? 음 끝났는데...ㅋ
+         3. 데이터 삭제
+         4. 
+         */
 
-        // Do any additional setup after loading the view.
+        self.tableView.dataSource = self
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    //이력 삭제
+    func deleteHistory() {
+        
     }
-    */
+}
 
+extension HistoryListVC: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        //List Count return하기
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryListCell") as? HistoryListCell else {
+            return UITableViewCell()
+        }
+        
+        //Cell 안의 View에 데이터 셋팅하기
+        
+        return cell
+    }
 }
