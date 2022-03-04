@@ -2,18 +2,24 @@
 //  HistoryListCell.swift
 //  bmi note
 //
-//  Created by Walter J on 2022/03/02.
+//  Created by Walter J on 2022/03/04.
 //
 
 import UIKit
 
 class HistoryListCell: UITableViewCell {
-    
-    
 
+    @IBOutlet weak var historyListCell: UIView!
+    @IBOutlet weak var bmiValue: UILabel!
+    @IBOutlet weak var bmiState: UILabel!
+    @IBOutlet weak var height: UILabel!
+    @IBOutlet weak var weight: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        //Cell 가장자리 둥글게
+        configView()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -21,5 +27,11 @@ class HistoryListCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
+    /*
+     Cell 모양 설정
+     */
+    func configView() {
+        self.historyListCell.layer.cornerRadius = self.frame.height / 15
+    }
 }
