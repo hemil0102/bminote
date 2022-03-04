@@ -7,7 +7,7 @@
 
 import UIKit
 
-class GreetingViewController: UIViewController {
+class GreetingVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
