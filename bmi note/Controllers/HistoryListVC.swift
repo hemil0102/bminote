@@ -94,12 +94,13 @@ extension HistoryListVC: UITableViewDataSource {
         //historyData에서 값 꺼내기 []
         //bim값에 따른 배경색 변경 []
         
-        let bmiInfo = bmiHistory.getAllBMI()
+        let bmiInfo = bmiHistory.getAllBMI()    //BMI 전체 데이터 가져오기
         
         cell.bmiValue.text = "\(bmiInfo[row].bmi)"       //BMI 수치
         cell.bmiState.text = "\(bmiInfo[row].bmiStatus)"       //BMI 상태
         cell.height.text = "\(bmiInfo[row].heightForBMI)cm"         //BMI 게산에 사용된 키
         cell.weight.text = "\(bmiInfo[row].weightForBMI)kg"         //BMI 계산에 사용된 몸무게
+        cell.regDate.text = "\(bmiInfo[row].regDate)"
         
         return cell
     }
