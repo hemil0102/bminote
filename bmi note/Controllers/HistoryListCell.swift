@@ -32,6 +32,6 @@ class HistoryListCell: UITableViewCell {
      Cell 모양 설정
      */
     func configView() {
-        self.historyListCell.layer.cornerRadius = self.frame.height / 15
+        self.historyListCell.layer.cornerRadius = self.frame.height / 4
     }
 }

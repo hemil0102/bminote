@@ -7,16 +7,20 @@
 
 import Foundation
 
-struct Bminote {
+struct Profile {
     let name: String
     var age: Int
     let gender: String
     var profileImg: String
-    var height: String
+    var height: Float
+    var weight: Float
     var quote: String
+}
+
+struct BMI {
     let heightForBMI: Float
     let weightForBMI: Float
-    let genderForBMI: Float
+    let bmiStatus: String
     let regDate: String
     let bmi: Float
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		930CBDF027D4C45D00CCE45C /* ProfileBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930CBDEF27D4C45D00CCE45C /* ProfileBrain.swift */; };
 		930EF80827CFAEB400ADA513 /* HistoryListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930EF80727CFAEB400ADA513 /* HistoryListVC.swift */; };
 		93CC504827D1E5C100490A01 /* HistoryListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CC504627D1E5C100490A01 /* HistoryListCell.swift */; };
 		93CC504927D1E5C100490A01 /* HistoryListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93CC504727D1E5C100490A01 /* HistoryListCell.xib */; };
@@ -48,6 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		930CBDEF27D4C45D00CCE45C /* ProfileBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileBrain.swift; sourceTree = "<group>"; };
 		930EF80727CFAEB400ADA513 /* HistoryListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryListVC.swift; sourceTree = "<group>"; };
 		93CC504627D1E5C100490A01 /* HistoryListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryListCell.swift; sourceTree = "<group>"; };
 		93CC504727D1E5C100490A01 /* HistoryListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryListCell.xib; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 			children = (
 				D0A2D10227D07B0300A85206 /* BMI.swift */,
 				D0A2D10427D07BB200A85206 /* BMIBrain.swift */,
+				930CBDEF27D4C45D00CCE45C /* ProfileBrain.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 				930EF80827CFAEB400ADA513 /* HistoryListVC.swift in Sources */,
 				D0FCB76127CF917000322DF9 /* AppDelegate.swift in Sources */,
 				D04B7C3927D21C8900D83A1F /* InitialProfileVC.swift in Sources */,
+				930CBDF027D4C45D00CCE45C /* ProfileBrain.swift in Sources */,
 				D0A2D10527D07BB300A85206 /* BMIBrain.swift in Sources */,
 				93CC504B27D1F00D00490A01 /* Constants.swift in Sources */,
 				D0A2D10927D07CCF00A85206 /* GreetingVC.swift in Sources */,
