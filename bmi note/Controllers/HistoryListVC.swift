@@ -11,10 +11,7 @@ class HistoryListVC: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    //목 데이터
-    let mokListData = [
-        [26.5, "정상", 172.4, 62.1], [31.3, "과체중", 162.9, 99.6], [19.7, "저체중", 192.1, 45.2]
-    ]
+    var bmiHistory = BMIBrain()
     
     //지역변수로 사용할 HistoryData
     var receivedData:BMIBrain?          //???
@@ -85,7 +82,7 @@ extension HistoryListVC: UITableViewDelegate {
 extension HistoryListVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //List Count return하기
-        return mokListData.count
+        return bmiHistory.tBMI.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -97,10 +94,12 @@ extension HistoryListVC: UITableViewDataSource {
         //historyData에서 값 꺼내기 []
         //bim값에 따른 배경색 변경 []
         
-        cell.bmiValue.text = "\(mokListData[row][0])"       //BMI 수치
-        cell.bmiState.text = "\(mokListData[row][1])"       //BMI 상태
-        cell.height.text = "\(mokListData[row][2])cm"         //BMI 게산에 사용된 키
-        cell.weight.text = "\(mokListData[row][3])kg"         //BMI 계산에 사용된 몸무게
+        let bmiInfo = bmiHistory.getAllBMI()
+        
+        cell.bmiValue.text = "\(bmiInfo[row].bmi)"       //BMI 수치
+        cell.bmiState.text = "\(bmiInfo[row].bmiStatus)"       //BMI 상태
+        cell.height.text = "\(bmiInfo[row].heightForBMI)cm"         //BMI 게산에 사용된 키
+        cell.weight.text = "\(bmiInfo[row].weightForBMI)kg"         //BMI 계산에 사용된 몸무게
         
         return cell
     }
