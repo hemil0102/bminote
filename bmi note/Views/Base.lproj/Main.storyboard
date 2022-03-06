@@ -542,7 +542,7 @@
             </objects>
             <point key="canvasLocation" x="389.85507246376812" y="131.91964285714286"/>
         </scene>
-        <!--History ListVC-->
+        <!--BMI 측정 이력-->
         <scene sceneID="cUM-DL-SGz">
             <objects>
                 <viewController id="5jL-2s-BuT" customClass="HistoryListVC" customModule="bmi_note" customModuleProvider="target" sceneMemberID="viewController">
@@ -551,7 +551,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="2Vg-Gp-CfZ">
-                                <rect key="frame" x="0.0" y="123" width="414" height="739"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
@@ -560,11 +560,11 @@
                         <constraints>
                             <constraint firstItem="2Vg-Gp-CfZ" firstAttribute="leading" secondItem="h3a-Oi-6ow" secondAttribute="leading" id="T22-Je-UNy"/>
                             <constraint firstItem="h3a-Oi-6ow" firstAttribute="bottom" secondItem="2Vg-Gp-CfZ" secondAttribute="bottom" id="Zcp-Sx-2Ld"/>
-                            <constraint firstItem="2Vg-Gp-CfZ" firstAttribute="top" secondItem="h3a-Oi-6ow" secondAttribute="top" constant="35" id="am3-6X-zLJ"/>
+                            <constraint firstItem="2Vg-Gp-CfZ" firstAttribute="top" secondItem="h3a-Oi-6ow" secondAttribute="top" id="am3-6X-zLJ"/>
                             <constraint firstItem="h3a-Oi-6ow" firstAttribute="trailing" secondItem="2Vg-Gp-CfZ" secondAttribute="trailing" id="vkp-Ye-p9E"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="I55-hZ-4Te"/>
+                    <navigationItem key="navigationItem" title="BMI 측정 이력" id="I55-hZ-4Te"/>
                     <connections>
                         <outlet property="tableView" destination="2Vg-Gp-CfZ" id="NwR-Vq-bhf"/>
                     </connections>
@@ -588,6 +588,40 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TdW-SP-DcO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="390" y="846"/>
+        </scene>
+        <!--ResultVC-->
+        <scene sceneID="lDH-MK-5wo">
+            <objects>
+                <viewController storyboardIdentifier="BMIResultVC" id="kTd-Fr-V9e" customClass="BMIResultVC" customModule="bmi_note" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="js7-8E-ayi">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tCZ-4N-5UE">
+                                <rect key="frame" x="186" y="161" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="BMI  상세화면" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t96-Cv-HMa">
+                                <rect key="frame" x="159" y="91" width="97" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="RQ4-1w-1S1"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <connections>
+                        <outlet property="tIdx" destination="tCZ-4N-5UE" id="qiB-hc-dUM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="10F-cL-9cL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1326" y="846"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ys5-RT-77y">
