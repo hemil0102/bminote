@@ -28,11 +28,13 @@ class HistoryListVC: UIViewController {
          3. 데이터 가져와서 셋팅하기 []
          4. 항목 선택시 뷰 이동 []
          5. 선택된 항목 데이터 전달 []
-         6. 
          */
         
         //TableView에 XIB 커스텀 셀 연결
         setTableViewXIBCell()
+        
+        //NavigationController 뒤로가기 한글로, MainVC 에서 바꿀 것
+//        self.navigationController?.navigationBar.topItem?.title = "메인"
         
         //tableView DataSource, Delegate protocol 준수
         self.tableView.delegate = self
@@ -56,6 +58,13 @@ class HistoryListVC: UIViewController {
 extension HistoryListVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        guard let bmiResultVC = self.storyboard?.instantiateViewController(withIdentifier: Constants.bmiResultVC) as? BMIResultVC else {
+            return
+        }
+        //indexPath.row 값 던져주기
+        bmiResultVC.receivedIdx = indexPath.row
+        self.navigationController?.pushViewController(bmiResultVC, animated: true)
     }
 }
 
