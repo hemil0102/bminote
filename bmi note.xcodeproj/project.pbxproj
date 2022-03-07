@@ -152,7 +152,6 @@
 				D0A2D10827D07CCF00A85206 /* GreetingVC.swift */,
 				D04B7C3627D21C4700D83A1F /* InitialQuoteVC.swift */,
 				D04B7C3827D21C8900D83A1F /* InitialProfileVC.swift */,
-				93CC504C27D2370B00490A01 /* BMIResultVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -473,7 +472,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				93CC504D27D2370B00490A01 /* BMIResultVC.swift in Sources */,
 				D0A2D10327D07B0300A85206 /* BMI.swift in Sources */,
 				D04B7C3727D21C4700D83A1F /* InitialQuoteVC.swift in Sources */,
 				D0FCB76527CF917000322DF9 /* MainVC.swift in Sources */,
