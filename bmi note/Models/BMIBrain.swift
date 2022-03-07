@@ -18,8 +18,28 @@ struct BMIBrain {
         BMI(heightForBMI: 173, weightForBMI: 81, bmiStatus: "정상 ", regDate: "2022-03-06(일)", bmi: 20.3)
     ]
     
+    var bmidateArray: [String] = []
+    var bmiValueArray: [Double] = []
+    
     //리스트로 뿌려줌
     func getAllBMI() -> [BMI] {
         return tBMI
+    }
+    
+    init() {
+        getXAxisIndices()
+        getYAxisValues()
+    }
+    
+    mutating func getXAxisIndices() {
+        for i in 0..<tBMI.count {
+            bmidateArray.append(tBMI[i].regDate)
+        }
+    }
+    
+    mutating func getYAxisValues(){
+        for i in 0..<tBMI.count {
+            bmiValueArray.append(tBMI[i].bmi)
+        }
     }
 }

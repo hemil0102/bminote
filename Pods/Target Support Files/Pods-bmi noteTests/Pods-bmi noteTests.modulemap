@@ -1,0 +1,6 @@
+framework module Pods_bmi_noteTests {
+  umbrella header "Pods-bmi noteTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
