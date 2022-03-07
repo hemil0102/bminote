@@ -95,6 +95,7 @@
                 <outlet property="bmiValue" destination="0Pg-qV-mL9" id="biA-KM-Fzv"/>
                 <outlet property="height" destination="hNL-Eg-1wi" id="Q3z-Rg-pgs"/>
                 <outlet property="historyListCell" destination="bZj-A6-3Ku" id="faN-nl-NJo"/>
+                <outlet property="regDate" destination="ZrG-GA-y0l" id="5M7-TC-4DL"/>
                 <outlet property="weight" destination="XJT-qh-uXD" id="nak-V1-ZM7"/>
             </connections>
             <point key="canvasLocation" x="217.39130434782609" y="151.67410714285714"/>

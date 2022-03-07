@@ -14,6 +14,7 @@ class HistoryListCell: UITableViewCell {
     @IBOutlet weak var bmiState: UILabel!
     @IBOutlet weak var height: UILabel!
     @IBOutlet weak var weight: UILabel!
+    @IBOutlet weak var regDate: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
