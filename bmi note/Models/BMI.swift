@@ -22,5 +22,5 @@ struct BMI {
     let weightForBMI: Float
     let bmiStatus: String
     let regDate: String
-    let bmi: Float
+    let bmi: Double
 }
