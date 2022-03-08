@@ -573,10 +573,10 @@
             </objects>
             <point key="canvasLocation" x="1326.0869565217392" y="131.91964285714286"/>
         </scene>
-        <!--View Controller-->
+        <!--Bmi ResultVC-->
         <scene sceneID="VGO-Ua-fCh">
             <objects>
-                <viewController id="PBq-CI-6Ew" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BmiResultVC" id="PBq-CI-6Ew" customClass="BmiResultVC" customModule="bmi_note" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AbY-wb-DQJ">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
