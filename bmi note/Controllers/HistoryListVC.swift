@@ -69,11 +69,11 @@ extension HistoryListVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-//        guard let bmiResultVC = self.storyboard?.instantiateViewController(withIdentifier: Constants.bmiResultVC) as? ResultBmiVC else {
-//            return
-//        }
+        guard let bmiResultVC = self.storyboard?.instantiateViewController(withIdentifier: Constants.bmiResultVC) as? BmiResultVC else {
+            return
+        }
         //indexPath.row 값 던져주기
-//        self.navigationController?.pushViewController(bmiResultVC, animated: true)
+        self.navigationController?.pushViewController(bmiResultVC, animated: true)
     }
 }
 
