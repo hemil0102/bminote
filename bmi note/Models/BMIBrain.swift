@@ -27,21 +27,6 @@ struct BMIBrain {
     }
     
     // 세그먼트에서 성별을 입력 받는 메서드
-    func getGenderType(selectedIndexTitle: String ) -> String {
-        
-        return selectedIndexTitle
-    }
-    
-    func getUserData(name: String?, age: Int?, gender: String, height: Float?, weight: Float?) -> [ String : Any ] {
-        
-         let tempProfileUserData = [ "name" : "\(name ?? "none")",
-                             "age" :  "\(age ?? 0 )",
-                             "gender" : "\(gender)",
-                             "height" : "\(height ?? 0.0)",
-                             "weight" : "\(weight ?? 0.0)" ]
-        
-         return tempProfileUserData
-    }
     
     init() {
         getXAxisIndices()

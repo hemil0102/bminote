@@ -6,23 +6,25 @@
 //
 
 import UIKit
+import Foundation
 
-class InitialProfileVC: UIViewController {
+class InitialProfileVC: UIViewController { // 델러게이트 추가
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        initialUserInputName.addTarget(self, action: #selector(nameTextFieldDidChange), for: .editingChanged)
     }
     
     @IBOutlet weak var initialUserInputName: UITextField!
+    @IBOutlet weak var checkNameRegularExpressions: UILabel!
     @IBOutlet weak var initialUserInputAge: UITextField!
     @IBOutlet weak var initialUserSelectGender: UISegmentedControl!
     @IBOutlet weak var initialUserInputHeight: UITextField!
     @IBOutlet weak var initialUserInputWeight: UITextField!
+    @IBOutlet weak var nameChecker: UIImageView!
     
     var userInfo = Profile()
-    var userInfoBrain = BMIBrain()
+    var userInfoBrain = ProfileBrain()
     
     @IBAction func initUserSelectSeg(_ sender: UISegmentedControl) {
         
@@ -35,30 +37,35 @@ class InitialProfileVC: UIViewController {
     
     @IBAction func saveInitialProfile(_ sender: UIButton) {
         
-        // getUserData() Brain 추가 예정
-        userInfo.name = initialUserInputName.text
-        userInfo.age = Int(initialUserInputAge.text! ?? "0")!
-        userInfo.height = Float(initialUserInputHeight.text)
-        userInfo.weight = Float(initialUserInputWeight.text)
-        
-        // profileDictionary() Brain 추가 예정
-        profileUserData = userInfoBrain.getUserData(name: userInfo.name, age: userInfo.gender, gender: userInfo.gender, height: userInfo.height, weight: userInfo.weight)
-        UserDefaults.standard.set(profileUserData, forKey: "profileData")
-        
-        print("\(userInfo.name ?? "none")")
-        print("\(userInfo.age ?? 0)")
-        print("\(userInfo.gender ?? "none")")
-        print("\(userInfo.height ?? 0.0 )")
-        print("\(userInfo.weight ?? 0.0 )")
-        
     }
-    
 
+
+
+    @objc func nameTextFieldDidChange(_ textField: UITextField) {
+        
+        if initialUserInputName.text != "" {
+            let nameRe = "[가-힣A-Za-z]{1,12}"
+            let tempName = NSPredicate(format:"SELF MATCHES %@", nameRe)
+            if tempName.evaluate(with: initialUserInputName.text) {
+                userInfo.name = initialUserInputName.text
+                nameChecker.image = UIImage(systemName: "checkmark.circle.fill")
+                checkNameRegularExpressions.text = ""
+            } else {
+                nameChecker.image = UIImage(systemName: "")
+                checkNameRegularExpressions.text = "특수 기호, 숫자 및 공백 제외\n한글 및 영어로 입력해주세요 :)"
+
+            }
+        } else {
+            nameChecker.image = UIImage(systemName: "")
+            checkNameRegularExpressions.text = "닉네임을 작성해주세요 :)"
+        }
+    }
     
     // 화면 터치시 키보드를 숨기는 Function
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
             self.view.endEditing(true)
     }
+    
 
     /*
     // MARK: - Navigation
