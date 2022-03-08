@@ -10,5 +10,5 @@ import Foundation
 struct Constants {
     static let historyListCell = "HistoryListCell"
     static let historyListCellIdentifier = "HistoryListCell"
-    static let bmiResultVC = "BMIResultVC"
+    static let bmiResultVC = "BmiResultVC"
 }
