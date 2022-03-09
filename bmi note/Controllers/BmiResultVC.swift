@@ -8,9 +8,15 @@
 import UIKit
 
 class BmiResultVC: UIViewController {
+    
+    var tempData:String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let data = tempData {
+            print("받아온 데이터 \(data)")
+        }
 
         // Do any additional setup after loading the view.
     }

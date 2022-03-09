@@ -57,7 +57,6 @@ class HistoryListVC: UIViewController {
          2. UserDefault 업데이트 []
          2. TableView Reload [✓]
          */
-
 //        self.tableView.reloadData()
     }
 }
@@ -73,6 +72,7 @@ extension HistoryListVC: UITableViewDelegate {
             return
         }
         //indexPath.row 값 던져주기
+        
         self.navigationController?.pushViewController(bmiResultVC, animated: true)
     }
 }
