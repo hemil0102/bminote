@@ -27,4 +27,10 @@ struct BMI {
     let bmi: Double
 }
 
+struct BMIPicker {
+    //신장/몸무게 피커뷰 범위
+    var heightMinMaxArray: [Int] = Array(100...250)
+    var weightMinMaxArray: [Int] = Array(20...200)
+            
+}
 
