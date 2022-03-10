@@ -19,8 +19,6 @@ class InitialProfileVC: UIViewController {
         saveInitialProfileOutlet.layer.isHidden = true
     }
     
-    
-
     @IBOutlet weak var initialUserInputName: UITextField!
     @IBOutlet weak var checkNameRegularExpressions: UILabel!
     @IBOutlet weak var nameChecker: UIImageView!
