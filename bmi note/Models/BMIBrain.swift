@@ -9,6 +9,7 @@ import Foundation
 
 //BMI 계산을 위한 ViewModel
 struct BMIBrain {
+    
     var tBMI = [
         BMI(heightForBMI: 170, weightForBMI: 72, bmiStatus: "정상", regDate: "2022-03-01(일)", bmi: 25.3),
         BMI(heightForBMI: 180, weightForBMI: 58, bmiStatus: "저체중", regDate: "2022-03-02(일)", bmi: 19.3),
@@ -17,7 +18,9 @@ struct BMIBrain {
         BMI(heightForBMI: 162, weightForBMI: 64, bmiStatus: "정상", regDate: "2022-03-05(일)", bmi: 28.3),
         BMI(heightForBMI: 173, weightForBMI: 81, bmiStatus: "정상 ", regDate: "2022-03-06(일)", bmi: 20.3)
     ]
-    //기본 BMI변수
+    
+    
+    //기본BMI변수
     var heightForBmi: Int
     var weightForBmi: Int
     var bmiValue: Double
@@ -72,13 +75,19 @@ struct BMIBrain {
         bmiValue = Double(weightForBmi) / pow(Double(heightForBmi)/100, 2)
     }
     
-    func showResult() {
-        print(heightForBmi)
-        print(weightForBmi)
-        print(bmiValue)
+    mutating func saveResult() {
+        self.setCalculatedBMI() //BMI 계산
+        let bmiStatus = BMIStandard.decideLevel(bmiValue: bmiValue)
+        
+        let historyKeyValue: String = Constants.userDefaultsKeyHistory
+        
+        let dict: [String: Any] = ["regDate": regDate, "heightForBmi": heightForBmi, "weightForBmi": weightForBmi, "bmi" : bmiValue, "bmiStatus": bmiStatus]
+        UserDefaults.standard.set(dict, forKey: historyKeyValue)
+        
+        print(UserDefaults.standard.dictionary(forKey: Constants.userDefaultsKeyHistory))
     }
     
-    func showTodayDate() {
+    func showTodayDate() { //임시.. 기능확인용
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         let current_date_string = formatter.string(from: Date())
@@ -87,10 +96,4 @@ struct BMIBrain {
         print(current_date_string.components(separatedBy: "-")[1])
         print(current_date_string.components(separatedBy: "-")[2])
     }
-    
-    
-    //종민 해야할일
-    /*
-     
-     */
 }

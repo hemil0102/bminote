@@ -21,8 +21,7 @@ class MainVC: UIViewController {
     @IBOutlet weak var barChartView: BarChartView!
     
     @IBAction func pressedCalculateBMI(_ sender: UIButton) {
-        bmiData.setCalculatedBMI()
-        bmiData.showResult()
+        bmiData.saveResult()
     }
 
     override func viewDidLoad() {
@@ -140,7 +139,6 @@ extension MainVC { //그래프 뷰 익스텐션
         
         //차트 x축 아래 라벨 숨기는 옵션
         barChartView.legend.enabled = false
-
     }
     
     func setChartSubdetails() {
