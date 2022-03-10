@@ -8,6 +8,10 @@
 import Foundation
 
 struct Constants {
+    
+    static let userDefaultsKeyHistory = "history"
+    static let userDefaultsKeyProfile = "profile"
+    
     static let historyListCell = "HistoryListCell"
     static let historyListCellIdentifier = "HistoryListCell"
     static let bmiResultVC = "BmiResultVC"

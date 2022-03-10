@@ -37,7 +37,6 @@ struct BMIBrain {
     }
     
     // 세그먼트에서 성별을 입력 받는 메서드
-    
     init() {
         heightForBmi = 1
         weightForBmi = 1
@@ -92,9 +91,6 @@ struct BMIBrain {
     
     //종민 해야할일
     /*
-     [v] 키/몸무게 피커뷰에서 받아서 BMI 결과값 도출 및 저장
-     [ ] BMIStandard에서 키/몸무게에 따라서 저체중/정상/과체중 판별해서 뱉는 기능
-     [ ] [나의 BMI는] 버튼 눌렀을 때 유저디폴트로 저장하는 함수 구현
-     [v] 저장 시 연/월/일/요일까지 구현
+     
      */
 }
