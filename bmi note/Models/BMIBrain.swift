@@ -39,6 +39,11 @@ struct BMIBrain {
         return tBMI
     }
     
+    //하나의 BMI정보를 가져오기
+    func getBMIInfo(_ idx: Int) -> BMI {
+        return tBMI[idx]
+    }
+    
     // 세그먼트에서 성별을 입력 받는 메서드
     init() {
         heightForBmi = 1

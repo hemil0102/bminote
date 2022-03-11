@@ -14,11 +14,8 @@ class MainVC: UIViewController {
     let bmiStd = BMIStandard()
     var bmiData = BMIBrain()
 
-    //pickerView 변수
-    @IBOutlet weak var inputPickerView: UIPickerView!
-    
-    //그래프용 변수
-    @IBOutlet weak var barChartView: BarChartView!
+    @IBOutlet weak var inputPickerView: UIPickerView!   //pickerView 변수
+    @IBOutlet weak var barChartView: BarChartView!      //그래프용 변수
     
     @IBAction func pressedCalculateBMI(_ sender: UIButton) {
         bmiData.saveResult()
@@ -33,6 +30,8 @@ class MainVC: UIViewController {
   
         //피커뷰 세팅
         configPickerView()
+        
+        self.navigationController?.navigationBar.topItem?.title = "메인"
         
         //임시...
     }
@@ -49,7 +48,7 @@ class MainVC: UIViewController {
 }
 
 extension MainVC: UIPickerViewDelegate, UIPickerViewDataSource { //피커뷰 익스텐션
-
+    
     func configPickerView() {
         inputPickerView.delegate = self
         inputPickerView.dataSource = self
