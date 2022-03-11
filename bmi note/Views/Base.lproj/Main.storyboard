@@ -12,7 +12,7 @@
         <!--GreetingVC-->
         <scene sceneID="GR5-bd-Da3">
             <objects>
-                <viewController storyboardIdentifier="GreetingView" id="rZp-as-cKa" customClass="GreetingVC" customModule="bmi_note" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="greetingVC" id="rZp-as-cKa" customClass="GreetingVC" customModule="bmi_note" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hUH-vC-m1i">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -46,6 +46,9 @@
                                         </imageReference>
                                     </backgroundConfiguration>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="toInitProfile:" destination="rZp-as-cKa" eventType="touchUpInside" id="9da-RM-BvC"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hello :)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VuV-ZE-t8x">
                                 <rect key="frame" x="152" y="353" width="120" height="45"/>
@@ -61,12 +64,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2fI-vk-m1e" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2959" y="142"/>
+            <point key="canvasLocation" x="-2957" y="132"/>
         </scene>
         <!--Initial ProfileVC-->
         <scene sceneID="HLt-UR-8qE">
             <objects>
-                <viewController id="uWy-dr-xu1" customClass="InitialProfileVC" customModule="bmi_note" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="initProfileVC" id="uWy-dr-xu1" customClass="InitialProfileVC" customModule="bmi_note" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ECS-hE-aJB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -254,7 +257,7 @@
         <!--Initial QuoteVC-->
         <scene sceneID="Ava-Bi-QWc">
             <objects>
-                <viewController id="Y8b-fF-N01" customClass="InitialQuoteVC" customModule="bmi_note" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="initQuoteVC" id="Y8b-fF-N01" customClass="InitialQuoteVC" customModule="bmi_note" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MW3-u1-PdW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -277,6 +280,9 @@
                                     </backgroundConfiguration>
                                     <fontDescription key="titleFontDescription" type="boldSystem" pointSize="24"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="toMain:" destination="Y8b-fF-N01" eventType="touchUpInside" id="iWg-Aj-wit"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="반가워요!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qVp-my-r1H">
                                 <rect key="frame" x="136" y="282" width="141" height="45"/>
@@ -448,7 +454,7 @@
         <!--Main Screen-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MainVC" customModule="bmi_note" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mainVC" id="BYZ-38-t0r" customClass="MainVC" customModule="bmi_note" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -867,7 +873,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YQL-Aa-X5p" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-520.28985507246375" y="131.91964285714286"/>
+            <point key="canvasLocation" x="-378" y="132"/>
         </scene>
     </scenes>
     <resources>

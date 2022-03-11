@@ -35,6 +35,8 @@ class MainVC: UIViewController {
         //피커뷰 세팅
         configPickerView()
         
+        self.navigationController?.navigationBar.topItem?.title = "메인"
+        
         //임시...
     }
     

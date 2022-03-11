@@ -56,6 +56,9 @@ class InitialProfileVC: UIViewController {
         profileUserData = [ "name" : userInfo.name!, "age" : userInfo.age!, "gender" : userInfo.gender, "height" : userInfo.height!, "weight" : userInfo.weight!  ]
         UserDefaults.standard.set(profileUserData, forKey: "Profile")
         
+        guard let initQuoteVC = self.storyboard?.instantiateViewController(withIdentifier: "initQuoteVC") as? InitialQuoteVC else { return }
+            (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(initQuoteVC , animated: false)
+        
     }
 
     @objc func textFieldDidChange(_ textField: UITextField) {
@@ -139,7 +142,7 @@ class InitialProfileVC: UIViewController {
                 checkWeightRegularExpressions.text = ""
             } else {
                 correctWeight = false
-                heightChecker.image = UIImage(systemName: "")
+                weightChecker.image = UIImage(systemName: "")
                 checkWeightRegularExpressions.text = "소숫점 1자리까지 입력해주세요. \n예: 176.0 or 180.3"
 
             }
