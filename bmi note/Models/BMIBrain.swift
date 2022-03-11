@@ -20,6 +20,7 @@ struct BMIBrain {
     ]
     
     
+    
     //기본BMI변수
     var heightForBmi: Int
     var weightForBmi: Int
@@ -34,16 +35,6 @@ struct BMIBrain {
     //신장/몸무게 피커뷰 min/max
     var bmiPickerRange = BMIPicker()
     
-    //리스트로 뿌려줌
-    func getAllBMI() -> [BMI] {
-        return tBMI
-    }
-    
-    //하나의 BMI정보를 가져오기
-    func getBMIInfo(_ idx: Int) -> BMI {
-        return tBMI[idx]
-    }
-    
     // 세그먼트에서 성별을 입력 받는 메서드
     init() {
         heightForBmi = 1
@@ -55,6 +46,18 @@ struct BMIBrain {
         getXAxisIndices()
         getYAxisValues()
     }
+    
+    //리스트로 뿌려줌
+    func getAllBMI() -> [BMI] {
+        return tBMI
+    }
+    
+    //하나의 BMI정보를 가져오기
+    func getBMIInfo(_ idx: Int) -> BMI {
+        return tBMI[idx]
+    }
+    
+
     
     mutating func getXAxisIndices() {
         for i in 0..<tBMI.count {
@@ -80,25 +83,29 @@ struct BMIBrain {
         bmiValue = Double(weightForBmi) / pow(Double(heightForBmi)/100, 2)
     }
     
-    mutating func saveResult() {
-        self.setCalculatedBMI() //BMI 계산
-        let bmiStatus = BMIStandard.decideLevel(bmiValue: bmiValue)
+    mutating func setDate() {
         
-        let historyKeyValue: String = Constants.userDefaultsKeyHistory
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        regDate = formatter.string(from: Date())
+        print(regDate)
+    }
+    
+    mutating func setInitialPickerViewValue() {
+        
+    }
+    
+    mutating func saveResult() {
+        self.setCalculatedBMI() //BMI 계산/세팅
+        self.setDate() //날짜 세팅
+        let bmiStatus = BMIStandard.decideLevel(bmiValue: bmiValue) //bmiStatus 가져오기
+        
+        let historyKeyValue: String = Constants.userDefaultsKeyHistory //key값 상수 가져오기
         
         let dict: [String: Any] = ["regDate": regDate, "heightForBmi": heightForBmi, "weightForBmi": weightForBmi, "bmi" : bmiValue, "bmiStatus": bmiStatus]
         UserDefaults.standard.set(dict, forKey: historyKeyValue)
         
-        print(UserDefaults.standard.dictionary(forKey: Constants.userDefaultsKeyHistory))
-    }
-    
-    func showTodayDate() { //임시.. 기능확인용
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        let current_date_string = formatter.string(from: Date())
-        print(current_date_string)
-        print(current_date_string.components(separatedBy: "-")[0])
-        print(current_date_string.components(separatedBy: "-")[1])
-        print(current_date_string.components(separatedBy: "-")[2])
+        print(UserDefaults.standard.dictionary(forKey: Constants.userDefaultsKeyHistory) ?? "No data")
+        print(UserDefaults.standard.dictionary(forKey: "Profile") ?? "No data")
     }
 }

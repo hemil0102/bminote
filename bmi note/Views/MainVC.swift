@@ -31,6 +31,9 @@ class MainVC: UIViewController {
         //피커뷰 세팅
         configPickerView()
         
+        inputPickerView.selectRow(2, inComponent: 0, animated: false)
+        inputPickerView.selectRow(2, inComponent: 1, animated: false) //초기값 세팅
+        
         self.navigationController?.navigationBar.topItem?.title = "메인"
         
         //임시...
@@ -95,6 +98,7 @@ extension MainVC: UIPickerViewDelegate, UIPickerViewDataSource { //피커뷰 익
             break
         }
     }
+    
 }
 
 
@@ -180,10 +184,3 @@ extension MainVC { //그래프 뷰 익스텐션
       }
     }
 }
-
-/*
- //종민 해야할 일
- [ ] 데이터 없으면 그래프에 "빨리 계산해 보세요!" 메세지 넣기
- [ ] 데이터 없으면 피커뷰 기본값 없음. 데이터 있으면 가장 최근 데이터 받아와서 기본값 세팅
- [ ] [나의 BMI는?] 버튼 누른다음 네비게이션뷰로 뒤로 왔을 때 저장한 데이터 대로 새로 뿌려주기(willAppear)
- */
