@@ -9,6 +9,7 @@ import Foundation
 
 //BMI 계산을 위한 ViewModel
 struct BMIBrain {
+    
     var tBMI = [
         BMI(heightForBMI: 170, weightForBMI: 72, bmiStatus: "정상", regDate: "2022-03-01(일)", bmi: 25.3),
         BMI(heightForBMI: 180, weightForBMI: 58, bmiStatus: "저체중", regDate: "2022-03-02(일)", bmi: 19.3),
@@ -17,7 +18,10 @@ struct BMIBrain {
         BMI(heightForBMI: 162, weightForBMI: 64, bmiStatus: "정상", regDate: "2022-03-05(일)", bmi: 28.3),
         BMI(heightForBMI: 173, weightForBMI: 81, bmiStatus: "정상 ", regDate: "2022-03-06(일)", bmi: 20.3)
     ]
-    //기본 BMI변수
+    
+    
+    
+    //기본BMI변수
     var heightForBmi: Int
     var weightForBmi: Int
     var bmiValue: Double
@@ -31,18 +35,7 @@ struct BMIBrain {
     //신장/몸무게 피커뷰 min/max
     var bmiPickerRange = BMIPicker()
     
-    //리스트로 뿌려줌
-    func getAllBMI() -> [BMI] {
-        return tBMI
-    }
-    
-    //하나의 BMI정보를 가져오기
-    func getBMIInfo(_ idx: Int) -> BMI {
-        return tBMI[idx]
-    }
-    
     // 세그먼트에서 성별을 입력 받는 메서드
-    
     init() {
         heightForBmi = 1
         weightForBmi = 1
@@ -53,6 +46,18 @@ struct BMIBrain {
         getXAxisIndices()
         getYAxisValues()
     }
+    
+    //리스트로 뿌려줌
+    func getAllBMI() -> [BMI] {
+        return tBMI
+    }
+    
+    //하나의 BMI정보를 가져오기
+    func getBMIInfo(_ idx: Int) -> BMI {
+        return tBMI[idx]
+    }
+    
+
     
     mutating func getXAxisIndices() {
         for i in 0..<tBMI.count {
@@ -78,28 +83,29 @@ struct BMIBrain {
         bmiValue = Double(weightForBmi) / pow(Double(heightForBmi)/100, 2)
     }
     
-    func showResult() {
-        print(heightForBmi)
-        print(weightForBmi)
-        print(bmiValue)
-    }
-    
-    func showTodayDate() {
+    mutating func setDate() {
+        
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
-        let current_date_string = formatter.string(from: Date())
-        print(current_date_string)
-        print(current_date_string.components(separatedBy: "-")[0])
-        print(current_date_string.components(separatedBy: "-")[1])
-        print(current_date_string.components(separatedBy: "-")[2])
+        regDate = formatter.string(from: Date())
+        print(regDate)
     }
     
+    mutating func setInitialPickerViewValue() {
+        
+    }
     
-    //종민 해야할일
-    /*
-     [v] 키/몸무게 피커뷰에서 받아서 BMI 결과값 도출 및 저장
-     [ ] BMIStandard에서 키/몸무게에 따라서 저체중/정상/과체중 판별해서 뱉는 기능
-     [ ] [나의 BMI는] 버튼 눌렀을 때 유저디폴트로 저장하는 함수 구현
-     [v] 저장 시 연/월/일/요일까지 구현
-     */
+    mutating func saveResult() {
+        self.setCalculatedBMI() //BMI 계산/세팅
+        self.setDate() //날짜 세팅
+        let bmiStatus = BMIStandard.decideLevel(bmiValue: bmiValue) //bmiStatus 가져오기
+        
+        let historyKeyValue: String = Constants.userDefaultsKeyHistory //key값 상수 가져오기
+        
+        let dict: [String: Any] = ["regDate": regDate, "heightForBmi": heightForBmi, "weightForBmi": weightForBmi, "bmi" : bmiValue, "bmiStatus": bmiStatus]
+        UserDefaults.standard.set(dict, forKey: historyKeyValue)
+        
+        print(UserDefaults.standard.dictionary(forKey: Constants.userDefaultsKeyHistory) ?? "No data")
+        print(UserDefaults.standard.dictionary(forKey: "Profile") ?? "No data")
+    }
 }

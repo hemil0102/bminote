@@ -18,8 +18,7 @@ class MainVC: UIViewController {
     @IBOutlet weak var barChartView: BarChartView!      //그래프용 변수
     
     @IBAction func pressedCalculateBMI(_ sender: UIButton) {
-        bmiData.setCalculatedBMI()
-        bmiData.showResult()
+        bmiData.saveResult()
     }
 
     override func viewDidLoad() {
@@ -31,6 +30,9 @@ class MainVC: UIViewController {
   
         //피커뷰 세팅
         configPickerView()
+        
+        inputPickerView.selectRow(2, inComponent: 0, animated: false)
+        inputPickerView.selectRow(2, inComponent: 1, animated: false) //초기값 세팅
         
         self.navigationController?.navigationBar.topItem?.title = "메인"
         
@@ -96,6 +98,7 @@ extension MainVC: UIPickerViewDelegate, UIPickerViewDataSource { //피커뷰 익
             break
         }
     }
+    
 }
 
 
@@ -180,5 +183,4 @@ extension MainVC { //그래프 뷰 익스텐션
         }
       }
     }
-    
 }
