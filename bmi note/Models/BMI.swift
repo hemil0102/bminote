@@ -7,6 +7,7 @@
 
 import Foundation
 
+//개인 프로필
 struct Profile {
     var name: String?
     var age: Int?
@@ -19,6 +20,7 @@ struct Profile {
 
 var profileUserData: [ String : Any ] = [ "test" : "test" ]
 
+//BMI 계산
 struct BMI {
     let heightForBMI: Float
     let weightForBMI: Float
@@ -27,6 +29,7 @@ struct BMI {
     let bmi: Double
 }
 
+//BMI 피커뷰
 struct BMIPicker {
     //신장/몸무게 피커뷰 범위
     var heightMinMaxArray: [Int] = Array(100...250)

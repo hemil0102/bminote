@@ -72,6 +72,9 @@ extension HistoryListVC: UITableViewDelegate {
             return
         }
         //indexPath.row 값 던져주기
+        let row = indexPath.row
+        let bmiInfo = bmiHistory.getBMIInfo(row)
+        bmiResultVC.bmiInfo = bmiInfo
         
         self.navigationController?.pushViewController(bmiResultVC, animated: true)
     }
