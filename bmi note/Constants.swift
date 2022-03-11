@@ -11,4 +11,6 @@ struct Constants {
     static let historyListCell = "HistoryListCell"
     static let historyListCellIdentifier = "HistoryListCell"
     static let bmiResultVC = "BmiResultVC"
+    static let profile = "Profile"  //프로필 UserDefaults Key
+    static let history = "History"  //계산 데이터 저장에 활용될 UserDefaults Key
 }

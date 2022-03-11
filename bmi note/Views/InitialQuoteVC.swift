@@ -15,7 +15,11 @@ class InitialQuoteVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
+    @IBAction func toMain(_ sender: UIButton) {
+            guard let mainVC = self.storyboard?.instantiateViewController(withIdentifier: "mainVC") as? MainVC else { return }
+                (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainVC , animated: false)
+    }
+    
     /*
     // MARK: - Navigation
 

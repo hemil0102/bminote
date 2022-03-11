@@ -15,7 +15,11 @@ class GreetingVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
+    @IBAction func toInitProfile(_ sender: UIButton) {
+        guard let initProfileVC = self.storyboard?.instantiateViewController(withIdentifier: "initProfileVC") as? InitialProfileVC else { return }
+            (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(initProfileVC , animated: false)
+    }
+    
     /*
     // MARK: - Navigation
 
