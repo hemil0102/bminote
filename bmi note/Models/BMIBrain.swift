@@ -117,17 +117,13 @@ struct BMIBrain {
         self.setCalculatedBMI() //BMI 계산/세팅
         self.setDate() //날짜 세팅
         let bmiStatus = BMIStandard.decideLevel(bmiValue: bmiValue) //bmiStatus 가져오기
-<<<<<<< HEAD
-        let historyKeyValue: String = Constants.userDefaultsKeyHistory //key값 상수 가져오기
-=======
+//        let historyKeyValue: String = Constants.userDefaultsKeyHistory //key값 상수 가져오기
         
         let dict: UDSaveFormat = ["regDate": regDate, "heightForBmi": heightForBmi, "weightForBmi": weightForBmi, "bmi" : bmiValue, "bmiStatus": bmiStatus]
-        
-        
+            
         saveArray.append(dict)
-        print(saveArray)
->>>>>>> 0f8998854ec6c1ec950ba7955cd4b3ee3b438fcf
-        
+        print("계산값 저장 : \(saveArray)")
+
         ud.set(saveArray, forKey: historyKeyValue) //bmi 계산값 저장
         
         print(ud.array(forKey: historyKeyValue) ?? "No data")
