@@ -16,7 +16,7 @@ class InitialProfileVC: UIViewController {
         initialUserInputAge.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         initialUserInputHeight.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         initialUserInputWeight.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        saveInitialProfileOutlet.layer.isHidden = true
+        saveInitialProfileOutlet.isEnabled = false
     }
     
     @IBOutlet weak var initialUserInputName: UITextField!
@@ -80,13 +80,13 @@ class InitialProfileVC: UIViewController {
             } else {
                 correctName = false
                 nameChecker.image = UIImage(systemName: "")
-                checkNameRegularExpressions.text = "특수 기호, 숫자 및 공백 제외\n한글 및 영어로 입력해주세요 :)"
+                checkNameRegularExpressions.text = "특수 기호, 숫자 및 공백 제외\n한글 및 영어로 입력해주세요."
 
             }
         } else {
             correctName = false
             nameChecker.image = UIImage(systemName: "")
-            checkNameRegularExpressions.text = "닉네임을 입력해주세요 :)"
+            checkNameRegularExpressions.text = "닉네임을 입력해주세요."
         }
 
         if initialUserInputAge.text != "" {
@@ -107,11 +107,11 @@ class InitialProfileVC: UIViewController {
         } else {
             correctAge = false
             ageChecker.image = UIImage(systemName: "")
-            checkAgeRegularExpressions.text = "출생연도를 입력해주세요 :)"
+            checkAgeRegularExpressions.text = "출생연도를 입력해주세요."
         }
         
         if initialUserInputHeight.text != "" {
-            let heightRe = "^([0-9]{2,3})\\.([0-9]{1})"
+            let heightRe = "[0-9]{2,3}"
             let tempHeight = NSPredicate(format:"SELF MATCHES %@", heightRe)
             if tempHeight.evaluate(with: initialUserInputHeight.text) {
                 correctHeight = true
@@ -122,17 +122,17 @@ class InitialProfileVC: UIViewController {
             } else {
                 correctHeight = false
                 heightChecker.image = UIImage(systemName: "")
-                checkHeightRegularExpressions.text = "소숫점 1자리까지 입력해주세요. \n예: 176.0 or 180.3"
+                checkHeightRegularExpressions.text = "소숫점은 반올림,23\n숫자 3자리를 입력해주세요."
 
             }
         } else {
             correctHeight = false
             heightChecker.image = UIImage(systemName: "")
-            checkHeightRegularExpressions.text = "신장을 입력해주세요 :)"
+            checkHeightRegularExpressions.text = "신장을 입력해주세요."
         }
         
         if initialUserInputWeight.text != "" {
-            let weightRe = "^([0-9]{1,3})\\.([0-9]{1})"
+            let weightRe = "[0-9]{2,3}"
             let tempWeight = NSPredicate(format:"SELF MATCHES %@", weightRe)
             if tempWeight.evaluate(with: initialUserInputWeight.text) {
                 correctWeight = true
@@ -143,19 +143,19 @@ class InitialProfileVC: UIViewController {
             } else {
                 correctWeight = false
                 weightChecker.image = UIImage(systemName: "")
-                checkWeightRegularExpressions.text = "소숫점 1자리까지 입력해주세요. \n예: 176.0 or 180.3"
+                checkWeightRegularExpressions.text = "소숫점은 반올림,\n숫자 3자리를 입력해주세요."
 
             }
         } else {
             correctWeight = false
             weightChecker.image = UIImage(systemName: "")
-            checkWeightRegularExpressions.text = "몸무게를 입력해주세요 :)"
+            checkWeightRegularExpressions.text = "몸무게를 입력해주세요."
         }
     
         if correctName && correctAge && correctHeight && correctWeight {
-            saveInitialProfileOutlet.layer.isHidden = false
+            saveInitialProfileOutlet.isEnabled = true
         } else {
-            saveInitialProfileOutlet.layer.isHidden = true
+            saveInitialProfileOutlet.isEnabled = false
         }
     }
 
