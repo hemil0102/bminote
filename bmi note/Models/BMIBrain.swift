@@ -99,7 +99,6 @@ struct BMIBrain {
         self.setCalculatedBMI() //BMI 계산/세팅
         self.setDate() //날짜 세팅
         let bmiStatus = BMIStandard.decideLevel(bmiValue: bmiValue) //bmiStatus 가져오기
-        
         let historyKeyValue: String = Constants.userDefaultsKeyHistory //key값 상수 가져오기
         
         let dict: [String: Any] = ["regDate": regDate, "heightForBmi": heightForBmi, "weightForBmi": weightForBmi, "bmi" : bmiValue, "bmiStatus": bmiStatus]
