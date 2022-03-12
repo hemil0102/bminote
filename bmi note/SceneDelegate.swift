@@ -29,8 +29,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             guard let greetingVC = storyboard.instantiateViewController(withIdentifier: "greetingVC") as? GreetingVC else { return }
             window?.rootViewController = greetingVC
         } else {
-            guard let mainVC = storyboard.instantiateViewController(withIdentifier: "mainVC") as? MainVC else { return }
-            window?.rootViewController = mainVC
+            guard let NaviVC = storyboard.instantiateViewController(withIdentifier: "naviVC") as? UINavigationController else { return }
+            window?.rootViewController = NaviVC
         }
         
     }
