@@ -16,8 +16,8 @@ class InitialQuoteVC: UIViewController {
     }
     
     @IBAction func toMain(_ sender: UIButton) {
-            guard let mainVC = self.storyboard?.instantiateViewController(withIdentifier: "mainVC") as? MainVC else { return }
-                (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainVC , animated: false)
+            guard let NaviVC = self.storyboard?.instantiateViewController(withIdentifier: "naviVC") as? UINavigationController else { return }
+                (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(NaviVC , animated: false)
     }
     
     /*
