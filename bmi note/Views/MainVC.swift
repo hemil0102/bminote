@@ -26,17 +26,16 @@ class MainVC: UIViewController {
         
         //그래프 세팅
         initSetChart()
-        setChart(dataPoints: bmiData.bmidateArray, values: bmiData.bmiValueArray)
+        setChart(dataPoints: bmiData.bmidateArray, values: bmiData.bmiValueArray) //현재 임시값
   
         //피커뷰 세팅
         configPickerView()
         
-        inputPickerView.selectRow(2, inComponent: 0, animated: false)
-        inputPickerView.selectRow(2, inComponent: 1, animated: false) //초기값 세팅
+        //피커뷰 초기값 세팅
+        setInitialValuePV()
         
         self.navigationController?.navigationBar.topItem?.title = "메인"
         
-        //임시...
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -99,6 +98,12 @@ extension MainVC: UIPickerViewDelegate, UIPickerViewDataSource { //피커뷰 익
         }
     }
     
+    func setInitialValuePV() {
+        //피커뷰 초기값 세팅
+        inputPickerView.selectRow(2, inComponent: 0, animated: false)
+        inputPickerView.selectRow(2, inComponent: 1, animated: false) //초기값 세팅
+    }
+    
 }
 
 
@@ -106,7 +111,7 @@ extension MainVC { //그래프 뷰 익스텐션
     
     //그래프 데이터 없을때 그래프 표시 세팅
     func initSetChart() {
-        barChartView.noDataText = "no chart data"
+        barChartView.noDataText = "BMI를 측정해 보세요!"
         barChartView.noDataFont = .systemFont(ofSize: 20)
         barChartView.noDataTextColor = .lightGray
     }
