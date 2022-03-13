@@ -37,6 +37,23 @@ struct BMIStandard {
         }
     }
     
+    //bmi 수치가 어느 범위에 속하는지 리턴 0~4
+    static func decideLevelRange(bmiValue: Double) -> Int {
+        switch bmiValue {
+        case underWeightRange:
+            return 0
+        case normalWeightRange:
+            return 1
+        case overWeightRange:
+            return 2
+        case obesWeightRange:
+            return 3
+        case highObesWeightRange:
+            return 4
+        default :
+            return 5
+        }
+    }
     
 }
 

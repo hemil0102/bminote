@@ -50,20 +50,7 @@ class BmiResultVC: UIViewController {
     
     //bmi 범위 찾기
     func findUserBmiInRange() {
-        switch bmi {
-        case 0..<18.5:
-            bmiStatusRangeIdx = 0
-        case 18.5...24.9:
-            bmiStatusRangeIdx = 1
-        case 25...29.9:
-            bmiStatusRangeIdx = 2
-        case 30...34.9:
-            bmiStatusRangeIdx = 3
-        case 35...100:
-            bmiStatusRangeIdx = 4
-        default:
-            break
-        }
+        bmiStatusRangeIdx = BMIStandard.decideLevelRange(bmiValue: bmi)
     }
     
     //BMI 수치에 해당하는 이미지 바꾸기
