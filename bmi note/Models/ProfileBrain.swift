@@ -19,11 +19,17 @@ Todo
    
 //Profile 저장과 로직을 위한 ViewModel
 struct ProfileBrain {
-    var myProfile = Profile(name: "Movel", age: 1, gender: "남", profileImg: "logo", height: 180.3, weight: 72.2, quote: ["If you want it, you can fly"])
+    var myProfile:Profile?
     
     // 세그먼트에서 성별을 입력 받는 메서드
     func getGenderType(selectedIndexTitle: String ) -> String {
         
         return selectedIndexTitle
+    }
+    
+    //Walter, UserDefault에서 값을 꺼내 myProfile에 대입
+    //이후 다른 뷰에서 이 myProfile 객체를 이용
+    mutating func setMyProfile(_ userProfile: Profile) {
+        self.myProfile = userProfile
     }
 }
