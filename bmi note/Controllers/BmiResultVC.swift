@@ -17,11 +17,9 @@ class BmiResultVC: UIViewController {
     @IBOutlet weak var weightForBMI: UILabel!
     
     var statusImgNames:[String] = ["bmi_01_underweight_2", "bmi_02_normal_2", "bmi_03_overweight_2", "bmi_04_obese_2", "bmi_05_extremelyobese_2"]
-    var myBMIStatus = 0
-    var bmiInfo:BMI?
-    
-    //전달받은 BMI수치
-    var bmi:Double = 0
+    var bmiStatusRangeIdx = 0   //bmi 범위에 해당하는 번호 0~4
+    var bmiInfo:BMI?        //직전 화면에서 BMI 정보를 받는 변수, 종민님 이 변수로 전달해주세요!
+    var bmi:Double = 0      //전달받은 BMI수치
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,8 +34,8 @@ class BmiResultVC: UIViewController {
          */
         setBMIInfo()            //직전 View에서 전달한 BMI 정보 셋팅
         findUserBmiInRange()        //User의 BMI가 어디에 속하는지 체크
-        changeBMIImg(index: myBMIStatus)      //User의 BMI수치에 따라 BMI이미지 교체
-        visibleArrows(index: myBMIStatus)     //User의 BMI수치에 따라 BMI이미지 아래 화살표 교체
+        changeBMIImg(index: bmiStatusRangeIdx)      //User의 BMI수치에 따라 BMI이미지 교체
+        visibleArrows(index: bmiStatusRangeIdx)     //User의 BMI수치에 따라 BMI이미지 아래 화살표 교체
     }
     
     //직전 View에 전달한 BMI 정보 셋팅하기
@@ -54,15 +52,15 @@ class BmiResultVC: UIViewController {
     func findUserBmiInRange() {
         switch bmi {
         case 0..<18.5:
-            myBMIStatus = 0
+            bmiStatusRangeIdx = 0
         case 18.5...24.9:
-            myBMIStatus = 1
+            bmiStatusRangeIdx = 1
         case 25...29.9:
-            myBMIStatus = 2
+            bmiStatusRangeIdx = 2
         case 30...34.9:
-            myBMIStatus = 3
+            bmiStatusRangeIdx = 3
         case 35...100:
-            myBMIStatus = 4
+            bmiStatusRangeIdx = 4
         default:
             break
         }

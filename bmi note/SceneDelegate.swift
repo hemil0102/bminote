@@ -9,7 +9,7 @@ import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
-    var isLogged: Bool = false
+    var isLogged: Bool = true
     var window: UIWindow?
 
     func changeRootViewController (_ vc: UIViewController, animated: Bool) {
