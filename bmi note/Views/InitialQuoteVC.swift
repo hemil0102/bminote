@@ -17,8 +17,8 @@ class InitialQuoteVC: UIViewController {
         let savedUserName = savedUserProfile?["name"] as? String
         //레이블에 저장된 유저 이름을 표시해준다.
         userName.text = "\(savedUserName ?? "나모블")님 :)"
-        // Do any additional setup after loading the view.
-
+        
+        toMainOutlet.isEnabled = false
         
         /*
          [Walter] UserDefault 값을 객체로 만든다는 것은,
@@ -43,22 +43,30 @@ class InitialQuoteVC: UIViewController {
 
     }
     
+    let picker = UIPickerView() //피커뷰 생성
+    let userInfo = Profile()
+    
+    @IBOutlet weak var quoteCheker: UIImageView!
     @IBOutlet weak var quoteTextField: UITextField!
     @IBOutlet weak var userName: UILabel!
-    let picker = UIPickerView() //피커뷰 생성
-    let userQuote = Profile()
+    @IBOutlet weak var toMainOutlet: UIButton!
     
     @IBAction func toMain(_ sender: UIButton) {
+        
+        profileUserData["quote"] = quoteTextField.text
+        UserDefaults.standard.set(profileUserData, forKey: Constants.profile)
+        
             guard let NaviVC = self.storyboard?.instantiateViewController(withIdentifier: "naviVC") as? UINavigationController else { return }
                 (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(NaviVC , animated: false)
     }
+    
     
     func configToolbar() {
         // toolbar를 만들어준다.
         let toolBar = UIToolbar()
         toolBar.barStyle = UIBarStyle.default
         toolBar.isTranslucent = true
-        toolBar.tintColor = UIColor.white
+        toolBar.tintColor = UIColor.black
         toolBar.sizeToFit()
         // 만들어줄 버튼
         // flexibleSpace는 취소~완료 간의 거리를 만들어준다.
@@ -75,14 +83,18 @@ class InitialQuoteVC: UIViewController {
         @objc func donePicker() {
             let row = self.picker.selectedRow(inComponent: 0)
             self.picker.selectRow(row, inComponent: 0, animated: false)
-            self.quoteTextField.text = self.userQuote.quote[row]
+            self.quoteTextField.text = self.userInfo.quoteList[row]
             self.quoteTextField.resignFirstResponder()
+            quoteCheker.image = UIImage(systemName: "checkmark.circle.fill")
+            toMainOutlet.isEnabled = true
             
     }
     // "취소" 클릭 시 textfield의 텍스트 값을 nil로 처리 후 입력창 내리기
         @objc func cancelPicker() {
             self.quoteTextField.text = nil
             self.quoteTextField.resignFirstResponder()
+            quoteCheker.image = UIImage(systemName: "")
+            toMainOutlet.isEnabled = false
             
     }
 
@@ -116,7 +128,7 @@ extension InitialQuoteVC: UIPickerViewDelegate, UIPickerViewDataSource {
     // pickerview의 선택지는 데이터의 개수만큼
     public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int
     {
-        return userQuote.quote.count
+        return userInfo.quoteList.count
         
     }
     
@@ -124,14 +136,30 @@ extension InitialQuoteVC: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?
     {
-        return userQuote.quote[row]
+        return userInfo.quoteList[row]
         
     }
     // textfield의 텍스트에 pickerview에서 선택한 값을 넣어준다.
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
     {
-        self.quoteTextField.text = self.userQuote.quote[row]
+        self.quoteTextField.text = self.userInfo.quoteList[row]
         
+    }
+    
+    
+    //피커뷰 리스트 텍스트 사이즈 및 폰트 설정
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        var pickerLabel: UILabel? = (view as? UILabel)
+        if pickerLabel == nil {
+            pickerLabel = UILabel()
+            pickerLabel?.font = UIFont(name: "System", size: 25)
+            pickerLabel?.textAlignment = .center
+        }
+        
+        pickerLabel?.text = userInfo.quoteList[row]
+        pickerLabel?.textColor = UIColor.black
+
+        return pickerLabel!
     }
     
 }

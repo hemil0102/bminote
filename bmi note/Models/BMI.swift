@@ -15,12 +15,14 @@ struct Profile {
     var profileImg: String?
     var height: Float?
     var weight: Float?
-    var quote: [String] = ["나는 할 수 있다!",
-                           "천리길도 한 걸음부터!",
-                           "작은 습관들이 삶의 큰 변화를 만든다.",
-                           "어차피 먹어봤자, 아는 그 맛이다.",
-                           "올 여름 바닷가에선 내가 킹카퀸카~",
-                           "실패는 성공의 어머니! 실패를 두려워하지 말자!"]
+    var quote: String?
+    
+    let quoteList = ["나는 할 수 있다!",
+                     "천리길도 한 걸음부터!",
+                     "작은 습관들이 삶의 큰 변화를 만든다.",
+                     "어차피 먹어봤자, 아는 그 맛이다.",
+                     "올 여름 바닷가에선 내가 킹카퀸카~",
+                     "실패는 성공의 어머니! 실패를 두려워하지 말자!"]
 }
 
 var profileUserData: [ String : Any ] = [ "test" : "test" ]

@@ -169,7 +169,7 @@ struct BMIBrain {
     
     func arrayCountControl<T>(arr: [T], count: Int) -> [T] {
         
-        let tempArr = arr
+        var tempArr = arr
         while (tempArr.count > count) {
             tempArr.removeFirst()
         }
