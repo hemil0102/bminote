@@ -13,6 +13,7 @@ struct BMIBrain {
     typealias UDSaveFormat = [String: Any] //딕셔너리 타입 이름 재정의
     let ud = UserDefaults.standard
     
+    //이 배열을 적극 활용! Main의 8일 그래프와 리스트에서 사용될 것입니다.
     var bmiDatas:[BMI]?
     
     //기본BMI변수
@@ -74,6 +75,7 @@ struct BMIBrain {
     }
     
     mutating func getXAxisIndices() {
+        //[Walter] 임시 데이터를 삭제해서 옵셔널 처리했습니다.
         if let bmi = bmiDatas {
             for i in 0..<bmi.count {
                 bmidateArray.append(bmi[i].regDate)
@@ -82,6 +84,7 @@ struct BMIBrain {
     }
     
     mutating func getYAxisValues(){
+        //[Walter] 임세 데이터를 삭제해서 옵셔널 처리했습니다.
         if let bmi = bmiDatas {
             for i in 0..<bmi.count {
                 bmiValueArray.append(bmi[i].bmi)
