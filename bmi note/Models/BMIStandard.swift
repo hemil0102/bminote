@@ -12,7 +12,8 @@ import Foundation
 
 struct BMIStandard {
     
-    let BMIStdValue: Double = 23.5
+    let BMIStdMinValue: Double = 18.0
+    let BMIStdMaxValue: Double = 25.0
     
     static let underWeightRange: Range<Double> = 0.0 ..< 18.0
     static let normalWeightRange: Range<Double> = 18.0 ..< 25.0

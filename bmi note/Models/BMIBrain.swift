@@ -33,9 +33,6 @@ struct BMIBrain {
     var bmidateArray: [String] = [] //X축
     var bmiValueArray: [Double] = [] //Y축
     
-    var bmidateArray2: [String] = [] //X축
-    var bmiValueArray2: [Double] = [] //Y축
-    
     //신장/몸무게 피커뷰 min/max
     var bmiPickerRange = BMIPicker()
     
@@ -155,4 +152,22 @@ struct BMIBrain {
             }
         }
     }
+    
+    //func saveResult()
+    
+    //func setXaxisValues()
+    
+    //func setYaxisValues()
+    
+    func arrayCountControl<T>(arr: [T], count: Int) -> [T] {
+        
+        let tempArr = arr
+        while (tempArr.count > count) {
+            tempArr.removeFirst()
+        }
+        
+        return tempArr
+    }
+    
+    
 }

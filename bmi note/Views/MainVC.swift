@@ -147,16 +147,26 @@ extension MainVC { //그래프 뷰 익스텐션
         
         //차트 x축 아래 라벨 숨기는 옵션
         barChartView.legend.enabled = false
+        
+        barChartView.leftAxis.axisMaximum = 40.0
+        barChartView.leftAxis.axisMinimum = 0.0
     }
     
     func setChartSubdetails() {
         
-        let limitValue = bmiStd.BMIStdValue
+        let limitMinValue = bmiStd.BMIStdMinValue
+        let limitMaxValue = bmiStd.BMIStdMaxValue
 
         //리미트라인
-        let limit = ChartLimitLine(limit: limitValue, label: "standard")
+        let limit = ChartLimitLine(limit: limitMinValue, label: "")
         limit.lineColor = .blue //라인 색 변경
         barChartView.leftAxis.addLimitLine(limit)
+        limit.lineWidth = 1.0
+        
+        let limit2 = ChartLimitLine(limit: limitMaxValue, label: "")
+        limit2.lineColor = .green //라인 색 변경
+        barChartView.leftAxis.addLimitLine(limit2)
+        limit2.lineWidth = 1.0
         
         //좌측 축 사용안함
         barChartView.leftAxis.enabled = true
@@ -177,11 +187,12 @@ extension MainVC { //그래프 뷰 익스텐션
     func barColors(with data: [Double]) -> [UIColor] {
       return data.map {
           
-        let limitValue = bmiStd.BMIStdValue
+          let limitMinValue = bmiStd.BMIStdMinValue
+          let limitMaxValue = bmiStd.BMIStdMaxValue
           
-        if $0 > limitValue {
-          return .systemRed
-        } else if $0 < limitValue {
+        if $0 > limitMaxValue {
+          return .systemOrange
+        } else if $0 < limitMinValue {
           return .systemBlue
         } else {
           return .systemGreen
