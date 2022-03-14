@@ -84,7 +84,11 @@ extension HistoryListVC: UITableViewDelegate {
 extension HistoryListVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //List Count return하기
-        return bmiHistory.tBMI.count
+        if let bmiHistory = bmiHistory.bmiDatas {
+            return bmiHistory.count
+        } else {
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -97,12 +101,13 @@ extension HistoryListVC: UITableViewDataSource {
         //bim값에 따른 배경색 변경 []
         
         let bmiInfo = bmiHistory.getAllBMI()    //BMI 전체 데이터 가져오기
-        
-        cell.bmiValue.text = "\(bmiInfo[row].bmi)"       //BMI 수치
-        cell.bmiState.text = "\(bmiInfo[row].bmiStatus)"       //BMI 상태
-        cell.height.text = "\(bmiInfo[row].heightForBMI)cm"         //BMI 게산에 사용된 키
-        cell.weight.text = "\(bmiInfo[row].weightForBMI)kg"         //BMI 계산에 사용된 몸무게
-        cell.regDate.text = "\(bmiInfo[row].regDate)"
+        if let bmiInfo = bmiInfo {
+            cell.bmiValue.text = "\(bmiInfo[row].bmi)"       //BMI 수치
+            cell.bmiState.text = "\(bmiInfo[row].bmiStatus)"       //BMI 상태
+            cell.height.text = "\(bmiInfo[row].heightForBMI)cm"         //BMI 게산에 사용된 키
+            cell.weight.text = "\(bmiInfo[row].weightForBMI)kg"         //BMI 계산에 사용된 몸무게
+            cell.regDate.text = "\(bmiInfo[row].regDate)"
+        }
         
         return cell
     }

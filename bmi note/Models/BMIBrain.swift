@@ -13,14 +13,7 @@ struct BMIBrain {
     typealias UDSaveFormat = [String: Any] //딕셔너리 타입 이름 재정의
     let ud = UserDefaults.standard
     
-    var tBMI = [
-        BMI(heightForBMI: 170, weightForBMI: 72, bmiStatus: "정상", regDate: "2022-03-01(일)", bmi: 25.3),
-        BMI(heightForBMI: 180, weightForBMI: 58, bmiStatus: "저체중", regDate: "2022-03-02(일)", bmi: 19.3),
-        BMI(heightForBMI: 164, weightForBMI: 93, bmiStatus: "과체중", regDate: "2022-03-03(일)", bmi: 33.3),
-        BMI(heightForBMI: 198, weightForBMI: 37, bmiStatus: "저체중", regDate: "2022-03-04(일)", bmi: 12.3),
-        BMI(heightForBMI: 162, weightForBMI: 64, bmiStatus: "정상", regDate: "2022-03-05(일)", bmi: 28.3),
-        BMI(heightForBMI: 173, weightForBMI: 81, bmiStatus: "정상 ", regDate: "2022-03-06(일)", bmi: 20.3)
-    ]
+    var bmiDatas:[BMI]?
     
     //기본BMI변수
     var heightForBmi: Int
@@ -63,24 +56,36 @@ struct BMIBrain {
     }
     
     //리스트로 뿌려줌
-    func getAllBMI() -> [BMI] {
-        return tBMI
+    func getAllBMI() -> [BMI]? {
+        if let bmi = bmiDatas {
+            return bmi
+        } else {
+            return nil
+        }
     }
     
     //하나의 BMI정보를 가져오기
-    func getBMIInfo(_ idx: Int) -> BMI {
-        return tBMI[idx]
+    func getBMIInfo(_ idx: Int) -> BMI? {
+        if let bmi = bmiDatas {
+            return bmi[idx]
+        } else {
+            return nil
+        }
     }
     
     mutating func getXAxisIndices() {
-        for i in 0..<tBMI.count {
-            bmidateArray.append(tBMI[i].regDate)
+        if let bmi = bmiDatas {
+            for i in 0..<bmi.count {
+                bmidateArray.append(bmi[i].regDate)
+            }
         }
     }
     
     mutating func getYAxisValues(){
-        for i in 0..<tBMI.count {
-            bmiValueArray.append(tBMI[i].bmi)
+        if let bmi = bmiDatas {
+            for i in 0..<bmi.count {
+                bmiValueArray.append(bmi[i].bmi)
+            }
         }
     }
     
