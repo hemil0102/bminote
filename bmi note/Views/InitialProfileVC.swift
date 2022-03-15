@@ -8,17 +8,70 @@
 import UIKit
 import Foundation
 
-class InitialProfileVC: UIViewController {
-
+class InitialProfileVC: UIViewController, UITextFieldDelegate {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         //실시간 유저 입력에 대한 유효성 검사를 위한 addTarget
-        initialUserInputName.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged) //for와 at이 갖는 의미 그리고 .으로 시작하는 것들에 의미는 뭔가?
-        initialUserInputAge.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        initialUserInputHeight.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        initialUserInputWeight.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        initialUserInputName.addTarget(self, action: #selector(nameTextFieldDidChange), for: .editingChanged) //for와 at이 갖는 의미 그리고 .으로 시작하는 것들에 의미는 뭔가?
+        initialUserInputAge.addTarget(self, action: #selector(ageTextFieldDidChange), for: .editingChanged)
+        initialUserInputHeight.addTarget(self, action: #selector(heightTextFieldDidChange), for: .editingChanged)
+        initialUserInputWeight.addTarget(self, action: #selector(weightTextFieldDidChange), for: .editingChanged)
         //초기 버튼 비활성화
-        saveInitialProfileOutlet.isEnabled = false
+        // 모든 입력이 유효함을 판단하는 if문, 유효할 경우 저장 버튼이 활성화됨.
+        buttonDecision()
+        
+        //키보드 화면 가림 방지 구현
+        initialUserInputName.delegate = self
+        initialUserInputAge.delegate = self
+        initialUserInputHeight.delegate = self
+        initialUserInputWeight.delegate = self
+        initialUserInputName.returnKeyType = .done
+        initialUserInputAge.returnKeyType = .done
+        initialUserInputHeight.returnKeyType = .done
+        initialUserInputWeight.returnKeyType = .done
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        //제스처가 실행될 떄 키보드를 내릴 수 있도록
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(endEditing)))
+    }
+ 
+    var fCurTextfieldBottom: CGFloat = 0.0 // 키보드가 컨트롤을 가렸는지 확인하기 위함
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        fCurTextfieldBottom = textField.frame.origin.y + textField.frame.height //텍스트 필드 컨트롤의 좌표와 컨트롤의 높이를 구해서 나중에 키보드에 의해 가려졌는지 확인을 위한 계산
+    }
+
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if fCurTextfieldBottom <= self.view.frame.height - keyboardSize.height {
+                return
+            }
+            if self.view.frame.origin.y == 0 {
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+         textField.resignFirstResponder()
+         return true
+     }
+    
+    @objc func endEditing() {
+        initialUserInputName.resignFirstResponder()
+        initialUserInputAge.resignFirstResponder()
+        initialUserInputHeight.resignFirstResponder()
+        initialUserInputWeight.resignFirstResponder()
     }
     
     @IBOutlet weak var initialUserInputName: UITextField!
@@ -44,6 +97,10 @@ class InitialProfileVC: UIViewController {
     
     var userInfo = Profile()
     var userInfoBrain = ProfileBrain()
+    var correctName = false
+    var correctAge = false
+    var correctHeight = false
+    var correctWeight = false
     
     //남녀 성별 선택 세그먼트
     @IBAction func initUserSelectSeg(_ sender: UISegmentedControl) {
@@ -51,7 +108,6 @@ class InitialProfileVC: UIViewController {
         // Segment Index에 따라서 남여를 지정, 굳이 함수화 할 필요는 없지만 관리차원으로 getGenderType() 함수를 Brain에 형성, 값이 없을 수 없어서 force unwrap 함.
         let gender = initialUserSelectGender.titleForSegment(at: sender.selectedSegmentIndex)!
         userInfo.gender = userInfoBrain.getGenderType(selectedIndexTitle: gender)
-        view.endEditing(true)
   
     }
     
@@ -68,12 +124,7 @@ class InitialProfileVC: UIViewController {
     
     
     // 개인 신상 정보 입력 유효성 검사
-    @objc func textFieldDidChange(_ textField: UITextField) {
-        
-        var correctName: Bool
-        var correctAge: Bool
-        var correctHeight: Bool
-        var correctWeight: Bool
+    @objc func nameTextFieldDidChange(_ textField: UITextField) {
         
         if initialUserInputName.text != "" {
             let nameRe = "[가-힣A-Za-z]{1,12}" //모든 완성형 한글과 대소문자 알파벳만 입력으로 받는다. 문자는 1자리에서 12자리까지 입력 가능.
@@ -87,7 +138,7 @@ class InitialProfileVC: UIViewController {
             } else {
                 correctName = false
                 nameChecker.image = UIImage(systemName: "")
-                checkNameRegularExpressions.text = "특수 기호, 숫자 및 공백 제외\n한글 및 영어로 입력해주세요."
+                checkNameRegularExpressions.text = "한글 및 영문만 입력 가능합니다."
 
             }
         } else {
@@ -95,6 +146,10 @@ class InitialProfileVC: UIViewController {
             nameChecker.image = UIImage(systemName: "")
             checkNameRegularExpressions.text = "닉네임을 입력해주세요."
         }
+        buttonDecision()
+    }
+    
+    @objc func ageTextFieldDidChange(_ textField: UITextField) {
 
         if initialUserInputAge.text != "" {
             let ageRe = "(19|20)[0-9]{2}" //앞자리는 19또는 20이란 조건을 주고 뒷 자리는 2자리의 모든 숫자를 조건으로 지정.
@@ -108,7 +163,7 @@ class InitialProfileVC: UIViewController {
             } else {
                 correctAge = false
                 ageChecker.image = UIImage(systemName: "")
-                checkAgeRegularExpressions.text = "1900~2099 범위 내\n4자리 숫자를 입력해주세요."
+                checkAgeRegularExpressions.text = "1900~2099 범위 내 입력 바랍니다."
 
             }
         } else {
@@ -116,10 +171,12 @@ class InitialProfileVC: UIViewController {
             ageChecker.image = UIImage(systemName: "")
             checkAgeRegularExpressions.text = "출생연도를 입력해주세요."
         }
-        
+        buttonDecision()
+    }
+    
+    @objc func heightTextFieldDidChange(_ textField: UITextField) {
         if initialUserInputHeight.text != "" {
             let heightRe = "[0-9]{2,3}" // 2~3자리의 숫자를 입력 받는다. 💡숫자 앞자리에 대한 범위를 더 지정할 필요가 있어보임.
-            
             let tempHeight = NSPredicate(format:"SELF MATCHES %@", heightRe)
             if tempHeight.evaluate(with: initialUserInputHeight.text) {
                 correctHeight = true
@@ -130,7 +187,7 @@ class InitialProfileVC: UIViewController {
             } else {
                 correctHeight = false
                 heightChecker.image = UIImage(systemName: "")
-                checkHeightRegularExpressions.text = "소숫점은 반올림,23\n숫자 3자리를 입력해주세요."
+                checkHeightRegularExpressions.text = "소숫점 제외, 숫자 2~3자리를 입력해주세요."
 
             }
         } else {
@@ -138,9 +195,13 @@ class InitialProfileVC: UIViewController {
             heightChecker.image = UIImage(systemName: "")
             checkHeightRegularExpressions.text = "신장을 입력해주세요."
         }
+        buttonDecision()
+    }
+    
+    @objc func weightTextFieldDidChange(_ textField: UITextField) {
         
         if initialUserInputWeight.text != "" {
-            let weightRe = "[0-9]{1,3}" // 1~3자리의 숫자를 입력 받는다.
+            let weightRe = "[0-9]{2,3}" // 1~3자리의 숫자를 입력 받는다.
             let tempWeight = NSPredicate(format:"SELF MATCHES %@", weightRe)
             if tempWeight.evaluate(with: initialUserInputWeight.text) {
                 correctWeight = true
@@ -151,7 +212,7 @@ class InitialProfileVC: UIViewController {
             } else {
                 correctWeight = false
                 weightChecker.image = UIImage(systemName: "")
-                checkWeightRegularExpressions.text = "소숫점은 반올림,\n숫자 1~3자리를 입력해주세요."
+                checkWeightRegularExpressions.text = "소숫점 제외, 숫자 2~3자리를 입력해주세요."
 
             }
         } else {
@@ -159,8 +220,10 @@ class InitialProfileVC: UIViewController {
             weightChecker.image = UIImage(systemName: "")
             checkWeightRegularExpressions.text = "몸무게를 입력해주세요."
         }
+        buttonDecision()
+    }
     
-        // 모든 입력이 유효함을 판단하는 if문, 유효할 경우 저장 버튼이 활성화됨.
+    func buttonDecision() {
         if correctName && correctAge && correctHeight && correctWeight {
             saveInitialProfileOutlet.isEnabled = true
         } else {
@@ -168,95 +231,10 @@ class InitialProfileVC: UIViewController {
         }
     }
 
-    /*
-
-    @objc func nameTextFieldDidChange(_ textField: UITextField) {
-        
-        if initialUserInputName.text != "" {
-            let nameRe = "[가-힣A-Za-z]{1,12}"
-            let tempName = NSPredicate(format:"SELF MATCHES %@", nameRe)
-            if tempName.evaluate(with: initialUserInputName.text) {
-                userInfo.name = initialUserInputName.text
-                nameChecker.image = UIImage(systemName: "checkmark.circle.fill")
-                checkNameRegularExpressions.text = ""
-            } else {
-                nameChecker.image = UIImage(systemName: "")
-                checkNameRegularExpressions.text = "특수 기호, 숫자 및 공백 제외\n한글 및 영어로 입력해주세요 :)"
-
-            }
-        } else {
-            nameChecker.image = UIImage(systemName: "")
-            checkNameRegularExpressions.text = "닉네임을 입력해주세요 :)"
-        }
-
-    }
-  
-    @objc func ageTextFieldDidChange(_ textField: UITextField) {
-        
-        if initialUserInputAge.text != "" {
-            let ageRe = "(19|20)[0-9]{2}"
-            let tempAge = NSPredicate(format:"SELF MATCHES %@", ageRe)
-            if tempAge.evaluate(with: initialUserInputAge.text) {
-                userInfo.age = Int(initialUserInputAge.text!)! //입력이 있고 숫자가 있으므로 force unwrap
-                ageChecker.image = UIImage(systemName: "checkmark.circle.fill")
-                checkAgeRegularExpressions.text = ""
-            } else {
-                ageChecker.image = UIImage(systemName: "")
-                checkAgeRegularExpressions.text = "1900~2099 범위 내\n4자리 숫자를 입력해주세요."
-
-            }
-        } else {
-            ageChecker.image = UIImage(systemName: "")
-            checkAgeRegularExpressions.text = "출생연도를 입력해주세요 :)"
-        }
-    }
- 
-    @objc func heightTextFieldDidChange(_ textField: UITextField) {
-        
-        if initialUserInputHeight.text != "" {
-            let heightRe = "^([0-9]{2,3})\\.([0-9]{1})"
-            let tempHeight = NSPredicate(format:"SELF MATCHES %@", heightRe)
-            if tempHeight.evaluate(with: initialUserInputHeight.text) {
-                userInfo.height = Float(initialUserInputHeight.text!)! //입력이 있고 숫자가 있으므로 force unwrap
-                heightChecker.image = UIImage(systemName: "checkmark.circle.fill")
-                checkHeightRegularExpressions.text = ""
-            } else {
-                heightChecker.image = UIImage(systemName: "")
-                checkHeightRegularExpressions.text = "소숫점 1자리까지 입력해주세요. \n예: 176.0 or 180.3"
-
-            }
-        } else {
-            heightChecker.image = UIImage(systemName: "")
-            checkHeightRegularExpressions.text = "신장을 입력해주세요 :)"
-        }
-    }
-    
-    @objc func weightTextFieldDidChange(_ textField: UITextField) {
-        
-        if initialUserInputWeight.text != "" {
-            let weightRe = "^([0-9]{1,3})\\.([0-9]{1})"
-            let tempWeight = NSPredicate(format:"SELF MATCHES %@", weightRe)
-            if tempWeight.evaluate(with: initialUserInputWeight.text) {
-                userInfo.weight = Float(initialUserInputWeight.text!)! //입력이 있고 숫자가 있으므로 force unwrap
-                weightChecker.image = UIImage(systemName: "checkmark.circle.fill")
-                checkWeightRegularExpressions.text = ""
-            } else {
-                heightChecker.image = UIImage(systemName: "")
-                checkWeightRegularExpressions.text = "소숫점 1자리까지 입력해주세요. \n예: 176.0 or 180.3"
-
-            }
-        } else {
-            weightChecker.image = UIImage(systemName: "")
-            checkWeightRegularExpressions.text = "신장을 입력해주세요 :)"
-        }
-    }
-*/
-     // 화면 터치시 키보드를 숨기는 Function
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-            self.view.endEditing(true)
-    }
-    
-
+    // 화면 터치시 키보드를 숨기는 Function
+   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+           self.view.endEditing(true)
+   }
     /*
     // MARK: - Navigation
 

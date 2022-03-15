@@ -9,6 +9,7 @@ import UIKit
 
 class InitialQuoteVC: UIViewController {
 
+
     override func viewDidLoad() {
         super.viewDidLoad()
         //뷰가 로드될 때 앞에 저장되었던 딕셔너리 형태의 유저 정보를 불러온다.
