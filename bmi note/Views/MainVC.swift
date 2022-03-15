@@ -14,19 +14,22 @@ class MainVC: UIViewController {
     let bmiStd = BMIStandard()
     var bmiBrain = BMIBrain()
 
+    var mainProfileBrain = ProfileBrain()
+    
     @IBOutlet weak var inputPickerView: UIPickerView!   //pickerView 변수
     @IBOutlet weak var barChartView: BarChartView!      //그래프용 변수
+    @IBOutlet weak var mainUserName: UILabel! //메인 화면 프로필 유저 이름
+    @IBOutlet weak var mainUserQuote: UILabel! //메인 화면 프로필 유저 격언
     
     @IBAction func pressedCalculateBMI(_ sender: UIButton) {
-        bmiBrain.saveResult()
-        //bmiBrain.saveResult2()
         
+        bmiBrain.saveResultToArray()
+
         performSegue(withIdentifier: "goBmiResultView", sender: self)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //유저 디폴트 값 불러오기
         
         //그래프 세팅
         initSetChart()
@@ -39,6 +42,24 @@ class MainVC: UIViewController {
         setInitialValuePV()
         
         self.navigationController?.navigationBar.topItem?.title = "메인"
+        
+        //유저데이터 불러오기
+        let savedUserProfile = UserDefaults.standard.dictionary(forKey: Constants.profile)
+        if let userInfo = savedUserProfile {
+            let uName = userInfo["name"] as? String
+            let uAge = userInfo["age"] as? Int
+            let uGender = userInfo["gender"] as? String
+            let uHeight = userInfo["height"] as? Float
+            let uWeight = userInfo["weight"] as? Float
+            let uQuote = userInfo["quote"] as? String
+            let mainProfile = Profile(name: uName, age: uAge, gender: uGender!, profileImg: "", height: uHeight, weight: uWeight, quote: uQuote)
+            mainProfileBrain = ProfileBrain()      //모든 뷰에 이 객체를 전달, 이용 또는 수정하는 것
+            mainProfileBrain.myProfile = mainProfile
+            print("\(String(describing: mainProfileBrain.myProfile))")
+        }
+        
+        mainUserName.text = mainProfileBrain.myProfile?.name
+        mainUserQuote.text = mainProfileBrain.myProfile?.quote
         
     }
     
@@ -56,11 +77,11 @@ class MainVC: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+
         if segue.identifier == "goBmiResultView" {
             guard let secondVC = segue.destination as? BmiResultVC else { return }
-            
-            secondVC.bmiInfo = bmiBrain.lastBmiData
+
+            secondVC.bmiInfo = bmiBrain.currentBMI
 
         }
     }
@@ -71,7 +92,6 @@ extension MainVC: UIPickerViewDelegate, UIPickerViewDataSource { //피커뷰 익
     func configPickerView() {
         inputPickerView.delegate = self
         inputPickerView.dataSource = self
-        
     }
     
     //picker view 컬럼 수
@@ -105,14 +125,16 @@ extension MainVC: UIPickerViewDelegate, UIPickerViewDataSource { //피커뷰 익
     
     //피커뷰 신장/키를 BMIBrain 으로 전달하는 함수
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
         switch component {
         case 0:
-            self.bmiBrain.setHeight(row: row)//row 가 값자체가 아니네...
+            self.bmiBrain.setHeight(row: row)
         case 1:
             self.bmiBrain.setWeight(row: row)
         default:
             break
         }
+        
     }
     
     func setInitialValuePV() {
@@ -125,6 +147,9 @@ extension MainVC: UIPickerViewDelegate, UIPickerViewDataSource { //피커뷰 익
         
     }
     
+//    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+//        pickerView.subviews.first?.backgroundColor = UIColor.red
+//    }
 }
 
 
@@ -136,8 +161,7 @@ extension MainVC { //그래프 뷰 익스텐션
         barChartView.noDataFont = .systemFont(ofSize: 20)
         barChartView.noDataTextColor = .lightGray
         
-        bmiBrain.setXaxisValues()
-        bmiBrain.setYaxisValues()
+        bmiBrain.setAxisValues()
     }
 
     
@@ -203,11 +227,9 @@ extension MainVC { //그래프 뷰 익스텐션
         barChartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0)
         barChartView.layer.cornerRadius = 30.0
         
-        //최근막대 위해 인디케이터....
-        
         }
     
-    //그래프 리미트 초과에 따른 색 배열 지정
+    //그래프 리미트 초과에 따른 그래프별 색 배열 지정
     func barColors(with data: [Double]) -> [UIColor] {
       return data.map {
           

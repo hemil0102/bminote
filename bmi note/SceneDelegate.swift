@@ -9,7 +9,7 @@ import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
-    var isLogged: Bool = false
+    var isLogged: Bool = true
     var window: UIWindow?
 
     func changeRootViewController (_ vc: UIViewController, animated: Bool) {
@@ -25,7 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-        if isLogged == true {
+        if isLogged == false {
             guard let greetingVC = storyboard.instantiateViewController(withIdentifier: "greetingVC") as? GreetingVC else { return }
             window?.rootViewController = greetingVC
         } else {

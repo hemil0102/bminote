@@ -10,8 +10,7 @@ import UIKit
 class HistoryListVC: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    
-    var bmiHistory = BMIBrain()
+    @IBOutlet weak var isThereRecordLabel: UILabel!
     
     //지역변수로 사용할 HistoryData
     var receivedData:BMIBrain?          //???
@@ -27,7 +26,6 @@ class HistoryListVC: UIViewController {
          3. 항목 선택시 뷰 이동 [✓]
          4. 선택된 항목 데이터 전달 [✓]
          */
-        
         setTableViewXIBCell()                   //TableView에 XIB 커스텀 셀 연결
         setHistoryDataFromPrivousScreen()       //historyData에 전달받은 객체 대입
         
@@ -39,14 +37,18 @@ class HistoryListVC: UIViewController {
         self.tableView.dataSource = self
     }
     
+    //XIB Table View Cell 연결
     func setTableViewXIBCell() {
         self.tableView.register(UINib(nibName: Constants.historyListCell, bundle: nil), forCellReuseIdentifier: Constants.historyListCellIdentifier)
     }
     
-    //전 화면에서 받아온 데이터를 로컬변수로 대입
+    //전 화면에서 받아온 데이터를 로컬변수로 대입, 기록된 데이터가 없을 때 '기록이 없습니다' 출력
     func setHistoryDataFromPrivousScreen() {
         if let data = receivedData {
             historyData = data
+            isThereRecordLabel.isHidden = true
+        } else {
+            isThereRecordLabel.isHidden = false
         }
     }
     
@@ -73,7 +75,7 @@ extension HistoryListVC: UITableViewDelegate {
         }
         //indexPath.row 값 던져주기
         let row = indexPath.row
-        let bmiInfo = bmiHistory.getBMIInfo(row)
+        let bmiInfo = historyData?.getBMIInfo(row)
         bmiResultVC.bmiInfo = bmiInfo
         
         self.navigationController?.pushViewController(bmiResultVC, animated: true)
@@ -84,7 +86,7 @@ extension HistoryListVC: UITableViewDelegate {
 extension HistoryListVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //List Count return하기
-        if let bmiHistory = bmiHistory.bmiDatas {
+        if let bmiHistory = historyData?.bmiDatas {
             return bmiHistory.count
         } else {
             return 0
@@ -100,7 +102,7 @@ extension HistoryListVC: UITableViewDataSource {
         //historyData에서 값 꺼내기 []
         //bim값에 따른 배경색 변경 []
         
-        let bmiInfo = bmiHistory.getAllBMI()    //BMI 전체 데이터 가져오기
+        let bmiInfo = historyData?.getAllBMI()    //BMI 전체 데이터 가져오기
         if let bmiInfo = bmiInfo {
             cell.bmiValue.text = "\(bmiInfo[row].bmi)"       //BMI 수치
             cell.bmiState.text = "\(bmiInfo[row].bmiStatus)"       //BMI 상태
