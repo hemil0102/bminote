@@ -625,7 +625,7 @@
             </objects>
             <point key="canvasLocation" x="389.85507246376812" y="131.91964285714286"/>
         </scene>
-        <!--BMI 측정 이력-->
+        <!--BMI 측정 기록-->
         <scene sceneID="cUM-DL-SGz">
             <objects>
                 <viewController id="5jL-2s-BuT" customClass="HistoryListVC" customModule="bmi_note" customModuleProvider="target" sceneMemberID="viewController">
@@ -638,6 +638,12 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                             </tableView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="측정 기록이 없습니다." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tVA-Ih-888">
+                                <rect key="frame" x="101" y="383" width="212" height="30"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="h3a-Oi-6ow"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -645,11 +651,14 @@
                             <constraint firstItem="2Vg-Gp-CfZ" firstAttribute="leading" secondItem="h3a-Oi-6ow" secondAttribute="leading" id="T22-Je-UNy"/>
                             <constraint firstItem="h3a-Oi-6ow" firstAttribute="bottom" secondItem="2Vg-Gp-CfZ" secondAttribute="bottom" id="Zcp-Sx-2Ld"/>
                             <constraint firstItem="2Vg-Gp-CfZ" firstAttribute="top" secondItem="h3a-Oi-6ow" secondAttribute="top" id="am3-6X-zLJ"/>
+                            <constraint firstItem="tVA-Ih-888" firstAttribute="centerX" secondItem="zIP-Rh-ZHa" secondAttribute="centerX" id="hJD-we-aOq"/>
+                            <constraint firstItem="tVA-Ih-888" firstAttribute="centerY" secondItem="zIP-Rh-ZHa" secondAttribute="centerY" constant="-50" id="lIU-KP-1ly"/>
                             <constraint firstItem="h3a-Oi-6ow" firstAttribute="trailing" secondItem="2Vg-Gp-CfZ" secondAttribute="trailing" id="vkp-Ye-p9E"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="BMI 측정 이력" id="I55-hZ-4Te"/>
+                    <navigationItem key="navigationItem" title="BMI 측정 기록" id="I55-hZ-4Te"/>
                     <connections>
+                        <outlet property="isThereRecordLabel" destination="tVA-Ih-888" id="64i-Jw-F23"/>
                         <outlet property="tableView" destination="2Vg-Gp-CfZ" id="NwR-Vq-bhf"/>
                     </connections>
                 </viewController>
