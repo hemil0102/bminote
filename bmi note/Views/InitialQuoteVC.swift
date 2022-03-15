@@ -38,6 +38,7 @@ class InitialQuoteVC: UIViewController {
             
             print(myProfile.myProfile)  //Profile의 모든 값을 출력
         }
+        
 
         configPickerView()
         configToolbar()

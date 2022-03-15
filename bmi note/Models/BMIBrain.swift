@@ -14,43 +14,34 @@ struct BMIBrain {
     let ud = UserDefaults.standard
     
     //이 배열을 적극 활용! Main의 8일 그래프와 리스트에서 사용될 것입니다.
-    var bmiDatas:[BMI]?
+    var bmiDatas: [BMI]?
+    var currentBMI: BMI?
     
-    //기본BMI변수
-    var heightForBmi: Int
-    var weightForBmi: Int
-    var bmiValue: Double
-    var bmiStatus: String
-    var regDate: String
-    
-    //그래프 데이터 배열
-    var bmidateArray: [String] = [] //X축
+    //그래프 데이터용 배열
+    var bmiDateArray: [String] = [] //X축
     var bmiValueArray: [Double] = [] //Y축
     
     //신장/몸무게 피커뷰 min/max
     var bmiPickerRange = BMIPicker()
     
-    //데이터 수량
-    var dataCount: Int = 0
-    
-    //상수
+    //Key값 상수
     let historyKeyValue: String = Constants.history //history key값 상수
     
-    //데이터 유저디폴트 저장용 배열 변수
-    var saveArray: [UDSaveFormat] = []
+    //피커뷰 임시 신장/몸무게 저장 변수
+    var tempHeight: Int = -1
+    var tempWeight: Int = -1
     
     //기본 이니셜라이저
     init() {
-        heightForBmi = 1
-        weightForBmi = 1
-        bmiValue = 1.0
-        bmiStatus = ""
-        regDate = ""
+
+        //임시 유저디폴트 생성(삭제 예정)
+        createTempUserDefaults()
         
-        getXAxisIndices()
-        getYAxisValues()
+        //저장된 유저 디폴트 로드
+        initialLoadUserDefaults()
         
-        //UserDefault 에서 데이터 한번 들고와야함.
+        //로드된 유저 디폴트의 값을 그래프로 저장하기 위한 함수
+        setAxisValues()
     }
     
     //리스트로 뿌려줌
@@ -71,45 +62,71 @@ struct BMIBrain {
         }
     }
     
-    mutating func getXAxisIndices() {
-        //[Walter] 임시 데이터를 삭제해서 옵셔널 처리했습니다.
-        if let bmi = bmiDatas {
-            for i in 0..<bmi.count {
-                bmidateArray.append(bmi[i].regDate)
+    //객체화 시점에 유저디폴트 데이터 가져오는 함수
+    mutating func initialLoadUserDefaults() {
+        
+        let udData = ud.array(forKey: historyKeyValue)
+        
+        bmiDatas = []
+        
+        if let tempData = udData {
+            if (tempData.count == 0) {
+                return
+            } else {
+                for i in 0 ..< tempData.count {
+                    let tempArr = tempData[i] as? UDSaveFormat
+                    let tempHeight = tempArr?["heightForBmi"] as? Float ?? -1.0
+                    let tempWeight = tempArr?["weightForBmi"] as? Float ?? -1.0
+                    let tempBmiStatus = tempArr?["bmiStatus"] as? String ?? "no data"
+                    let tempRegDate = tempArr?["regDate"] as? String ?? "no data"
+                    let tempBmi = tempArr?["bmi"] as? Double ?? -1.0
+                    
+                    bmiDatas?.append(BMI(heightForBMI: tempHeight, weightForBMI: tempWeight, bmiStatus: tempBmiStatus, regDate: tempRegDate, bmi: tempBmi))
+                    
+                }
             }
         }
+        
+        print(bmiDatas ?? "no data")
     }
     
-    mutating func getYAxisValues(){
-        //[Walter] 임세 데이터를 삭제해서 옵셔널 처리했습니다.
-        if let bmi = bmiDatas {
-            for i in 0..<bmi.count {
-                bmiValueArray.append(bmi[i].bmi)
-            }
-        }
+    mutating func setValuesFromView(_ height: Int, _ weight: Int) {
+        self.tempHeight = height
+        self.tempWeight = weight
     }
     
     mutating func setHeight(row: Int) {
-        heightForBmi = bmiPickerRange.heightMinMaxArray[row]
+        self.tempHeight = bmiPickerRange.heightMinMaxArray[row]
     }
     
     mutating func setWeight(row: Int) {
-        weightForBmi = bmiPickerRange.weightMinMaxArray[row]
+        self.tempWeight = bmiPickerRange.weightMinMaxArray[row]
     }
     
-    mutating func setCalculatedBMI() {
-        let temp = Double(weightForBmi) / pow(Double(heightForBmi)/100, 2)
+    private func setCalculatedBMI(height: Int, weight: Int) -> Double {
         
+        let temp = Double(weight) / pow(Double(height)/100, 2)
         let digit: Double = pow(10, 1)
-        bmiValue = round(temp * digit) / digit //두번째 자리에서 반올림 구현
+        
+        return round(temp * digit) / digit //두번째 자리에서 반올림 구현
     }
     
-    mutating func setDate() {
+    private func setDate() -> String {
         
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd(E)"
-        regDate = formatter.string(from: Date())
-        //print(regDate)
+        
+        return formatter.string(from: Date())
+    }
+    
+    mutating func setCurrentBMI(){
+        let height = Float(tempHeight)
+        let weight = Float(tempWeight)
+        let bmiValue: Double = setCalculatedBMI(height: self.tempHeight, weight: self.tempWeight)
+        let DateValue: String = setDate()
+        let bmiStatusValue: String = BMIStandard.decideLevel(bmiValue: bmiValue)
+        
+        self.currentBMI = BMI(heightForBMI: height, weightForBMI: weight, bmiStatus: bmiStatusValue, regDate: DateValue, bmi: bmiValue)
     }
     
     mutating func setInitialPickerViewValue() { 
@@ -117,55 +134,22 @@ struct BMIBrain {
         //유저 디폴트에 저장 데이터가 1개 이상이면 가장 최신 데이터 세팅.
     }
     
-    mutating func saveResult() {
+    mutating func setAxisValues() { //그래프용 데이터 저장
         
-        self.setCalculatedBMI() //BMI 계산/세팅
-        self.setDate() //날짜 세팅
-        let bmiStatus = BMIStandard.decideLevel(bmiValue: bmiValue) //bmiStatus 가져오기
-//        let historyKeyValue: String = Constants.userDefaultsKeyHistory //key값 상수 가져오기
+        bmiDateArray = []
         
-        let dict: UDSaveFormat = ["regDate": regDate, "heightForBmi": heightForBmi, "weightForBmi": weightForBmi, "bmi" : bmiValue, "bmiStatus": bmiStatus]
-            
-        saveArray.append(dict)
-        print("계산값 저장 : \(saveArray)")
-
-        ud.set(saveArray, forKey: historyKeyValue) //bmi 계산값 저장
-        
-        print(ud.array(forKey: historyKeyValue) ?? "No data")
-        
-        dataCount += 1
-        print(dataCount)
-        
-        if let udData = ud.array(forKey: historyKeyValue) {
-            if (udData.count == 0) {
-                return
-            } else {
-                print(type(of: udData))
-                print(type(of: udData[0]))
-                print(udData[0])
-
+        if let data = bmiDatas {
+            for i in 0 ..< data.count {
+                bmiDateArray.append(data[i].regDate)
+                bmiValueArray.append(data[i].bmi)
             }
+        } else {
+            return
         }
         
-        //let profileKeyValue: String = Constants.profile //profile key값 상수
-        //print(UserDefaults.standard.dictionary(forKey: profile) ?? "No data")
+        bmiDateArray = arrayCountControl(arr: bmiDateArray, count: 8)
+        bmiValueArray = arrayCountControl(arr: bmiValueArray, count: 8)
     }
-    
-    mutating func temp () {
-        if let udData = ud.array(forKey: historyKeyValue) {
-            if (udData.count == 0) {
-                return
-            } else {
-                print(udData[0])
-            }
-        }
-    }
-    
-    //func saveResult()
-    
-    //func setXaxisValues()
-    
-    //func setYaxisValues()
     
     func arrayCountControl<T>(arr: [T], count: Int) -> [T] {
         
@@ -177,5 +161,67 @@ struct BMIBrain {
         return tempArr
     }
     
+    mutating func saveResultToArray() {
+        //피커뷰에서 세팅된 신장/몸무게로 BMI 구조체 인스턴스를 CurrentBMI 변수에 저장
+        setCurrentBMI()
+        
+        if let data = currentBMI {
+            bmiDatas?.append(data)
+            print(bmiDatas)
+            print("save succeeded")
+        } else {
+            print("save failed")
+        }
+    }
     
+    func createTempUserDefaults() { //삭제 예정
+        
+        var saveArray: [UDSaveFormat] = []
+        
+        let dict1: UDSaveFormat = ["regDate": "2022", "heightForBmi": 176, "weightForBmi": 83, "bmi" : 17.0, "bmiStatus": "정상"]
+        let dict2: UDSaveFormat = ["regDate": "2023", "heightForBmi": 177, "weightForBmi": 84, "bmi" : 25.0, "bmiStatus": "정상"]
+        let dict3: UDSaveFormat = ["regDate": "2025", "heightForBmi": 171, "weightForBmi": 86, "bmi" : 24.2, "bmiStatus": "정상"]
+        let dict4: UDSaveFormat = ["regDate": "2024", "heightForBmi": 172, "weightForBmi": 90, "bmi" : 27.0, "bmiStatus": "정상"]
+        let dict5: UDSaveFormat = ["regDate": "2021", "heightForBmi": 174, "weightForBmi": 81, "bmi" : 25.0, "bmiStatus": "정상"]
+            
+        saveArray.append(dict1)
+        saveArray.append(dict2)
+        saveArray.append(dict3)
+        saveArray.append(dict4)
+        saveArray.append(dict5)
+    
+        ud.set(saveArray, forKey: historyKeyValue) //bmi 계산값 저장
+        
+        print("계산값 저장 : \(saveArray)")
+        print("ud개수: \(saveArray.count)")
+    }
+    
+    func saveResultToUserDefaults() { //최종 배열값 유저디폴트로 저장하는 함수. 앱이 백그라운드에 있거나 종료 직전에 저장하도록
+        
+        var saveData: [UDSaveFormat] = []
+        
+        if let data = bmiDatas {
+            for i in 0 ..< data.count {
+                //[BMI] 형태의 배열을 [String: Any] 로 저장 필요
+                
+                let element: UDSaveFormat = ["regDate": data[i].regDate, "heightForBmi": data[i].heightForBMI, "weightForBmi": data[i].weightForBMI, "bmi" : data[i].bmi, "bmiStatus": data[i].bmiStatus]
+                
+                saveData.append(element)
+                
+                ud.set(saveData, forKey: historyKeyValue)
+            }
+        }
+        
+        print(ud.array(forKey:historyKeyValue))
+    }
 }
+
+/*
+ 1. 최초에 인스턴스 생성될 때, 유저디폴트에서 값 불러와서 배열[BMI]에 저장해야함 (bmiDatas)
+ 2. 만약, 유저디폴트에 값이 없으면 빈배열임.(bmiDatas = [])
+ 3. 유저디폴트에서 불러온 값으로 차트의 x,y값의 배열 만들어야함.
+ 4. 당연히 유저디폴트에 값이 없으면 x,y값의 배열은 빈배열임.
+ 5. save 버튼 누르면 bmiBrain 인스턴스에 신장/몸무게 전달되고 bmi값이 계산되어 bmiDatas에 저장해야함.
+ 6. bmiDatas 에서 가장 뒤에 있는 배열을 BmiResultVC 로 옮겨줘야함.
+ */
+
