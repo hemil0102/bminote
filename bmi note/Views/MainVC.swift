@@ -12,21 +12,25 @@ class MainVC: UIViewController {
     
     //표준 BMI
     let bmiStd = BMIStandard()
-    var bmiData = BMIBrain()
+    var bmiBrain = BMIBrain()
 
     @IBOutlet weak var inputPickerView: UIPickerView!   //pickerView 변수
     @IBOutlet weak var barChartView: BarChartView!      //그래프용 변수
     
     @IBAction func pressedCalculateBMI(_ sender: UIButton) {
-        bmiData.saveResult()
+        bmiBrain.saveResult()
+        //bmiBrain.saveResult2()
+        
+        performSegue(withIdentifier: "goBmiResultView", sender: self)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        //유저 디폴트 값 불러오기
         
         //그래프 세팅
         initSetChart()
-        setChart(dataPoints: bmiData.bmidateArray, values: bmiData.bmiValueArray) //현재 임시값
+        setChart(dataPoints: bmiBrain.bmiDateArray, values: bmiBrain.bmiValueArray) //현재 임시값
   
         //피커뷰 세팅
         configPickerView()
@@ -42,10 +46,23 @@ class MainVC: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true) // 뷰 컨트롤러가 나타날 때 컨트롤 바를 숨기기
         
+        initSetChart()
+        setChart(dataPoints: bmiBrain.bmiDateArray, values: bmiBrain.bmiValueArray) //현재 임시값
+        
     }
 
     override func viewWillDisappear(_ animated: Bool) {
       navigationController?.setNavigationBarHidden(false, animated: true) // 뷰 컨트롤러가 사라질 때 다음 화면에서 네비가 나오게 하기
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "goBmiResultView" {
+            guard let secondVC = segue.destination as? BmiResultVC else { return }
+            
+            secondVC.bmiInfo = bmiBrain.lastBmiData
+
+        }
     }
 }
 
@@ -66,9 +83,9 @@ extension MainVC: UIPickerViewDelegate, UIPickerViewDataSource { //피커뷰 익
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         switch component {
         case 0:
-            return self.bmiData.bmiPickerRange.heightMinMaxArray.count
+            return self.bmiBrain.bmiPickerRange.heightMinMaxArray.count
         case 1:
-            return self.bmiData.bmiPickerRange.weightMinMaxArray.count
+            return self.bmiBrain.bmiPickerRange.weightMinMaxArray.count
         default:
             return 0
         }
@@ -78,9 +95,9 @@ extension MainVC: UIPickerViewDelegate, UIPickerViewDataSource { //피커뷰 익
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?{
         switch component {
         case 0:
-            return String(self.bmiData.bmiPickerRange.heightMinMaxArray[row])
+            return String(self.bmiBrain.bmiPickerRange.heightMinMaxArray[row])
         case 1:
-            return String(self.bmiData.bmiPickerRange.weightMinMaxArray[row])
+            return String(self.bmiBrain.bmiPickerRange.weightMinMaxArray[row])
         default:
             return nil
         }
@@ -90,18 +107,22 @@ extension MainVC: UIPickerViewDelegate, UIPickerViewDataSource { //피커뷰 익
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         switch component {
         case 0:
-            self.bmiData.setHeight(row: row)//row 가 값자체가 아니네...
+            self.bmiBrain.setHeight(row: row)//row 가 값자체가 아니네...
         case 1:
-            self.bmiData.setWeight(row: row)
+            self.bmiBrain.setWeight(row: row)
         default:
             break
         }
     }
     
     func setInitialValuePV() {
+        
+        
         //피커뷰 초기값 세팅
         inputPickerView.selectRow(2, inComponent: 0, animated: false)
         inputPickerView.selectRow(2, inComponent: 1, animated: false) //초기값 세팅
+        
+        
     }
     
 }
@@ -114,6 +135,9 @@ extension MainVC { //그래프 뷰 익스텐션
         barChartView.noDataText = "BMI를 측정해 보세요!"
         barChartView.noDataFont = .systemFont(ofSize: 20)
         barChartView.noDataTextColor = .lightGray
+        
+        bmiBrain.setXaxisValues()
+        bmiBrain.setYaxisValues()
     }
 
     
@@ -130,7 +154,7 @@ extension MainVC { //그래프 뷰 익스텐션
         //차트컬러
         //chartDataSet.colors = [.systemGreen, .systemRed, .systemCyan]
         //chartDataSet.colors = [.systemGreen]
-        chartDataSet.colors = barColors(with: bmiData.bmiValueArray)
+        chartDataSet.colors = barColors(with: bmiBrain.bmiValueArray)
         
         //데이터 삽입
         let chartData = BarChartData(dataSet: chartDataSet)

@@ -541,7 +541,7 @@
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="pressedCalculateBMI:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QEz-lJ-M3x"/>
-                                    <segue destination="PBq-CI-6Ew" kind="show" id="Ydk-w4-1Y7"/>
+                                    <segue destination="PBq-CI-6Ew" kind="show" identifier="goBmiResultView" id="Ydk-w4-1Y7"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="z5u-XT-OdL">
