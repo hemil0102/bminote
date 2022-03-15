@@ -12,8 +12,6 @@ class HistoryListVC: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var isThereRecordLabel: UILabel!
     
-    var bmiHistory = BMIBrain()
-    
     //지역변수로 사용할 HistoryData
     var receivedData:BMIBrain?          //???
     var historyData:BMIBrain?           //???
@@ -49,8 +47,7 @@ class HistoryListVC: UIViewController {
         if let data = receivedData {
             historyData = data
             isThereRecordLabel.isHidden = true
-        }
-        else {
+        } else {
             isThereRecordLabel.isHidden = false
         }
     }
@@ -78,7 +75,7 @@ extension HistoryListVC: UITableViewDelegate {
         }
         //indexPath.row 값 던져주기
         let row = indexPath.row
-        let bmiInfo = bmiHistory.getBMIInfo(row)
+        let bmiInfo = historyData?.getBMIInfo(row)
         bmiResultVC.bmiInfo = bmiInfo
         
         self.navigationController?.pushViewController(bmiResultVC, animated: true)
@@ -89,7 +86,7 @@ extension HistoryListVC: UITableViewDelegate {
 extension HistoryListVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //List Count return하기
-        if let bmiHistory = bmiHistory.bmiDatas {
+        if let bmiHistory = historyData?.bmiDatas {
             return bmiHistory.count
         } else {
             return 0
@@ -105,7 +102,7 @@ extension HistoryListVC: UITableViewDataSource {
         //historyData에서 값 꺼내기 []
         //bim값에 따른 배경색 변경 []
         
-        let bmiInfo = bmiHistory.getAllBMI()    //BMI 전체 데이터 가져오기
+        let bmiInfo = historyData?.getAllBMI()    //BMI 전체 데이터 가져오기
         if let bmiInfo = bmiInfo {
             cell.bmiValue.text = "\(bmiInfo[row].bmi)"       //BMI 수치
             cell.bmiState.text = "\(bmiInfo[row].bmiStatus)"       //BMI 상태

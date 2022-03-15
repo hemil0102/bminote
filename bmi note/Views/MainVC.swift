@@ -75,7 +75,6 @@ extension MainVC: UIPickerViewDelegate, UIPickerViewDataSource { //피커뷰 익
     func configPickerView() {
         inputPickerView.delegate = self
         inputPickerView.dataSource = self
-        
     }
     
     //picker view 컬럼 수
@@ -125,6 +124,9 @@ extension MainVC: UIPickerViewDelegate, UIPickerViewDataSource { //피커뷰 익
         inputPickerView.selectRow(2, inComponent: 1, animated: false) //초기값 세팅
     }
     
+//    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+//        pickerView.subviews.first?.backgroundColor = UIColor.red
+//    }
 }
 
 
