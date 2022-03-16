@@ -126,9 +126,8 @@ struct BMIBrain {
         let DateValue: String = setDate()
         let bmiStatusValue: String = BMIStandard.decideLevel(bmiValue: bmiValue)
         
-//        self.currentBMI = BMI(heightForBMI: height, weightForBMI: weight, bmiStatus: bmiStatusValue, regDate: DateValue, bmi: bmiValue)
-//        bmiDatas?.append(BMI(heightForBMI: height, weightForBMI: weight, bmiStatus: bmiStatusValue, regDate: DateValue, bmi: bmiValue))
-        print("여기가 바뀐 부분이다")
+        self.currentBMI = BMI(heightForBMI: height, weightForBMI: weight, bmiStatus: bmiStatusValue, regDate: DateValue, bmi: bmiValue)
+        //bmiDatas?.append(BMI(heightForBMI: height, weightForBMI: weight, bmiStatus: bmiStatusValue, regDate: DateValue, bmi: bmiValue))
     }
     
     mutating func setInitialPickerViewValue() { 
