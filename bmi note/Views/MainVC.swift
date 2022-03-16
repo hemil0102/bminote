@@ -16,6 +16,9 @@ class MainVC: UIViewController {
 
     var mainProfileBrain = ProfileBrain()
     
+    var height: Int = 0
+    var weight: Int = 0
+    
     @IBOutlet weak var inputPickerView: UIPickerView!   //pickerView 변수
     @IBOutlet weak var barChartView: BarChartView!      //그래프용 변수
     @IBOutlet weak var mainUserName: UILabel! //메인 화면 프로필 유저 이름
@@ -23,11 +26,14 @@ class MainVC: UIViewController {
     
     @IBAction func pressedCalculateBMI(_ sender: UIButton) {
         
-        bmiBrain.saveResultToArray()
+        bmiBrain.saveResultToArray(height, weight)
 
         performSegue(withIdentifier: "goBmiResultView", sender: self)
     }
 
+    @IBAction func pressedHistoryList(_ sender: UIButton) {
+        performSegue(withIdentifier: "goHistoryListView", sender: self)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -81,10 +87,22 @@ class MainVC: UIViewController {
         if segue.identifier == "goBmiResultView" {
             guard let secondVC = segue.destination as? BmiResultVC else { return }
 
-            secondVC.bmiInfo = bmiBrain.currentBMI
+            if let data = bmiBrain.bmiDatas?.last {
+                secondVC.bmiInfo = data
+            } else {
+                print("data transfer failed")
+            }
+        }
+        
+        if segue.identifier == "goHistoryListView" {
+            guard let secondVC = segue.destination as? HistoryListVC else { return }
 
+            secondVC.receivedData = bmiBrain
+            secondVC.historyData = bmiBrain
         }
     }
+    
+    
 }
 
 extension MainVC: UIPickerViewDelegate, UIPickerViewDataSource { //피커뷰 익스텐션
@@ -128,9 +146,9 @@ extension MainVC: UIPickerViewDelegate, UIPickerViewDataSource { //피커뷰 익
         
         switch component {
         case 0:
-            self.bmiBrain.setHeight(row: row)
+            self.height = bmiBrain.bmiPickerRange.heightMinMaxArray[row]
         case 1:
-            self.bmiBrain.setWeight(row: row)
+            self.weight = bmiBrain.bmiPickerRange.weightMinMaxArray[row]
         default:
             break
         }
