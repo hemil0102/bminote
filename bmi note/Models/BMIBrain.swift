@@ -126,7 +126,8 @@ struct BMIBrain {
         let DateValue: String = setDate()
         let bmiStatusValue: String = BMIStandard.decideLevel(bmiValue: bmiValue)
         
-        self.currentBMI = BMI(heightForBMI: height, weightForBMI: weight, bmiStatus: bmiStatusValue, regDate: DateValue, bmi: bmiValue)
+//        self.currentBMI = BMI(heightForBMI: height, weightForBMI: weight, bmiStatus: bmiStatusValue, regDate: DateValue, bmi: bmiValue)
+        self.bmiDatas?.append(BMI(heightForBMI: height, weightForBMI: weight, bmiStatus: bmiStatusValue, regDate: DateValue, bmi: bmiValue))
     }
     
     mutating func setInitialPickerViewValue() { 
@@ -161,6 +162,7 @@ struct BMIBrain {
         return tempArr
     }
     
+    //[Walter] 이걸 써야하는 이유?
     mutating func saveResultToArray() {
         //피커뷰에서 세팅된 신장/몸무게로 BMI 구조체 인스턴스를 CurrentBMI 변수에 저장
         setCurrentBMI()
