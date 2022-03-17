@@ -39,8 +39,8 @@ struct BMI {
 //BMI 피커뷰
 struct BMIPicker {
     //신장/몸무게 피커뷰 범위
-    var heightMinMaxArray: [Int] = Array(100...250)
-    var weightMinMaxArray: [Int] = Array(20...200)
+    var heightMinMaxArray: [Int] = Array(140...200)
+    var weightMinMaxArray: [Int] = Array(30...150)
             
 }
 

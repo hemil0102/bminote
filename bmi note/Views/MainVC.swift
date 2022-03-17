@@ -26,7 +26,8 @@ class MainVC: UIViewController {
     
     @IBAction func pressedCalculateBMI(_ sender: UIButton) {
         
-        bmiBrain.saveResultToArray(height, weight)
+//        bmiBrain.saveResultToArray(height, weight)
+        bmiBrain.setCurrentBMI(height, weight)      //[Walter] 바로 setCurrentBMI를 호출해도 댐
 
         performSegue(withIdentifier: "goBmiResultView", sender: self)
     }
@@ -34,6 +35,7 @@ class MainVC: UIViewController {
     @IBAction func pressedHistoryList(_ sender: UIButton) {
         performSegue(withIdentifier: "goHistoryListView", sender: self)
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
