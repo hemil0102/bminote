@@ -37,12 +37,15 @@ class InitialProfileVC: UIViewController, UITextFieldDelegate {
         
         //제스처가 실행될 떄 키보드를 내릴 수 있도록
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(endEditing)))
+        
+        
     }
  
     var fCurTextfieldBottom: CGFloat = 0.0 // 키보드가 컨트롤을 가렸는지 확인하기 위함
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        fCurTextfieldBottom = textField.frame.origin.y + textField.frame.height //텍스트 필드 컨트롤의 좌표와 컨트롤의 높이를 구해서 나중에 키보드에 의해 가려졌는지 확인을 위한 계산
+        fCurTextfieldBottom = textField.frame.origin.y + textField.frame.height
+        //텍스트 필드 컨트롤의 좌표와 컨트롤의 높이를 구해서 나중에 키보드에 의해 가려졌는지 확인을 위한 계산
     }
 
     @objc func keyboardWillShow(notification: NSNotification) {
@@ -102,10 +105,11 @@ class InitialProfileVC: UIViewController, UITextFieldDelegate {
     var correctHeight = false
     var correctWeight = false
     
+    
     //남녀 성별 선택 세그먼트
     @IBAction func initUserSelectSeg(_ sender: UISegmentedControl) {
         
-        // Segment Index에 따라서 남여를 지정, 굳이 함수화 할 필요는 없지만 관리차원으로 getGenderType() 함수를 Brain에 형성, 값이 없을 수 없어서 force unwrap 함.
+    // Segment Index에 따라서 남여를 지정, 굳이 함수화 할 필요는 없지만 관리차원으로 getGenderType() 함수를 Brain에 형성, 값이 없을 수 없어서 force unwrap 함.
         let gender = initialUserSelectGender.titleForSegment(at: sender.selectedSegmentIndex)!
         userInfo.gender = userInfoBrain.getGenderType(selectedIndexTitle: gender)
   
@@ -128,7 +132,7 @@ class InitialProfileVC: UIViewController, UITextFieldDelegate {
         
         if initialUserInputName.text != "" {
             let nameRe = "[가-힣A-Za-z]{1,12}" //모든 완성형 한글과 대소문자 알파벳만 입력으로 받는다. 문자는 1자리에서 12자리까지 입력 가능.
-            let tempName = NSPredicate(format:"SELF MATCHES %@", nameRe) //지정된 정규식에 해당하는 입력이 들어왔는지 체크하는 부분
+            let tempName = NSPredicate(format:"SELF MATCHES %@", nameRe) //지정된 정규식에 해당하는 입력이 들어왔는지 체크하는 부분.
             if tempName.evaluate(with: initialUserInputName.text) {
                 correctName = true
                 userInfo.name = initialUserInputName.text
