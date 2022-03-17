@@ -540,7 +540,6 @@
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="pressedCalculateBMI:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QEz-lJ-M3x"/>
-                                    <segue destination="PBq-CI-6Ew" kind="show" identifier="goBmiResultView" id="Ydk-w4-1Y7"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="z5u-XT-OdL">
@@ -606,7 +605,7 @@
                                     </backgroundConfiguration>
                                 </buttonConfiguration>
                                 <connections>
-                                    <segue destination="5jL-2s-BuT" kind="show" id="ZzY-PR-PYl"/>
+                                    <action selector="pressedHistoryList:" destination="BYZ-38-t0r" eventType="touchUpInside" id="65V-Mm-Arp"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -619,6 +618,8 @@
                         <outlet property="inputPickerView" destination="QcJ-U2-ib8" id="YGT-SJ-dU3"/>
                         <outlet property="mainUserName" destination="4n4-eb-5FV" id="sik-L3-UWp"/>
                         <outlet property="mainUserQuote" destination="lwR-Ow-DpX" id="PVL-zF-RyE"/>
+                        <segue destination="PBq-CI-6Ew" kind="show" identifier="goBmiResultView" id="Rm9-Qc-W0u"/>
+                        <segue destination="5jL-2s-BuT" kind="show" identifier="goHistoryListView" id="gmQ-8a-h7V"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

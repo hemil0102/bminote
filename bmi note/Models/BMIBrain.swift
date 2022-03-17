@@ -90,18 +90,13 @@ struct BMIBrain {
         print(bmiDatas ?? "no data")
     }
     
-    mutating func setValuesFromView(_ height: Int, _ weight: Int) {
-        self.tempHeight = height
-        self.tempWeight = weight
-    }
-    
-    mutating func setHeight(row: Int) {
-        self.tempHeight = bmiPickerRange.heightMinMaxArray[row]
-    }
-    
-    mutating func setWeight(row: Int) {
-        self.tempWeight = bmiPickerRange.weightMinMaxArray[row]
-    }
+//    mutating func setHeight(row: Int) {
+//        self.tempHeight = bmiPickerRange.heightMinMaxArray[row]
+//    }
+//    
+//    mutating func setWeight(row: Int) {
+//        self.tempWeight = bmiPickerRange.weightMinMaxArray[row]
+//    }
     
     private func setCalculatedBMI(height: Int, weight: Int) -> Double {
         
@@ -119,15 +114,13 @@ struct BMIBrain {
         return formatter.string(from: Date())
     }
     
-    mutating func setCurrentBMI(){
-        let height = Float(tempHeight)
-        let weight = Float(tempWeight)
-        let bmiValue: Double = setCalculatedBMI(height: self.tempHeight, weight: self.tempWeight)
+    mutating func setCurrentBMI(_ height: Int, _ weight: Int){
+        let bmiValue: Double = setCalculatedBMI(height: height, weight: weight)
         let DateValue: String = setDate()
         let bmiStatusValue: String = BMIStandard.decideLevel(bmiValue: bmiValue)
         
-//         self.currentBMI = BMI(heightForBMI: height, weightForBMI: weight, bmiStatus: bmiStatusValue, regDate: DateValue, bmi: bmiValue)
-        //bmiDatas?.append(BMI(heightForBMI: height, weightForBMI: weight, bmiStatus: bmiStatusValue, regDate: DateValue, bmi: bmiValue))
+        //self.currentBMI = BMI(heightForBMI: height, weightForBMI: weight, bmiStatus: bmiStatusValue, regDate: DateValue, bmi: bmiValue)
+        bmiDatas?.append(BMI(heightForBMI: Float(height), weightForBMI: Float(weight), bmiStatus: bmiStatusValue, regDate: DateValue, bmi: bmiValue))
     }
     
     mutating func setInitialPickerViewValue() { 
@@ -162,9 +155,9 @@ struct BMIBrain {
         return tempArr
     }
     
-    mutating func saveResultToArray() {
+    mutating func saveResultToArray(_ height: Int, _ weight: Int) {
         //피커뷰에서 세팅된 신장/몸무게로 BMI 구조체 인스턴스를 CurrentBMI 변수에 저장
-        setCurrentBMI()
+        setCurrentBMI(height, weight)
         
         if let data = currentBMI {
             bmiDatas?.append(data)
@@ -216,13 +209,3 @@ struct BMIBrain {
         print(ud.array(forKey:historyKeyValue))
     }
 }
-
-/*
- 1. 최초에 인스턴스 생성될 때, 유저디폴트에서 값 불러와서 배열[BMI]에 저장해야함 (bmiDatas)
- 2. 만약, 유저디폴트에 값이 없으면 빈배열임.(bmiDatas = [])
- 3. 유저디폴트에서 불러온 값으로 차트의 x,y값의 배열 만들어야함.
- 4. 당연히 유저디폴트에 값이 없으면 x,y값의 배열은 빈배열임.
- 5. save 버튼 누르면 bmiBrain 인스턴스에 신장/몸무게 전달되고 bmi값이 계산되어 bmiDatas에 저장해야함.
- 6. bmiDatas 에서 가장 뒤에 있는 배열을 BmiResultVC 로 옮겨줘야함.
- */
-
