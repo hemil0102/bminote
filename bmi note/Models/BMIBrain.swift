@@ -47,7 +47,7 @@ struct BMIBrain {
     //리스트로 뿌려줌
     func getAllBMI() -> [BMI]? {
         if let bmi = bmiDatas {
-            return bmi
+            return bmi.reversed()
         } else {
             return nil
         }
