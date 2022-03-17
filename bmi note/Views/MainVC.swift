@@ -160,7 +160,7 @@ extension MainVC: UIPickerViewDelegate, UIPickerViewDataSource { //피커뷰 익
     func setInitialValuePV() {
         
         
-        //피커뷰 초기값 세팅
+
         inputPickerView.selectRow(2, inComponent: 0, animated: false)
         inputPickerView.selectRow(2, inComponent: 1, animated: false) //초기값 세팅
         

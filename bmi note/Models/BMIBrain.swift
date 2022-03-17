@@ -15,7 +15,6 @@ struct BMIBrain {
     
     //이 배열을 적극 활용! Main의 8일 그래프와 리스트에서 사용될 것입니다.
     var bmiDatas: [BMI]?
-    var currentBMI: BMI?
     
     //그래프 데이터용 배열
     var bmiDateArray: [String] = [] //X축
@@ -27,15 +26,11 @@ struct BMIBrain {
     //Key값 상수
     let historyKeyValue: String = Constants.history //history key값 상수
     
-    //피커뷰 임시 신장/몸무게 저장 변수
-    var tempHeight: Int = -1
-    var tempWeight: Int = -1
-    
     //기본 이니셜라이저
     init() {
 
         //임시 유저디폴트 생성(삭제 예정)
-        createTempUserDefaults()
+        //createTempUserDefaults()
         
         //저장된 유저 디폴트 로드
         initialLoadUserDefaults()
@@ -90,14 +85,6 @@ struct BMIBrain {
         print(bmiDatas ?? "no data")
     }
     
-//    mutating func setHeight(row: Int) {
-//        self.tempHeight = bmiPickerRange.heightMinMaxArray[row]
-//    }
-//    
-//    mutating func setWeight(row: Int) {
-//        self.tempWeight = bmiPickerRange.weightMinMaxArray[row]
-//    }
-    
     private func setCalculatedBMI(height: Int, weight: Int) -> Double {
         
         let temp = Double(weight) / pow(Double(height)/100, 2)
@@ -109,7 +96,7 @@ struct BMIBrain {
     private func setDate() -> String {
         
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd(E)"
+        formatter.dateFormat = "yyyy-MM-dd(E)" //시간까지 구현 필요
         
         return formatter.string(from: Date())
     }
@@ -131,6 +118,7 @@ struct BMIBrain {
     mutating func setAxisValues() { //그래프용 데이터 저장
         
         bmiDateArray = []
+        bmiValueArray = []
         
         if let data = bmiDatas {
             for i in 0 ..< data.count {
@@ -159,36 +147,31 @@ struct BMIBrain {
         //피커뷰에서 세팅된 신장/몸무게로 BMI 구조체 인스턴스를 CurrentBMI 변수에 저장
         setCurrentBMI(height, weight)
         
-        if let data = currentBMI {
-            bmiDatas?.append(data)
-            print(bmiDatas)
-            print("save succeeded")
-        } else {
-            print("save failed")
-        }
+        print(bmiDatas)
+        print(bmiValueArray)
     }
     
-    func createTempUserDefaults() { //삭제 예정
-        
-        var saveArray: [UDSaveFormat] = []
-        
-        let dict1: UDSaveFormat = ["regDate": "2022", "heightForBmi": 176, "weightForBmi": 83, "bmi" : 17.0, "bmiStatus": "정상"]
-        let dict2: UDSaveFormat = ["regDate": "2023", "heightForBmi": 177, "weightForBmi": 84, "bmi" : 25.0, "bmiStatus": "정상"]
-        let dict3: UDSaveFormat = ["regDate": "2025", "heightForBmi": 171, "weightForBmi": 86, "bmi" : 24.2, "bmiStatus": "정상"]
-        let dict4: UDSaveFormat = ["regDate": "2024", "heightForBmi": 172, "weightForBmi": 90, "bmi" : 27.0, "bmiStatus": "정상"]
-        let dict5: UDSaveFormat = ["regDate": "2021", "heightForBmi": 174, "weightForBmi": 81, "bmi" : 25.0, "bmiStatus": "정상"]
-            
-        saveArray.append(dict1)
-        saveArray.append(dict2)
-        saveArray.append(dict3)
-        saveArray.append(dict4)
-        saveArray.append(dict5)
-    
-        ud.set(saveArray, forKey: historyKeyValue) //bmi 계산값 저장
-        
-        print("계산값 저장 : \(saveArray)")
-        print("ud개수: \(saveArray.count)")
-    }
+//    func createTempUserDefaults() { //삭제 예정
+//
+//        var saveArray: [UDSaveFormat] = []
+//
+//        let dict1: UDSaveFormat = ["regDate": "2022", "heightForBmi": 176, "weightForBmi": 83, "bmi" : 17.0, "bmiStatus": "정상"]
+//        let dict2: UDSaveFormat = ["regDate": "2023", "heightForBmi": 177, "weightForBmi": 84, "bmi" : 25.0, "bmiStatus": "정상"]
+//        let dict3: UDSaveFormat = ["regDate": "2025", "heightForBmi": 171, "weightForBmi": 86, "bmi" : 24.2, "bmiStatus": "정상"]
+//        let dict4: UDSaveFormat = ["regDate": "2024", "heightForBmi": 172, "weightForBmi": 90, "bmi" : 27.0, "bmiStatus": "정상"]
+//        let dict5: UDSaveFormat = ["regDate": "2021", "heightForBmi": 174, "weightForBmi": 81, "bmi" : 25.0, "bmiStatus": "정상"]
+//
+//        saveArray.append(dict1)
+//        saveArray.append(dict2)
+//        saveArray.append(dict3)
+//        saveArray.append(dict4)
+//        saveArray.append(dict5)
+//
+//        ud.set(saveArray, forKey: historyKeyValue) //bmi 계산값 저장
+//
+//        print("계산값 저장 : \(saveArray)")
+//        print("ud개수: \(saveArray.count)")
+//    }
     
     func saveResultToUserDefaults() { //최종 배열값 유저디폴트로 저장하는 함수. 앱이 백그라운드에 있거나 종료 직전에 저장하도록
         
