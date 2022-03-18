@@ -54,7 +54,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="정상" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ASF-a3-j0s">
-                                <rect key="frame" x="103.5" y="45.5" width="29.5" height="20.5"/>
+                                <rect key="frame" x="103.5" y="35" width="29.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -74,10 +74,10 @@
                             <constraint firstItem="Feh-Jx-JPR" firstAttribute="leading" secondItem="hbV-Iu-fY7" secondAttribute="trailing" constant="20" id="DKT-cQ-qXX"/>
                             <constraint firstItem="0Pg-qV-mL9" firstAttribute="leading" secondItem="bZj-A6-3Ku" secondAttribute="leading" constant="20" id="Drf-4P-Tr1"/>
                             <constraint firstAttribute="height" constant="90" id="RGk-In-1yX"/>
-                            <constraint firstItem="ASF-a3-j0s" firstAttribute="bottom" secondItem="0Pg-qV-mL9" secondAttribute="bottom" id="a8Q-Fd-Egy"/>
                             <constraint firstItem="0Pg-qV-mL9" firstAttribute="centerY" secondItem="bZj-A6-3Ku" secondAttribute="centerY" id="in6-ca-MDK"/>
                             <constraint firstItem="hbV-Iu-fY7" firstAttribute="centerY" secondItem="bZj-A6-3Ku" secondAttribute="centerY" id="nSZ-SV-W0Y"/>
                             <constraint firstItem="ASF-a3-j0s" firstAttribute="leading" secondItem="0Pg-qV-mL9" secondAttribute="trailing" constant="8" symbolic="YES" id="yfQ-Gp-vg8"/>
+                            <constraint firstItem="ASF-a3-j0s" firstAttribute="centerY" secondItem="0Pg-qV-mL9" secondAttribute="centerY" id="zPX-uW-SZB"/>
                         </constraints>
                     </view>
                 </subviews>
