@@ -19,21 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.rootViewController = vc // 전환
     }
     
-    /*
-    func checkingUserData() {
-        let userDidInput = UserDefaults.standard.dictionary(forKey: Constants.profile)
-        if let checkUserDidInput = userDidInput {
-            let status = checkUserDidInput["isUserInput"] as? Bool
-            if status == true {
-                isLogged = true
-            } else {
-                isLogged = false
-            }
 
-        }
-    }
-    */
-    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
@@ -60,7 +46,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 isLogged = false
             }
         }
-            
+        
+        
         if isLogged == false {
             // [Walter] 이 부분을 위에 바로 넣는다면 isLogged 값이 필요없고, 코드 또한 훨씬 간결합니다.
             guard let greetingVC = storyboard.instantiateViewController(withIdentifier: "greetingVC") as? GreetingVC else { return }

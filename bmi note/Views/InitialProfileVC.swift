@@ -32,6 +32,7 @@ class InitialProfileVC: UIViewController, UITextFieldDelegate {
         initialUserInputHeight.returnKeyType = .done
         initialUserInputWeight.returnKeyType = .done
         
+        //키보드가 나탈 떄
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
@@ -41,27 +42,19 @@ class InitialProfileVC: UIViewController, UITextFieldDelegate {
         
     }
  
-    var fCurTextfieldBottom: CGFloat = 0.0 // 키보드가 컨트롤을 가렸는지 확인하기 위함
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        fCurTextfieldBottom = textField.frame.origin.y + textField.frame.height
-        //텍스트 필드 컨트롤의 좌표와 컨트롤의 높이를 구해서 나중에 키보드에 의해 가려졌는지 확인을 위한 계산
-    }
+    var isExpand : Bool = false
 
     @objc func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            if fCurTextfieldBottom <= self.view.frame.height - keyboardSize.height {
-                return
-            }
-            if self.view.frame.origin.y == 0 {
-                self.view.frame.origin.y -= keyboardSize.height
-            }
+        if !isExpand {
+            self.InitProfileScrollView.contentSize = CGSize(width: self.view.frame.width, height: self.InitProfileScrollView.frame.height + 250 )
         }
+        isExpand = true
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
-        if self.view.frame.origin.y != 0 {
-            self.view.frame.origin.y = 0
+        if isExpand {
+            self.InitProfileScrollView.contentSize = CGSize(width: self.view.frame.width, height: self.InitProfileScrollView.frame.height - 250 )
+            self.isExpand = false
         }
     }
     
@@ -97,6 +90,7 @@ class InitialProfileVC: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var saveInitialProfileOutlet: UIButton!
     
+    @IBOutlet weak var InitProfileScrollView: UIScrollView!
     
     var userInfo = Profile()
     var userInfoBrain = ProfileBrain()
@@ -235,10 +229,10 @@ class InitialProfileVC: UIViewController, UITextFieldDelegate {
         }
     }
 
-    // 화면 터치시 키보드를 숨기는 Function
+  /*  // 화면 터치시 키보드를 숨기는 Function
    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
            self.view.endEditing(true)
-   }
+   } */
     /*
     // MARK: - Navigation
 
