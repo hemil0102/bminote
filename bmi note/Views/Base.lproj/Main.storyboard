@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="eNu-t4-85a">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="eNu-t4-85a">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -1077,7 +1077,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="743" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="PR2-Oq-blf">
-                                <rect key="frame" x="20" y="304" width="374" height="149.5"/>
+                                <rect key="frame" x="20" y="289" width="374" height="149.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="740" text="23.5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yhf-a2-QKJ">
                                         <rect key="frame" x="82.5" y="0.0" width="209" height="119.5"/>
@@ -1105,13 +1105,13 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="742" text="BMI 기준표" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AHE-7W-NJ4">
-                                <rect key="frame" x="20" y="483.5" width="374" height="20.5"/>
+                                <rect key="frame" x="20" y="468.5" width="374" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="745" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="gzJ-Nu-3AZ">
-                                <rect key="frame" x="35" y="519" width="344" height="265"/>
+                                <rect key="frame" x="35" y="504" width="344" height="265"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="xfA-O3-OTy">
                                         <rect key="frame" x="0.0" y="0.0" width="344" height="45"/>
@@ -1249,7 +1249,7 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Lfq-Tp-5gE" secondAttribute="trailing" constant="5" id="1oq-mA-KUa"/>
                             <constraint firstItem="SgF-nJ-80A" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="gzJ-Nu-3AZ" secondAttribute="bottom" priority="750" id="4X6-6T-N3C"/>
-                            <constraint firstItem="PR2-Oq-blf" firstAttribute="top" secondItem="Lfq-Tp-5gE" secondAttribute="bottom" constant="30" id="F7G-Rk-s7v"/>
+                            <constraint firstItem="PR2-Oq-blf" firstAttribute="top" secondItem="Lfq-Tp-5gE" secondAttribute="bottom" constant="15" id="F7G-Rk-s7v"/>
                             <constraint firstItem="gzJ-Nu-3AZ" firstAttribute="top" secondItem="AHE-7W-NJ4" secondAttribute="bottom" constant="15" id="FgQ-og-grq"/>
                             <constraint firstItem="gzJ-Nu-3AZ" firstAttribute="leading" secondItem="SgF-nJ-80A" secondAttribute="leading" constant="35" id="IwU-tW-Tn6"/>
                             <constraint firstItem="PR2-Oq-blf" firstAttribute="leading" secondItem="SgF-nJ-80A" secondAttribute="leading" constant="20" id="Izz-ds-pMm"/>

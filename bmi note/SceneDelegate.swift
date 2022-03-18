@@ -47,7 +47,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let checkUserDidInput = userDidInput {
             let status = checkUserDidInput["isUserInput"] as? Bool
             print(status!)
+            /*
+             [Walter]결국 userDafaults 값을 가져와 보여줄 뷰를 결정하는데,
+             isLogged 라는 변수가 필요할까요?
+             */
             if status == true {
+                /*
+                 [Walter] 이 부분에 바로 아래 작업을 넣는다면?!
+                 */
                 isLogged = true
             } else {
                 isLogged = false
@@ -55,6 +62,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
             
         if isLogged == false {
+            // [Walter] 이 부분을 위에 바로 넣는다면 isLogged 값이 필요없고, 코드 또한 훨씬 간결합니다.
             guard let greetingVC = storyboard.instantiateViewController(withIdentifier: "greetingVC") as? GreetingVC else { return }
             window?.rootViewController = greetingVC
         } else {
