@@ -9,14 +9,31 @@ import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
+    
     var isLogged: Bool = false
+    
     var window: UIWindow?
 
     func changeRootViewController (_ vc: UIViewController, animated: Bool) {
         guard let window = self.window else { return }
         window.rootViewController = vc // 전환
     }
+    
+    /*
+    func checkingUserData() {
+        let userDidInput = UserDefaults.standard.dictionary(forKey: Constants.profile)
+        if let checkUserDidInput = userDidInput {
+            let status = checkUserDidInput["isUserInput"] as? Bool
+            if status == true {
+                isLogged = true
+            } else {
+                isLogged = false
+            }
 
+        }
+    }
+    */
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
@@ -25,6 +42,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
+        let userDidInput = UserDefaults.standard.dictionary(forKey: Constants.profile)
+        
+        if let checkUserDidInput = userDidInput {
+            let status = checkUserDidInput["isUserInput"] as? Bool
+            print(status!)
+            if status == true {
+                isLogged = true
+            } else {
+                isLogged = false
+            }
+        }
+            
         if isLogged == false {
             guard let greetingVC = storyboard.instantiateViewController(withIdentifier: "greetingVC") as? GreetingVC else { return }
             window?.rootViewController = greetingVC

@@ -27,7 +27,6 @@ struct ProfileBrain {
     
     // 세그먼트에서 성별을 입력 받는 메서드
     func getGenderType(selectedIndexTitle: String ) -> String {
-        
         return selectedIndexTitle
     }
     
@@ -37,6 +36,18 @@ struct ProfileBrain {
         self.myProfile = userProfile
     }
     
+    // 유저 정보 입력 검사
+    /*
+    func isUserData(_ LoadedUserProfile: Profile?) -> Bool {
+        let available: Bool = false
+        let UserProfile = UserDefaults.standard.dictionary(forKey: Constants.profile)
+        
+        return available
+    }*/
+    
+    func testPrint(_ input: [String : Any]?) {
+        print(input!)
+    }
     // 유효성 검사
     func overallRegex (_ input: String) {
         

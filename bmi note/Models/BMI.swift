@@ -25,7 +25,8 @@ struct Profile {
                      "실패는 성공의 어머니! 실패를 두려워하지 말자!"]
 }
 
-var profileUserData: [ String : Any ] = [ "test" : "test" ]
+var profileUserData: [ String : Any ] = [ "isUserInput" : false ]
+
 
 //BMI 계산
 struct BMI {

@@ -61,7 +61,7 @@ class MainVC: UIViewController {
             let uWeight = userInfo["weight"] as? Float
             let uQuote = userInfo["quote"] as? String
             let mainProfile = Profile(name: uName, age: uAge, gender: uGender!, profileImg: "", height: uHeight, weight: uWeight, quote: uQuote)
-            mainProfileBrain = ProfileBrain()      //모든 뷰에 이 객체를 전달, 이용 또는 수정하는 것
+            mainProfileBrain = ProfileBrain()      //모든 뷰에 이 객체를 전달, 최신 상태를 유지
             mainProfileBrain.myProfile = mainProfile
             print("\(String(describing: mainProfileBrain.myProfile))")
         }

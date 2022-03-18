@@ -56,6 +56,7 @@ class InitialQuoteVC: UIViewController {
     @IBAction func toMain(_ sender: UIButton) {
         
         profileUserData["quote"] = quoteTextField.text
+        profileUserData["isUserInput"] = true
         UserDefaults.standard.set(profileUserData, forKey: Constants.profile)
         
             guard let NaviVC = self.storyboard?.instantiateViewController(withIdentifier: "naviVC") as? UINavigationController else { return }
