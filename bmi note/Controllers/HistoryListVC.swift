@@ -8,29 +8,18 @@
 import UIKit
 
 class HistoryListVC: UIViewController {
-
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var isThereRecordLabel: UILabel!
     
     //지역변수로 사용할 HistoryData
-    var receivedData:[BMI]?          //???
-    var historyData:[BMI] = []           //???
+    var receivedData:[BMI]?          //MainVC에서 전달받는 bmi 배열
+    var historyData:[BMI] = []       //receivedData를 옵셔널 처리한 bmi 배열
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        /*
-         Todo
-         1. XIB 커스텀 셀 만들기 [✓]
-         2. 데이터 받아와서 셋팅하기 [✓]
-         3. 항목 선택시 뷰 이동 [✓]
-         4. 선택된 항목 데이터 전달 [✓]
-         */
+
         setTableViewXIBCell()                   //TableView에 XIB 커스텀 셀 연결
         setHistoryDataFromPrivousScreen()       //historyData에 전달받은 객체 대입
-        
-        //NavigationController 뒤로가기 한글로, MainVC 에서 바꿀 것
-//        self.navigationController?.navigationBar.topItem?.title = "메인"
         
         //tableView DataSource, Delegate protocol 준수
         self.tableView.delegate = self
@@ -53,7 +42,6 @@ class HistoryListVC: UIViewController {
 
 //TableView Delegate
 extension HistoryListVC: UITableViewDelegate {
-    
     //항목 선택시 상세화면으로 이동
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
@@ -82,9 +70,6 @@ extension HistoryListVC: UITableViewDataSource {
         
         //Cell 안의 View에 데이터 셋팅하기
         let row = indexPath.row     //항목 Index
-        
-        //historyData에서 값 꺼내기 []
-        //bim값에 따른 배경색 변경 []
         
         cell.bmiValue.text = "\(historyData[row].bmi)"       //BMI 수치
         cell.bmiState.text = "\(historyData[row].bmiStatus)"       //BMI 상태
