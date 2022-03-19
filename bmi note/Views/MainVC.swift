@@ -26,7 +26,6 @@ class MainVC: UIViewController {
     
     @IBAction func pressedCalculateBMI(_ sender: UIButton) {
         
-//        bmiBrain.saveResultToArray(height, weight)
         bmiBrain.setCurrentBMI(height, weight)      //[Walter] 바로 setCurrentBMI를 호출해도 댐
 
         performSegue(withIdentifier: "goBmiResultView", sender: self)
@@ -45,9 +44,6 @@ class MainVC: UIViewController {
   
         //피커뷰 세팅
         configPickerView()
-        
-        //피커뷰 초기값 세팅
-        setInitialValuePV()
         
         self.navigationController?.navigationBar.topItem?.title = "메인"
         
@@ -68,6 +64,9 @@ class MainVC: UIViewController {
         
         mainUserName.text = mainProfileBrain.myProfile?.name
         mainUserQuote.text = mainProfileBrain.myProfile?.quote
+        
+        //피커뷰 초기값 세팅
+        setInitialValuePV()
         
     }
     
@@ -154,16 +153,39 @@ extension MainVC: UIPickerViewDelegate, UIPickerViewDataSource { //피커뷰 익
         default:
             break
         }
-        
     }
     
     func setInitialValuePV() {
         
-        
-
-        inputPickerView.selectRow(2, inComponent: 0, animated: false)
-        inputPickerView.selectRow(2, inComponent: 1, animated: false) //초기값 세팅
-        
+        if let data = bmiBrain.bmiDatas {
+            if (data.count == 0) {
+                
+                height = Int(mainProfileBrain.myProfile?.height ?? -1.0)
+                weight = Int(mainProfileBrain.myProfile?.weight ?? -1.0)
+                
+                bmiBrain.setCurrentBMI(Int(height), Int(weight))
+                
+                let heightIndex = bmiBrain.getArrayIndex(arr: bmiBrain.bmiPickerRange.heightMinMaxArray, value: Int(height)) ?? 0
+                let weightIndex = bmiBrain.getArrayIndex(arr: bmiBrain.bmiPickerRange.weightMinMaxArray, value: Int(weight)) ?? 0
+                
+                inputPickerView.selectRow(heightIndex, inComponent: 0, animated: false)
+                inputPickerView.selectRow(weightIndex, inComponent: 1, animated: false) //초기값 세팅
+                
+            } else {
+                
+                height = Int(bmiBrain.bmiDatas?.last?.heightForBMI ?? -1.0)
+                weight = Int(bmiBrain.bmiDatas?.last?.weightForBMI ?? -1.0)
+                
+                //bmiBrain.setCurrentBMI(Int(height), Int(weight))
+                let heightIndex = bmiBrain.getArrayIndex(arr: bmiBrain.bmiPickerRange.heightMinMaxArray, value: Int(height)) ?? 0
+                let weightIndex = bmiBrain.getArrayIndex(arr: bmiBrain.bmiPickerRange.weightMinMaxArray, value: Int(weight)) ?? 0
+                
+                inputPickerView.selectRow(heightIndex, inComponent: 0, animated: false)
+                inputPickerView.selectRow(weightIndex, inComponent: 1, animated: false) //초기값 세팅
+            }
+        } else {
+            print("bmiDatas nil")
+        }
         
     }
     

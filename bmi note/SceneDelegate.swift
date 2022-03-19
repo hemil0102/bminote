@@ -32,7 +32,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         if let checkUserDidInput = userDidInput {
             let status = checkUserDidInput["isUserInput"] as? Bool
-            print(status!)
+            //print(status!)
             /*
              [Walter]결국 userDafaults 값을 가져와 보여줄 뷰를 결정하는데,
              isLogged 라는 변수가 필요할까요?
