@@ -98,9 +98,7 @@ class MainVC: UIViewController {
         
         if segue.identifier == "goHistoryListView" {
             guard let secondVC = segue.destination as? HistoryListVC else { return }
-
-            secondVC.receivedData = bmiBrain
-            secondVC.historyData = bmiBrain
+            secondVC.receivedData = bmiBrain.bmiDatas
         }
     }
     
