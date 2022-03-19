@@ -36,7 +36,7 @@ class InitialQuoteVC: UIViewController {
             var myProfile = ProfileBrain()      //모든 뷰에 이 객체를 전달, 이용 또는 수정하는 것
             myProfile.myProfile = profile
             
-            print(myProfile.myProfile)  //Profile의 모든 값을 출력
+//            print(myProfile.myProfile)  //Profile의 모든 값을 출력
         }
         
 
@@ -100,17 +100,6 @@ class InitialQuoteVC: UIViewController {
             toMainOutlet.isEnabled = false
             
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 extension InitialQuoteVC: UIPickerViewDelegate, UIPickerViewDataSource {
@@ -122,33 +111,25 @@ extension InitialQuoteVC: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     // pickerview는 하나만
-    public func numberOfComponents(in pickerView: UIPickerView) -> Int
-    {
+    public func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
-        
     }
     
     // pickerview의 선택지는 데이터의 개수만큼
-    public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int
-    {
+    public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return userInfo.quoteList.count
-        
     }
     
     // pickerview 내 선택지의 값들을 원하는 데이터로 채워준다.
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?
-    {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return userInfo.quoteList[row]
-        
-    }
-    // textfield의 텍스트에 pickerview에서 선택한 값을 넣어준다.
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
-    {
-        self.quoteTextField.text = self.userInfo.quoteList[row]
-        
     }
     
+    // textfield의 텍스트에 pickerview에서 선택한 값을 넣어준다.
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        self.quoteTextField.text = self.userInfo.quoteList[row]
+    }
     
     //피커뷰 리스트 텍스트 사이즈 및 폰트 설정
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {

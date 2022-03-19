@@ -51,7 +51,8 @@ class MainVC: UIViewController {
         
         self.navigationController?.navigationBar.topItem?.title = "메인"
         
-        //유저데이터 불러오기
+        //유저데이터 불러오기 - 프로필 정보
+        //[Walter]이 작업을 ViewController 에서 할까?
         let savedUserProfile = UserDefaults.standard.dictionary(forKey: Constants.profile)
         if let userInfo = savedUserProfile {
             let uName = userInfo["name"] as? String
@@ -68,14 +69,13 @@ class MainVC: UIViewController {
         
         mainUserName.text = mainProfileBrain.myProfile?.name
         mainUserQuote.text = mainProfileBrain.myProfile?.quote
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true) // 뷰 컨트롤러가 나타날 때 컨트롤 바를 숨기기
         
-        initSetChart()
+        initSetChart()  //[Walter] 이건 무슨 함수?
         setChart(dataPoints: bmiBrain.bmiDateArray, values: bmiBrain.bmiValueArray) //현재 임시값
         
     }
@@ -98,13 +98,9 @@ class MainVC: UIViewController {
         
         if segue.identifier == "goHistoryListView" {
             guard let secondVC = segue.destination as? HistoryListVC else { return }
-
-            secondVC.receivedData = bmiBrain
-            secondVC.historyData = bmiBrain
+            secondVC.receivedData = bmiBrain.bmiDatas   //[Walter] 그냥 배열을 넘기는 방식으로 처리
         }
     }
-    
-    
 }
 
 extension MainVC: UIPickerViewDelegate, UIPickerViewDataSource { //피커뷰 익스텐션
@@ -158,18 +154,9 @@ extension MainVC: UIPickerViewDelegate, UIPickerViewDataSource { //피커뷰 익
     }
     
     func setInitialValuePV() {
-        
-        
-
         inputPickerView.selectRow(2, inComponent: 0, animated: false)
         inputPickerView.selectRow(2, inComponent: 1, animated: false) //초기값 세팅
-        
-        
     }
-    
-//    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-//        pickerView.subviews.first?.backgroundColor = UIColor.red
-//    }
 }
 
 

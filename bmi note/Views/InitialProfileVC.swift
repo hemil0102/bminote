@@ -38,8 +38,6 @@ class InitialProfileVC: UIViewController, UITextFieldDelegate {
         
         //제스처가 실행될 떄 키보드를 내릴 수 있도록
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(endEditing)))
-        
-        
     }
  
     var isExpand : Bool = false

@@ -27,16 +27,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let _ = (scene as? UIWindowScene) else { return }
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        
+        //[Walter] 첫 실행에서는 UserDefault 값 자체가 없으므로,
         let userDidInput = UserDefaults.standard.dictionary(forKey: Constants.profile)
         
+        //[Walter] 이 구문이 실행되지 않음
         if let checkUserDidInput = userDidInput {
-            let status = checkUserDidInput["isUserInput"] as? Bool
-            print(status!)
+            let status = checkUserDidInput["isUserInput"] as? Bool      //UserDefault 값을 확인하는 것만으로도 입력된 것으로 생각한다면, 이런 플래그는 중복처리
             /*
              [Walter]결국 userDafaults 값을 가져와 보여줄 뷰를 결정하는데,
              isLogged 라는 변수가 필요할까요?
              */
+            print(status)
             if status == true {
                 /*
                  [Walter] 이 부분에 바로 아래 작업을 넣는다면?!
@@ -47,7 +48,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             }
         }
         
-        
         if isLogged == false {
             // [Walter] 이 부분을 위에 바로 넣는다면 isLogged 값이 필요없고, 코드 또한 훨씬 간결합니다.
             guard let greetingVC = storyboard.instantiateViewController(withIdentifier: "greetingVC") as? GreetingVC else { return }
@@ -57,6 +57,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window?.rootViewController = NaviVC
         }
         
+        //[Walter]
+//        if let checkUserDidInput = userDidInput {
+//            guard let NaviVC = storyboard.instantiateViewController(withIdentifier: "naviVC") as? UINavigationController else { return }
+//            window?.rootViewController = NaviVC
+//        } else {
+//            //이 구문이 실행될 것,
+//            //그래서 여기에 그리팅 뷰로 가는 로직을 넣어야 함
+//            guard let greetingVC = storyboard.instantiateViewController(withIdentifier: "greetingVC") as? GreetingVC else { return }
+//            window?.rootViewController = greetingVC
+//        }
+
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
