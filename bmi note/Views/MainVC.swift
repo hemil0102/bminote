@@ -186,6 +186,7 @@ extension MainVC: UIPickerViewDelegate, UIPickerViewDataSource { //피커뷰 익
             print("bmiDatas nil")
         }
       }
+}
 
 
 extension MainVC { //그래프 뷰 익스텐션
