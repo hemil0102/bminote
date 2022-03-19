@@ -49,16 +49,6 @@ class HistoryListVC: UIViewController {
             isThereRecordLabel.isHidden = data.count == 0 ? false : true
         }
     }
-    
-    //이력 삭제
-    func deleteHistory() {
-        /*
-         1. BMI 데이터 삭제 []
-         2. UserDefault 업데이트 []
-         2. TableView Reload [✓]
-         */
-//        self.tableView.reloadData()
-    }
 }
 
 //TableView Delegate
