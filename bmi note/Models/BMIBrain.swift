@@ -96,7 +96,7 @@ struct BMIBrain {
     private func setDate() -> String {
         
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd(E)" //시간까지 구현 필요
+        formatter.dateFormat = "yyyy-MM-dd(E) hh:mm" //시간까지 구현 필요
         
         return formatter.string(from: Date())
     }
@@ -108,11 +108,6 @@ struct BMIBrain {
         
         //self.currentBMI = BMI(heightForBMI: height, weightForBMI: weight, bmiStatus: bmiStatusValue, regDate: DateValue, bmi: bmiValue)
         bmiDatas?.append(BMI(heightForBMI: Float(height), weightForBMI: Float(weight), bmiStatus: bmiStatusValue, regDate: DateValue, bmi: bmiValue))
-    }
-    
-    mutating func setInitialPickerViewValue() { 
-        //유저 디폴트에 저장 데이터가 0개면 프로필에서 데이터 세팅.
-        //유저 디폴트에 저장 데이터가 1개 이상이면 가장 최신 데이터 세팅.
     }
     
     mutating func setAxisValues() { //그래프용 데이터 저장
@@ -147,31 +142,13 @@ struct BMIBrain {
         //피커뷰에서 세팅된 신장/몸무게로 BMI 구조체 인스턴스를 CurrentBMI 변수에 저장
         setCurrentBMI(height, weight)
         
-        print(bmiDatas)
-        print(bmiValueArray)
+        //print(bmiDatas)
+        //print(bmiValueArray)
     }
     
-//    func createTempUserDefaults() { //삭제 예정
-//
-//        var saveArray: [UDSaveFormat] = []
-//
-//        let dict1: UDSaveFormat = ["regDate": "2022", "heightForBmi": 176, "weightForBmi": 83, "bmi" : 17.0, "bmiStatus": "정상"]
-//        let dict2: UDSaveFormat = ["regDate": "2023", "heightForBmi": 177, "weightForBmi": 84, "bmi" : 25.0, "bmiStatus": "정상"]
-//        let dict3: UDSaveFormat = ["regDate": "2025", "heightForBmi": 171, "weightForBmi": 86, "bmi" : 24.2, "bmiStatus": "정상"]
-//        let dict4: UDSaveFormat = ["regDate": "2024", "heightForBmi": 172, "weightForBmi": 90, "bmi" : 27.0, "bmiStatus": "정상"]
-//        let dict5: UDSaveFormat = ["regDate": "2021", "heightForBmi": 174, "weightForBmi": 81, "bmi" : 25.0, "bmiStatus": "정상"]
-//
-//        saveArray.append(dict1)
-//        saveArray.append(dict2)
-//        saveArray.append(dict3)
-//        saveArray.append(dict4)
-//        saveArray.append(dict5)
-//
-//        ud.set(saveArray, forKey: historyKeyValue) //bmi 계산값 저장
-//
-//        print("계산값 저장 : \(saveArray)")
-//        print("ud개수: \(saveArray.count)")
-//    }
+    func getArrayIndex(arr: [Int], value: Int) -> Int? {
+        return arr.firstIndex(of: value)
+    }
     
     func saveResultToUserDefaults() { //최종 배열값 유저디폴트로 저장하는 함수. 앱이 백그라운드에 있거나 종료 직전에 저장하도록
         
@@ -189,6 +166,28 @@ struct BMIBrain {
             }
         }
         
-        print(ud.array(forKey:historyKeyValue))
+        //print(ud.array(forKey:historyKeyValue))
     }
+    
+//        func createTempUserDefaults() { //삭제 예정
+//
+//            var saveArray: [UDSaveFormat] = []
+//
+//            let dict1: UDSaveFormat = ["regDate": "2022", "heightForBmi": 176, "weightForBmi": 83, "bmi" : 17.0, "bmiStatus": "정상"]
+//            let dict2: UDSaveFormat = ["regDate": "2023", "heightForBmi": 177, "weightForBmi": 84, "bmi" : 25.0, "bmiStatus": "정상"]
+//            let dict3: UDSaveFormat = ["regDate": "2025", "heightForBmi": 171, "weightForBmi": 86, "bmi" : 24.2, "bmiStatus": "정상"]
+//            let dict4: UDSaveFormat = ["regDate": "2024", "heightForBmi": 172, "weightForBmi": 90, "bmi" : 27.0, "bmiStatus": "정상"]
+//            let dict5: UDSaveFormat = ["regDate": "2021", "heightForBmi": 174, "weightForBmi": 81, "bmi" : 25.0, "bmiStatus": "정상"]
+//
+//            saveArray.append(dict1)
+//            saveArray.append(dict2)
+//            saveArray.append(dict3)
+//            saveArray.append(dict4)
+//            saveArray.append(dict5)
+//
+//            ud.set(saveArray, forKey: historyKeyValue) //bmi 계산값 저장
+//
+//            print("계산값 저장 : \(saveArray)")
+//            print("ud개수: \(saveArray.count)")
+//        }
 }

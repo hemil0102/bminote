@@ -32,7 +32,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         //[Walter] 이 구문이 실행되지 않음
         if let checkUserDidInput = userDidInput {
+          
             let status = checkUserDidInput["isUserInput"] as? Bool      //UserDefault 값을 확인하는 것만으로도 입력된 것으로 생각한다면, 이런 플래그는 중복처리
+          
             /*
              [Walter]결국 userDafaults 값을 가져와 보여줄 뷰를 결정하는데,
              isLogged 라는 변수가 필요할까요?
