@@ -130,16 +130,17 @@ class InitialProfileVC: UIViewController, UITextFieldDelegate {
                 userInfo.name = initialUserInputName.text
                 print(userInfo.name!)
                 nameChecker.image = UIImage(systemName: "checkmark.circle.fill")
+                nameChecker.tintColor = UIColor.systemGreen
                 checkNameRegularExpressions.text = ""
             } else {
                 correctName = false
-                nameChecker.image = UIImage(systemName: "")
+//                nameChecker.image = UIImage(systemName: "")
                 checkNameRegularExpressions.text = "한글 및 영문만 입력 가능합니다."
 
             }
         } else {
             correctName = false
-            nameChecker.image = UIImage(systemName: "")
+//            nameChecker.image = UIImage(systemName: "")
             checkNameRegularExpressions.text = "닉네임을 입력해주세요."
         }
         buttonDecision()
@@ -155,16 +156,17 @@ class InitialProfileVC: UIViewController, UITextFieldDelegate {
                 userInfo.age = Int(initialUserInputAge.text!)! //입력이 있고 숫자가 있으므로 force unwrap
                 print(userInfo.age!)
                 ageChecker.image = UIImage(systemName: "checkmark.circle.fill")
+                ageChecker.tintColor = UIColor.systemGreen
                 checkAgeRegularExpressions.text = ""
             } else {
                 correctAge = false
-                ageChecker.image = UIImage(systemName: "")
+//                ageChecker.image = UIImage(systemName: "")
                 checkAgeRegularExpressions.text = "1900~2099 범위 내 입력 바랍니다."
 
             }
         } else {
             correctAge = false
-            ageChecker.image = UIImage(systemName: "")
+//            ageChecker.image = UIImage(systemName: "")
             checkAgeRegularExpressions.text = "출생연도를 입력해주세요."
         }
         buttonDecision()
@@ -179,16 +181,17 @@ class InitialProfileVC: UIViewController, UITextFieldDelegate {
                 userInfo.height = Float(initialUserInputHeight.text!)! //입력이 있고 숫자가 있으므로 force unwrap
                 print(userInfo.height!)
                 heightChecker.image = UIImage(systemName: "checkmark.circle.fill")
+                heightChecker.tintColor = UIColor.systemGreen
                 checkHeightRegularExpressions.text = ""
             } else {
                 correctHeight = false
-                heightChecker.image = UIImage(systemName: "")
+//                heightChecker.image = UIImage(systemName: "")
                 checkHeightRegularExpressions.text = "소숫점 제외, 숫자 2~3자리를 입력해주세요."
 
             }
         } else {
             correctHeight = false
-            heightChecker.image = UIImage(systemName: "")
+//            heightChecker.image = UIImage(systemName: "")
             checkHeightRegularExpressions.text = "신장을 입력해주세요."
         }
         buttonDecision()
@@ -204,16 +207,17 @@ class InitialProfileVC: UIViewController, UITextFieldDelegate {
                 userInfo.weight = Float(initialUserInputWeight.text!)! //입력이 있고 숫자가 있으므로 force unwrap
                 print(userInfo.weight!)
                 weightChecker.image = UIImage(systemName: "checkmark.circle.fill")
+                weightChecker.tintColor = UIColor.systemGreen
                 checkWeightRegularExpressions.text = ""
             } else {
                 correctWeight = false
-                weightChecker.image = UIImage(systemName: "")
+//                weightChecker.image = UIImage(systemName: "")
                 checkWeightRegularExpressions.text = "소숫점 제외, 숫자 2~3자리를 입력해주세요."
 
             }
         } else {
             correctWeight = false
-            weightChecker.image = UIImage(systemName: "")
+//            weightChecker.image = UIImage(systemName: "")
             checkWeightRegularExpressions.text = "몸무게를 입력해주세요."
         }
         buttonDecision()
