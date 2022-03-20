@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="eNu-t4-85a">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="eNu-t4-85a">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -94,8 +94,8 @@
                                                         <color key="textColor" red="0.9529411793" green="0.73333334920000004" blue="0.2941176593" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="UlA-Ox-sjP">
-                                                        <rect key="frame" x="6" y="43.5" width="120" height="119"/>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="woman_harry" translatesAutoresizingMaskIntoConstraints="NO" id="UlA-Ox-sjP">
+                                                        <rect key="frame" x="6" y="43" width="120" height="120"/>
                                                         <color key="tintColor" red="0.9529411793" green="0.73333334920000004" blue="0.2941176593" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="UlA-Ox-sjP" secondAttribute="height" multiplier="1:1" id="4kH-Wv-9kN"/>
@@ -384,6 +384,7 @@
                         <outlet property="checkHeightRegularExpressions" destination="MgN-3L-GAx" id="7DI-Lx-vgh"/>
                         <outlet property="checkNameRegularExpressions" destination="2oF-kW-T4F" id="MxG-8b-Bnb"/>
                         <outlet property="checkWeightRegularExpressions" destination="07Q-IA-kPL" id="E0b-zK-wam"/>
+                        <outlet property="genderProfileImg" destination="UlA-Ox-sjP" id="h6h-oh-pVs"/>
                         <outlet property="heightChecker" destination="f96-aH-Rpt" id="Zgb-5E-Ubj"/>
                         <outlet property="initialUserInputAge" destination="jdJ-7H-iL5" id="9WI-gH-gsa"/>
                         <outlet property="initialUserInputHeight" destination="4Jr-Yq-uHH" id="BSA-j4-KQn"/>
@@ -916,6 +917,7 @@
                         <outlet property="barChartView" destination="fih-3f-WRd" id="fsf-rT-W8S"/>
                         <outlet property="inputPickerView" destination="QcJ-U2-ib8" id="YGT-SJ-dU3"/>
                         <outlet property="mainUserName" destination="4n4-eb-5FV" id="sik-L3-UWp"/>
+                        <outlet property="mainUserProfileImage" destination="wU2-Se-6xd" id="lXM-8D-3cZ"/>
                         <outlet property="mainUserQuote" destination="lwR-Ow-DpX" id="PVL-zF-RyE"/>
                         <segue destination="PBq-CI-6Ew" kind="show" identifier="goBmiResultView" id="Rm9-Qc-W0u"/>
                         <segue destination="5jL-2s-BuT" kind="show" identifier="goHistoryListView" id="gmQ-8a-h7V"/>
@@ -1339,6 +1341,7 @@
         <image name="list.dash" catalog="system" width="128" height="85"/>
         <image name="person.circle.fill" catalog="system" width="128" height="121"/>
         <image name="rectangle.and.pencil.and.ellipsis.rtl" catalog="system" width="128" height="92"/>
+        <image name="woman_harry" width="350" height="350"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

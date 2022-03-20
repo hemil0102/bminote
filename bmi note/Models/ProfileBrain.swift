@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 /*
  
@@ -30,6 +31,19 @@ struct ProfileBrain {
         return selectedIndexTitle
     }
     
+    func getGenderImage(selectedIndex: Int) -> String {
+        
+        var image: String = ""
+        
+        if selectedIndex == 0 {
+            image = "woman_harry.png"
+        } else if selectedIndex == 1 {
+            image = "man_harry.png"
+        }
+        
+        return image
+        
+    }
     // Walter, UserDefault에서 값을 꺼내 myProfile에 대입
     // 이후 다른 뷰에서 이 myProfile 객체를 이용
     mutating func setMyProfile(_ userProfile: Profile) {

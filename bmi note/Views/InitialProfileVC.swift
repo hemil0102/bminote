@@ -87,8 +87,10 @@ class InitialProfileVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var weightChecker: UIImageView!
     
     @IBOutlet weak var saveInitialProfileOutlet: UIButton!
-    
     @IBOutlet weak var InitProfileScrollView: UIScrollView!
+    
+    @IBOutlet weak var genderProfileImg: UIImageView!
+    
     
     var userInfo = Profile()
     var userInfoBrain = ProfileBrain()
@@ -102,14 +104,15 @@ class InitialProfileVC: UIViewController, UITextFieldDelegate {
     @IBAction func initUserSelectSeg(_ sender: UISegmentedControl) {
         
     // Segment Index에 따라서 남여를 지정, 굳이 함수화 할 필요는 없지만 관리차원으로 getGenderType() 함수를 Brain에 형성, 값이 없을 수 없어서 force unwrap 함.
-        let gender = initialUserSelectGender.titleForSegment(at: sender.selectedSegmentIndex)!
-        userInfo.gender = userInfoBrain.getGenderType(selectedIndexTitle: gender)
-  
+        let gender = initialUserSelectGender.titleForSegment(at: sender.selectedSegmentIndex)! //선택된 세그먼트 인덱스의 타이틀
+        userInfo.gender = userInfoBrain.getGenderType(selectedIndexTitle: gender) //선택된 세그먼트의 성별 정보를 userInfo에 저장
+        userInfo.profileImg = userInfoBrain.getGenderImage(selectedIndex: sender.selectedSegmentIndex) //선택된 성별에 따라 남, 녀 미모지를 선택
+        genderProfileImg.image = UIImage(named: userInfo.profileImg) //이미지 뷰에 선택된 성별 이미지를 보여줌
     }
     
     //유저 정보 저장 및 격언 뷰로 전환
     @IBAction func saveInitialProfile(_ sender: UIButton) {
-        profileUserData = [ "name" : userInfo.name!, "age" : userInfo.age!, "gender" : userInfo.gender, "height" : userInfo.height!, "weight" : userInfo.weight!  ]
+        profileUserData = [ "name" : userInfo.name!, "age" : userInfo.age!, "gender" : userInfo.gender, "height" : userInfo.height!, "weight" : userInfo.weight!, "profileImg" : userInfo.profileImg  ]
         UserDefaults.standard.set(profileUserData, forKey: Constants.profile)
         
         // 격언뷰로 전환

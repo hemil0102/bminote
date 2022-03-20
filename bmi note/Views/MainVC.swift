@@ -23,6 +23,8 @@ class MainVC: UIViewController {
     @IBOutlet weak var barChartView: BarChartView!      //그래프용 변수
     @IBOutlet weak var mainUserName: UILabel! //메인 화면 프로필 유저 이름
     @IBOutlet weak var mainUserQuote: UILabel! //메인 화면 프로필 유저 격언
+    @IBOutlet weak var mainUserProfileImage: UIImageView! //메인 화면 프로필 유저 이미지
+    
     
     @IBAction func pressedCalculateBMI(_ sender: UIButton) {
         bmiBrain.setCurrentBMI(height, weight)      //[Walter] 바로 setCurrentBMI를 호출해도 댐
@@ -55,16 +57,17 @@ class MainVC: UIViewController {
             let uHeight = userInfo["height"] as? Float
             let uWeight = userInfo["weight"] as? Float
             let uQuote = userInfo["quote"] as? String
-            let mainProfile = Profile(name: uName, age: uAge, gender: uGender!, profileImg: "", height: uHeight, weight: uWeight, quote: uQuote)
+            let uProfileImg = userInfo["profileImg"] as? String
+            let mainProfile = Profile(name: uName, age: uAge, gender: uGender!, profileImg: uProfileImg!, height: uHeight, weight: uWeight, quote: uQuote)
             mainProfileBrain = ProfileBrain()      //모든 뷰에 이 객체를 전달, 최신 상태를 유지
             mainProfileBrain.myProfile = mainProfile
             print("\(String(describing: mainProfileBrain.myProfile))")
         }
         
-        mainUserName.text = mainProfileBrain.myProfile?.name
-        mainUserQuote.text = mainProfileBrain.myProfile?.quote
+        mainUserName.text = mainProfileBrain.myProfile?.name //메인화면 유저 이름 출력
+        mainUserQuote.text = mainProfileBrain.myProfile?.quote //메인화면 유저 격언 출력
+        mainUserProfileImage.image = UIImage(named: mainProfileBrain.myProfile!.profileImg) //메인화면 유저 프로필 출력
 
-        
         //피커뷰 초기값 세팅
         setInitialValuePV()
         
