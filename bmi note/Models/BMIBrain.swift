@@ -159,7 +159,6 @@ struct BMIBrain {
                 //[BMI] 형태의 배열을 [String: Any] 로 저장 필요
                 
                 let element: UDSaveFormat = ["regDate": data[i].regDate, "heightForBmi": data[i].heightForBMI, "weightForBmi": data[i].weightForBMI, "bmi" : data[i].bmi, "bmiStatus": data[i].bmiStatus]
-                
                 saveData.append(element)
                 
                 ud.set(saveData, forKey: historyKeyValue)

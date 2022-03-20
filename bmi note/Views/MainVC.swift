@@ -82,7 +82,10 @@ class MainVC: UIViewController {
     }
 
     override func viewWillDisappear(_ animated: Bool) {
-      navigationController?.setNavigationBarHidden(false, animated: true) // 뷰 컨트롤러가 사라질 때 다음 화면에서 네비가 나오게 하기
+        
+        navigationController?.setNavigationBarHidden(false, animated: true) // 뷰 컨트롤러가 사라질 때 다음 화면에서 네비가 나오게 하기
+        
+        bmiBrain.saveResultToUserDefaults()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
