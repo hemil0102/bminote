@@ -24,7 +24,7 @@ class MainVC: UIViewController {
     @IBOutlet weak var mainUserName: UILabel! //메인 화면 프로필 유저 이름
     @IBOutlet weak var mainUserQuote: UILabel! //메인 화면 프로필 유저 격언
     @IBOutlet weak var mainUserProfileImage: UIImageView! //메인 화면 프로필 유저 이미지
-    
+    @IBOutlet weak var mainUserProTips: UILabel!
     
     @IBAction func pressedCalculateBMI(_ sender: UIButton) {
         bmiBrain.setCurrentBMI(height, weight)      //[Walter] 바로 setCurrentBMI를 호출해도 댐
@@ -67,7 +67,7 @@ class MainVC: UIViewController {
         mainUserName.text = mainProfileBrain.myProfile?.name //메인화면 유저 이름 출력
         mainUserQuote.text = mainProfileBrain.myProfile?.quote //메인화면 유저 격언 출력
         mainUserProfileImage.image = UIImage(named: mainProfileBrain.myProfile!.profileImg) //메인화면 유저 프로필 출력
-
+        mainUserProTips.text = "\"Pro Tip\"" + " \(mainProfileBrain.getProTips())"
         //피커뷰 초기값 세팅
         setInitialValuePV()
         

@@ -31,6 +31,7 @@ struct ProfileBrain {
         return selectedIndexTitle
     }
     
+    // 세그먼트 성별 선택에 따른 이미지 선택
     func getGenderImage(selectedIndex: Int) -> String {
         
         var image: String = ""
@@ -43,6 +44,13 @@ struct ProfileBrain {
         
         return image
         
+    }
+    
+    // 메인화면 ProTips를 랜덤으로 출력할 함수
+    func getProTips() -> String {
+        let arraynum: Int = (myProfile?.proTips.count)!
+        let numbers = Int.random(in: 0..<arraynum)
+        return (myProfile?.proTips[numbers])!
     }
     // Walter, UserDefault에서 값을 꺼내 myProfile에 대입
     // 이후 다른 뷰에서 이 myProfile 객체를 이용

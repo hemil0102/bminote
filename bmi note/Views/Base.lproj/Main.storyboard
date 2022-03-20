@@ -917,6 +917,7 @@
                         <outlet property="barChartView" destination="fih-3f-WRd" id="fsf-rT-W8S"/>
                         <outlet property="inputPickerView" destination="QcJ-U2-ib8" id="YGT-SJ-dU3"/>
                         <outlet property="mainUserName" destination="4n4-eb-5FV" id="sik-L3-UWp"/>
+                        <outlet property="mainUserProTips" destination="Y1g-AR-LaW" id="dKt-cN-lWy"/>
                         <outlet property="mainUserProfileImage" destination="wU2-Se-6xd" id="lXM-8D-3cZ"/>
                         <outlet property="mainUserQuote" destination="lwR-Ow-DpX" id="PVL-zF-RyE"/>
                         <segue destination="PBq-CI-6Ew" kind="show" identifier="goBmiResultView" id="Rm9-Qc-W0u"/>
