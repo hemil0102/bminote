@@ -89,6 +89,7 @@ class InitialQuoteVC: UIViewController {
             self.quoteTextField.text = self.userInfo.quoteList[row]
             self.quoteTextField.resignFirstResponder()
             quoteCheker.image = UIImage(systemName: "checkmark.circle.fill")
+            quoteCheker.tintColor = UIColor.systemGreen
             toMainOutlet.isEnabled = true
             
     }

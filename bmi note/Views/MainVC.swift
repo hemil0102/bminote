@@ -25,9 +25,7 @@ class MainVC: UIViewController {
     @IBOutlet weak var mainUserQuote: UILabel! //메인 화면 프로필 유저 격언
     
     @IBAction func pressedCalculateBMI(_ sender: UIButton) {
-        
         bmiBrain.setCurrentBMI(height, weight)      //[Walter] 바로 setCurrentBMI를 호출해도 댐
-
         performSegue(withIdentifier: "goBmiResultView", sender: self)
     }
 
@@ -78,7 +76,6 @@ class MainVC: UIViewController {
         
         initSetChart()  //[Walter] 이건 무슨 함수?
         setChart(dataPoints: bmiBrain.bmiDateArray, values: bmiBrain.bmiValueArray) //현재 임시값
-        
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -154,8 +151,6 @@ extension MainVC: UIPickerViewDelegate, UIPickerViewDataSource { //피커뷰 익
     }
     
     func setInitialValuePV() {
-
-        
         if let data = bmiBrain.bmiDatas {
             if (data.count == 0) {
                 
