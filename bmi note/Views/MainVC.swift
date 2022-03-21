@@ -56,6 +56,7 @@ class MainVC: UIViewController {
         //유저데이터 불러오기 - 프로필 정보
         //[Walter]이 작업을 ViewController 에서 할까?
         let savedUserProfile = UserDefaults.standard.dictionary(forKey: Constants.profile)
+        
         if let userInfo = savedUserProfile {
             let uName = userInfo["name"] as? String
             let uAge = userInfo["age"] as? Int
@@ -83,7 +84,7 @@ class MainVC: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true) // 뷰 컨트롤러가 나타날 때 컨트롤 바를 숨기기
         
-        initSetChart()  //[Walter] 이건 무슨 함수?
+        initSetChart()  //[Walter] 이건 무슨 함수? //
         setChart(dataPoints: bmiBrain.bmiDateArray, values: bmiBrain.bmiValueArray) //현재 임시값
     }
 
@@ -244,8 +245,9 @@ extension MainVC { //그래프 뷰 익스텐션
         //차트 x축 아래 라벨 숨기는 옵션
         barChartView.legend.enabled = false
         
-        barChartView.leftAxis.axisMaximum = 40.0
+        barChartView.leftAxis.axisMaximum = 50.0
         barChartView.leftAxis.axisMinimum = 0.0
+        
     }
     
     func setChartSubdetails() {
@@ -269,10 +271,15 @@ extension MainVC { //그래프 뷰 익스텐션
         barChartView.rightAxis.enabled = false
         barChartView.xAxis.enabled = false
         
-        //축 라운드 처리
+        //격자 제거
+        barChartView.leftAxis.drawGridLinesEnabled = false
         
+        
+        //축 삭제
+        
+
         //애니메이션
-        barChartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0)
+        barChartView.animate(xAxisDuration: 0.0, yAxisDuration: 1.0)
         barChartView.layer.cornerRadius = 30.0
         
         }
