@@ -112,8 +112,8 @@ struct BMIBrain {
     
     mutating func setAxisValues() { //그래프용 데이터 저장
         
-        bmiDateArray = []
-        bmiValueArray = []
+        bmiDateArray = ["temp", "temp", "temp", "temp", "temp", "temp", "temp", "temp" ]
+        bmiValueArray = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, ]
         
         if let data = bmiDatas {
             for i in 0 ..< data.count {
