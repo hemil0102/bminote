@@ -21,25 +21,6 @@ class InitialQuoteVC: UIViewController {
         
         toMainOutlet.isEnabled = false
         
-        /*
-         [Walter] UserDefault 값을 객체로 만든다는 것은,
-         */
-        if let userInfo = savedUserProfile {
-            let uName = userInfo["name"] as? String
-            let uAge = userInfo["age"] as? Int
-            let uGender = userInfo["gender"] as? String
-            let uHeight = userInfo["height"] as? Float
-            let uWeight = userInfo["weight"] as? Float
-            
-            //UserDefulat 의 값을 Profile 객체로 만드는 것
-            let profile = Profile(name: uName, age: uAge, gender: uGender!, profileImg: "", height: uHeight, weight: uWeight)
-            var myProfile = ProfileBrain()      //모든 뷰에 이 객체를 전달, 이용 또는 수정하는 것
-            myProfile.myProfile = profile
-            
-//            print(myProfile.myProfile)  //Profile의 모든 값을 출력
-        }
-        
-
         configPickerView()
         configToolbar()
 
@@ -48,7 +29,7 @@ class InitialQuoteVC: UIViewController {
     let picker = UIPickerView() //피커뷰 생성
     let userInfo = Profile()
     
-    @IBOutlet weak var quoteCheker: UIImageView!
+    @IBOutlet weak var initialQuoteCheker: UIImageView!
     @IBOutlet weak var quoteTextField: UITextField!
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var toMainOutlet: UIButton!
@@ -88,8 +69,8 @@ class InitialQuoteVC: UIViewController {
             self.picker.selectRow(row, inComponent: 0, animated: false)
             self.quoteTextField.text = self.userInfo.quoteList[row]
             self.quoteTextField.resignFirstResponder()
-            quoteCheker.image = UIImage(systemName: "checkmark.circle.fill")
-            quoteCheker.tintColor = UIColor.systemGreen
+            initialQuoteCheker.image = UIImage(systemName: "checkmark.circle.fill")
+            initialQuoteCheker.tintColor = UIColor.systemGreen
             toMainOutlet.isEnabled = true
             
     }
@@ -97,7 +78,7 @@ class InitialQuoteVC: UIViewController {
         @objc func cancelPicker() {
             self.quoteTextField.text = nil
             self.quoteTextField.resignFirstResponder()
-            quoteCheker.image = UIImage(systemName: "")
+            initialQuoteCheker.image = UIImage(systemName: "")
             toMainOutlet.isEnabled = false
             
     }

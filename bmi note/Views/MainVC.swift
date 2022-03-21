@@ -24,7 +24,13 @@ class MainVC: UIViewController {
     @IBOutlet weak var mainUserName: UILabel! //메인 화면 프로필 유저 이름
     @IBOutlet weak var mainUserQuote: UILabel! //메인 화면 프로필 유저 격언
     @IBOutlet weak var mainUserProfileImage: UIImageView! //메인 화면 프로필 유저 이미지
-    @IBOutlet weak var mainUserProTips: UILabel!
+    @IBOutlet weak var mainUserProTips: UILabel! //메인화면 유저 프로필
+    
+    
+    @IBAction func pressedProfileEdit(_ sender: UIButton) {
+        performSegue(withIdentifier: "goProfileEditView", sender: self)
+ 
+    }
     
     @IBAction func pressedCalculateBMI(_ sender: UIButton) {
         bmiBrain.setCurrentBMI(height, weight)      //[Walter] 바로 setCurrentBMI를 호출해도 댐
@@ -89,7 +95,12 @@ class MainVC: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
+        
+        if segue.identifier == "goProfileEditView" {
+            guard let secondVC = segue.destination as? MainProfileVC else { return }
+            secondVC.editProfileBrain = mainProfileBrain
+        }
+        
         if segue.identifier == "goBmiResultView" {
             guard let secondVC = segue.destination as? BmiResultVC else { return }
 
