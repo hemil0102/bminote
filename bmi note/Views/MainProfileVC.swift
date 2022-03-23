@@ -66,10 +66,12 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
         mainUserInputHeight.returnKeyType = .done
         mainUserInputWeight.returnKeyType = .done
         
+        
         //키보드가 나탈 떄
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         // Do any additional setup after loading the view.
+        
     }
     
     var editProfileBrain = ProfileBrain()
