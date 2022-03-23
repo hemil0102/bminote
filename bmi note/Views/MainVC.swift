@@ -257,7 +257,7 @@ extension MainVC { //그래프 뷰 익스텐션
 
         //리미트라인
         let limit = ChartLimitLine(limit: limitMinValue, label: "")
-        limit.lineColor = .blue //라인 색 변경
+        limit.lineColor = .green //라인 색 변경
         barChartView.leftAxis.addLimitLine(limit)
         limit.lineWidth = 1.0
         
@@ -268,19 +268,23 @@ extension MainVC { //그래프 뷰 익스텐션
         
         //좌측 축 사용안함
         barChartView.leftAxis.enabled = true
+        barChartView.leftAxis.drawLabelsEnabled = false
+        
+        //x축
         barChartView.rightAxis.enabled = false
-        barChartView.xAxis.enabled = false
+        barChartView.xAxis.labelPosition = .bottom
+        barChartView.xAxis.drawLabelsEnabled = false
+        
         
         //격자 제거
         barChartView.leftAxis.drawGridLinesEnabled = false
-        
+        barChartView.xAxis.drawGridLinesEnabled = false
         
         //축 삭제
         
 
         //애니메이션
         barChartView.animate(xAxisDuration: 0.0, yAxisDuration: 1.0)
-        barChartView.layer.cornerRadius = 30.0
         
         }
     
