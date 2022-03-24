@@ -11,6 +11,8 @@ class HistoryListVC: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var isThereRecordLabel: UILabel!
     
+    let bmiStd = BMIStandard()
+    
     //지역변수로 사용할 HistoryData
     var receivedData:[BMI]?          //MainVC에서 전달받는 bmi 배열
     var historyData:[BMI] = []       //receivedData를 옵셔널 처리한 bmi 배열
@@ -34,9 +36,9 @@ class HistoryListVC: UIViewController {
     //전 화면에서 받아온 데이터를 로컬변수로 대입, 기록된 데이터가 없을 때 '기록이 없습니다' 출력
     func setHistoryDataFromPrivousScreen() {
         if let data = receivedData {
-            historyData = data
+            historyData = data.reversed()
             isThereRecordLabel.isHidden = data.count == 0 ? false : true
-            print("날짜 : \(historyData.first?.regDate)")
+//            print("날짜 : \(historyData.first?.regDate)")
         }
     }
 }
@@ -77,6 +79,17 @@ extension HistoryListVC: UITableViewDataSource {
         cell.height.text = "\(historyData[row].heightForBMI)cm"         //BMI 게산에 사용된 키
         cell.weight.text = "\(historyData[row].weightForBMI)kg"         //BMI 계산에 사용된 몸무게
         cell.regDate.text = "\(historyData[row].regDate)"
+        
+        let limitMinValue = bmiStd.BMIStdMinValue
+        let limitMaxValue = bmiStd.BMIStdMaxValue
+        
+      if historyData[row].bmi > limitMaxValue {
+          cell.bmiValue.textColor = .systemOrange
+      } else if historyData[row].bmi < limitMinValue {
+          cell.bmiValue.textColor = .systemBlue
+      } else {
+          cell.bmiValue.textColor = .systemGreen
+      }
         
         return cell
     }
