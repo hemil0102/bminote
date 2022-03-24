@@ -25,6 +25,8 @@ class MainVC: UIViewController {
     @IBOutlet weak var mainUserQuote: UILabel! //메인 화면 프로필 유저 격언
     @IBOutlet weak var mainUserProfileImage: UIImageView! //메인 화면 프로필 유저 이미지
     @IBOutlet weak var mainUserProTips: UILabel! //메인화면 유저 프로필
+    @IBOutlet weak var heightLabelInPickerView: UILabel!
+    @IBOutlet weak var weightlabelInPickerView: UILabel!
     
     
     @IBAction func pressedProfileEdit(_ sender: UIButton) {
@@ -119,7 +121,8 @@ class MainVC: UIViewController {
     }
 }
 
-extension MainVC: UIPickerViewDelegate, UIPickerViewDataSource { //피커뷰 익스텐션
+//MARK: - 피커뷰 익스텐션
+extension MainVC: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func configPickerView() {
         inputPickerView.delegate = self
@@ -161,8 +164,10 @@ extension MainVC: UIPickerViewDelegate, UIPickerViewDataSource { //피커뷰 익
         switch component {
         case 0:
             self.height = bmiBrain.bmiPickerRange.heightMinMaxArray[row]
+            self.heightLabelInPickerView.text = "\(self.height)cm"
         case 1:
             self.weight = bmiBrain.bmiPickerRange.weightMinMaxArray[row]
+            self.weightlabelInPickerView.text = "\(self.weight)kg"
         default:
             break
         }
@@ -201,8 +206,8 @@ extension MainVC: UIPickerViewDelegate, UIPickerViewDataSource { //피커뷰 익
       }
 }
 
-
-extension MainVC { //그래프 뷰 익스텐션
+// MARK: - 그래프 뷰 익스텐션
+extension MainVC {
     
     //그래프 데이터 없을때 그래프 표시 세팅
     func initSetChart() {
