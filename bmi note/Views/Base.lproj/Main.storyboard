@@ -959,7 +959,7 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="PMu-cB-bej" userLabel="Graph Stack View">
-                                <rect key="frame" x="20" y="246" width="374" height="214.5"/>
+                                <rect key="frame" x="20" y="246" width="374" height="279"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BMI History" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wq0-0A-TkH">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="30"/>
@@ -972,16 +972,16 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fih-3f-WRd" customClass="BarChartView" customModule="Charts">
-                                        <rect key="frame" x="0.0" y="37" width="374" height="177.5"/>
+                                        <rect key="frame" x="0.0" y="37" width="374" height="242"/>
                                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="fih-3f-WRd" secondAttribute="height" multiplier="379:180" id="sCp-Au-DQA"/>
+                                            <constraint firstAttribute="width" secondItem="fih-3f-WRd" secondAttribute="height" multiplier="379:245" id="sCp-Au-DQA"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="T4M-wK-DUJ" userLabel="Cal Stack View">
-                                <rect key="frame" x="20" y="470.5" width="374" height="346"/>
+                                <rect key="frame" x="20" y="535" width="374" height="307"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BMI calculation" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QNt-uB-Yq0">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="30"/>
@@ -1012,15 +1012,15 @@
                                         </subviews>
                                     </stackView>
                                     <pickerView contentMode="scaleToFill" verticalCompressionResistancePriority="300" translatesAutoresizingMaskIntoConstraints="NO" id="QcJ-U2-ib8">
-                                        <rect key="frame" x="0.0" y="95" width="374" height="180"/>
+                                        <rect key="frame" x="0.0" y="95" width="374" height="151"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="180" id="Fr4-cW-OW2"/>
+                                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="200" id="Fr4-cW-OW2"/>
                                         </constraints>
                                     </pickerView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MF0-sY-WGS">
-                                        <rect key="frame" x="0.0" y="296" width="374" height="50"/>
+                                        <rect key="frame" x="0.0" y="267" width="374" height="40"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="eza-pz-uUv"/>
+                                            <constraint firstAttribute="height" constant="40" id="eza-pz-uUv"/>
                                         </constraints>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
@@ -1028,7 +1028,7 @@
                                             <backgroundConfiguration key="background">
                                                 <color key="backgroundColor" systemColor="systemBrownColor"/>
                                             </backgroundConfiguration>
-                                            <fontDescription key="titleFontDescription" type="boldSystem" pointSize="24"/>
+                                            <fontDescription key="titleFontDescription" type="boldSystem" pointSize="20"/>
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="pressedCalculateBMI:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QEz-lJ-M3x"/>
@@ -1041,7 +1041,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="PMu-cB-bej" firstAttribute="top" secondItem="Y1g-AR-LaW" secondAttribute="bottom" constant="10" id="9p1-UZ-5L8"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="T4M-wK-DUJ" secondAttribute="bottom" constant="45.5" id="D9A-ql-eVm"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="T4M-wK-DUJ" secondAttribute="bottom" constant="20" id="D9A-ql-eVm"/>
                             <constraint firstItem="Y1g-AR-LaW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="EWB-Ys-FMa"/>
                             <constraint firstItem="PMu-cB-bej" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Gct-XS-Uhf"/>
                             <constraint firstItem="zMd-Zf-cdR" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="J9L-tC-9ko"/>
