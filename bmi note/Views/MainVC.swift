@@ -250,7 +250,8 @@ extension MainVC {
         //차트 x축 아래 라벨 숨기는 옵션
         barChartView.legend.enabled = false
         
-        barChartView.leftAxis.axisMaximum = 50.0
+        //y축 최대/최소
+        barChartView.leftAxis.axisMaximum = 55.0
         barChartView.leftAxis.axisMinimum = 0.0
         
     }
@@ -295,18 +296,38 @@ extension MainVC {
     
     //그래프 리미트 초과에 따른 그래프별 색 배열 지정
     func barColors(with data: [Double]) -> [UIColor] {
-      return data.map {
-          
-          let limitMinValue = bmiStd.BMIStdMinValue
-          let limitMaxValue = bmiStd.BMIStdMaxValue
-          
-        if $0 > limitMaxValue {
-          return .systemOrange
-        } else if $0 < limitMinValue {
-          return .systemBlue
-        } else {
-          return .systemGreen
+        let limitMinValue = bmiStd.BMIStdMinValue
+        let limitMaxValue = bmiStd.BMIStdMaxValue
+        
+        let alphaValue = 0.15
+        
+        var colorData: [UIColor] = []
+        
+        //이전값 전부 컬러 알파값 적용
+        for i in 0 ..< data.count {
+            if data[i] > limitMaxValue {
+                colorData.append(UIColor(red: 255/255, green: 149/255, blue: 0, alpha: alphaValue))
+            } else if data[i] < limitMinValue {
+                colorData.append(UIColor(red: 0, green: 122/255, blue: 255/255, alpha: alphaValue))
+            } else {
+                colorData.append(UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: alphaValue))
+            }
         }
-      }
+        
+        //최신값 알파값 미적용
+        if (data.count > 0) {
+            colorData.removeLast()
+            
+            if let value = data.last {
+                if value > limitMaxValue {
+                    colorData.append(UIColor(red: 255/255, green: 149/255, blue: 0, alpha: 1.0))
+                } else if value < limitMinValue {
+                    colorData.append(UIColor(red: 0, green: 122/255, blue: 255/255, alpha: 1.0))
+                } else {
+                    colorData.append(UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1.0))
+                }
+            }
+        }
+        return colorData
     }
 }
