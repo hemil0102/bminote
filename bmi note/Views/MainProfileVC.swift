@@ -110,7 +110,7 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var mainProfileimg: UIImageView!
     
     @IBOutlet weak var mainEditUserProfileLabel: UIButton!
-    
+    @IBOutlet weak var mainSaveUserProfileLabel: UIButton!
     
     @IBAction func mainUserSelectGender(_ sender: UISegmentedControl) {
         // Segment Index에 따라서 남여를 지정, 굳이 함수화 할 필요는 없지만 관리차원으로 getGenderType() 함수를 Brain에 형성, 값이 없을 수 없어서 force unwrap 함.
@@ -122,16 +122,17 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
     
     @IBAction func mainEditUserProfile(_ sender: UIButton) {
         
+
         if mainEditUserProfileLabel.currentTitle! == "수정"
         {
             enableTextField()
-        mainEditUserProfileLabel.setTitle("취소", for: .normal)
+            mainEditUserProfileLabel.setTitle("취소", for: .normal)
             
-        } else if mainEditUserProfileLabel.currentTitle! == "취소"
+        } else if mainEditUserProfileLabel.currentTitle == "취소"
         {
             
             disableTextField()
-        mainEditUserProfileLabel.setTitle("수정", for: .normal)
+            mainEditUserProfileLabel.setTitle("수정", for: .normal)
             
         }
     }
