@@ -39,24 +39,6 @@ struct BMIBrain {
         setAxisValues()
     }
     
-    //리스트로 뿌려줌
-//    func getAllBMI() -> [BMI]? {
-//        if let bmi = bmiDatas {
-//            return bmi.reversed()
-//        } else {
-//            return nil
-//        }
-//    }
-    
-    //하나의 BMI정보를 가져오기
-//    func getBMIInfo(_ idx: Int) -> BMI? {
-//        if let bmi = bmiDatas {
-//            return bmi[idx]
-//        } else {
-//            return nil
-//        }
-//    }
-    
     //객체화 시점에 유저디폴트 데이터 가져오는 함수
     mutating func initialLoadUserDefaults() {
         

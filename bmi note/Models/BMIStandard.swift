@@ -19,7 +19,7 @@ struct BMIStandard {
     static let normalWeightRange: Range<Double> = 18.0 ..< 25.0
     static let overWeightRange: Range<Double> = 25.0 ..< 30.0
     static let obesWeightRange: Range<Double> = 30.0 ..< 40.0
-    static let highObesWeightRange: Range<Double> = 40.0 ..< 100.0
+    static let highObesWeightRange: Range<Double> = 40.0 ..< 600.0
     
     static func decideLevel(bmiValue: Double) -> String {
         switch bmiValue {
@@ -52,7 +52,7 @@ struct BMIStandard {
         case highObesWeightRange:
             return 4
         default :
-            return 5
+            return 4
         }
     }
     
