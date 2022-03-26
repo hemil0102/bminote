@@ -164,10 +164,10 @@ extension MainVC: UIPickerViewDelegate, UIPickerViewDataSource {
         switch component {
         case 0:
             self.height = bmiBrain.bmiPickerRange.heightMinMaxArray[row]
-            self.heightInPickerLabel.text = "\(self.height)cm"
+            self.heightInPickerLabel.text = "키 \(self.height)cm"
         case 1:
             self.weight = bmiBrain.bmiPickerRange.weightMinMaxArray[row]
-            self.weightInPickerLabel.text = "\(self.weight)kg"
+            self.weightInPickerLabel.text = "체중 \(self.weight)kg"
         default:
             break
         }
