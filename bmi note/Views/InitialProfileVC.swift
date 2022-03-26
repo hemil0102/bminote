@@ -210,13 +210,13 @@ class InitialProfileVC: UIViewController, UITextFieldDelegate {
                 initialCheckHeightRegEx.text = ""
             } else {
                 initialCorrectHeight = false
-//                heightChecker.image = UIImage(systemName: "")
+                initialHeightChecker.image = UIImage(systemName: "")
                 initialCheckHeightRegEx.text = "소숫점 제외, 숫자 2~3자리를 입력해주세요."
 
             }
         } else {
             initialCorrectHeight = false
-//            heightChecker.image = UIImage(systemName: "")
+            initialHeightChecker.image = UIImage(systemName: "")
             initialCheckHeightRegEx.text = "신장을 입력해주세요."
         }
         buttonDecision()
@@ -236,13 +236,13 @@ class InitialProfileVC: UIViewController, UITextFieldDelegate {
                 initialCheckWeightRegEx.text = ""
             } else {
                 initialCorrectWeight = false
-//                weightChecker.image = UIImage(systemName: "")
+                initialWeightChecker.image = UIImage(systemName: "")
                 initialCheckWeightRegEx.text = "소숫점 제외, 숫자 2~3자리를 입력해주세요."
 
             }
         } else {
             initialCorrectWeight = false
-//            weightChecker.image = UIImage(systemName: "")
+            initialWeightChecker.image = UIImage(systemName: "")
             initialCheckWeightRegEx.text = "몸무게를 입력해주세요."
         }
         buttonDecision()
@@ -392,6 +392,28 @@ class InitialProfileVC: UIViewController, UITextFieldDelegate {
     //입력 카운트에 따라 버튼 활성화
     func enableSaveBtn() {
         saveInitialProfileOutlet.isEnabled = inputCount == 4 ? true : false
+    }
+}
+
+
+extension UIScrollView {
+    func updateContentSize() {
+        let unionCalculatedTotalRect = recursiveUnionInDepthFor(view: self)
+        
+        // 계산된 크기로 컨텐츠 사이즈 설정
+        self.contentSize = CGSize(width: self.frame.width, height: unionCalculatedTotalRect.height+50)
+    }
+    
+    private func recursiveUnionInDepthFor(view: UIView) -> CGRect {
+        var totalRect: CGRect = .zero
+        
+        // 모든 자식 View의 컨트롤의 크기를 재귀적으로 호출하며 최종 영역의 크기를 설정
+        for subView in view.subviews {
+            totalRect = totalRect.union(recursiveUnionInDepthFor(view: subView))
+        }
+        
+        // 최종 계산 영역의 크기를 반환
+        return totalRect.union(view.frame)
     }
 }
 
