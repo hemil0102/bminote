@@ -108,7 +108,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="0cg-JD-glA" userLabel="Name Stack View">
-                                                <rect key="frame" x="25" y="348.5" width="364" height="33"/>
+                                                <rect key="frame" x="25" y="353" width="364" height="33"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="닉네임" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tgg-NA-mL9">
                                                         <rect key="frame" x="0.0" y="0.0" width="65" height="33"/>
@@ -139,13 +139,13 @@
                                                 </subviews>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="한글 및 영문만 입력 가능합니다." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2oF-kW-T4F">
-                                                <rect key="frame" x="100" y="386.5" width="152.5" height="14.5"/>
+                                                <rect key="frame" x="100" y="391" width="152.5" height="14.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="DWb-1A-il6" userLabel="Age Stack View">
-                                                <rect key="frame" x="25" y="406" width="364" height="33"/>
+                                                <rect key="frame" x="25" y="410.5" width="364" height="33"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="출생연도" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yTt-vv-rIw">
                                                         <rect key="frame" x="0.0" y="0.0" width="65" height="33"/>
@@ -176,7 +176,7 @@
                                                 </subviews>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1900~2099 범위 내 입력 바랍니다." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Vl-kn-A55">
-                                                <rect key="frame" x="100" y="444" width="176.5" height="14.5"/>
+                                                <rect key="frame" x="100" y="448.5" width="176.5" height="14.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -236,7 +236,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="kzX-0R-4gF" userLabel="Height Stack View">
-                                                <rect key="frame" x="25" y="463.5" width="364" height="33"/>
+                                                <rect key="frame" x="25" y="468" width="364" height="33"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="신장(cm)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ygv-A7-evv">
                                                         <rect key="frame" x="0.0" y="0.0" width="65" height="33"/>
@@ -267,13 +267,13 @@
                                                 </subviews>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="소숫점 제외, 숫자 2~3자리를 입력해주세요." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MgN-3L-GAx">
-                                                <rect key="frame" x="100" y="501.5" width="209.5" height="14.5"/>
+                                                <rect key="frame" x="100" y="506" width="209.5" height="14.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="9Xh-ap-Hzr" userLabel="Weight Stack View">
-                                                <rect key="frame" x="25" y="521" width="364" height="33"/>
+                                                <rect key="frame" x="25" y="525.5" width="364" height="33"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="무게(kg)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G7R-Cf-wFm">
                                                         <rect key="frame" x="0.0" y="0.0" width="65" height="33"/>
@@ -304,7 +304,7 @@
                                                 </subviews>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="소숫점 제외, 숫자 2~3자리를 입력해주세요." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="07Q-IA-kPL">
-                                                <rect key="frame" x="100" y="559" width="209.5" height="14.5"/>
+                                                <rect key="frame" x="100" y="563.5" width="209.5" height="14.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -342,7 +342,7 @@
                                             <constraint firstItem="07Q-IA-kPL" firstAttribute="leading" secondItem="Ki3-k8-cSk" secondAttribute="leading" constant="100" id="rJ5-9m-uUC"/>
                                             <constraint firstItem="2oF-kW-T4F" firstAttribute="leading" secondItem="Ki3-k8-cSk" secondAttribute="leading" constant="100" id="rp3-PQ-qHj"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="MgN-3L-GAx" secondAttribute="trailing" constant="20" symbolic="YES" id="rtv-3Q-xf2"/>
-                                            <constraint firstItem="0cg-JD-glA" firstAttribute="top" secondItem="cpJ-ub-W4M" secondAttribute="bottom" constant="20" id="upj-li-TUG"/>
+                                            <constraint firstItem="0cg-JD-glA" firstAttribute="top" secondItem="cpJ-ub-W4M" secondAttribute="bottom" constant="24.5" id="upj-li-TUG"/>
                                             <constraint firstItem="fbW-zq-cWY" firstAttribute="centerY" secondItem="Ki3-k8-cSk" secondAttribute="centerY" multiplier="1.6" id="vIc-XE-ga6"/>
                                             <constraint firstAttribute="trailing" secondItem="DWb-1A-il6" secondAttribute="trailing" constant="25" id="yXb-rM-LzO"/>
                                             <constraint firstAttribute="trailing" secondItem="kzX-0R-4gF" secondAttribute="trailing" constant="25" id="ybx-ea-52e"/>
@@ -530,7 +530,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="IM4-dd-21j" userLabel="Name Stack View">
-                                                <rect key="frame" x="25" y="321.5" width="364" height="33"/>
+                                                <rect key="frame" x="25" y="326" width="364" height="33"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="닉네임" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aGS-TZ-iQn">
                                                         <rect key="frame" x="0.0" y="7" width="65" height="19.5"/>
@@ -564,13 +564,13 @@
                                                 </constraints>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="한글 및 영문만 입력 가능합니다." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i7i-8G-Y6R">
-                                                <rect key="frame" x="100" y="359.5" width="152.5" height="14.5"/>
+                                                <rect key="frame" x="100" y="364" width="152.5" height="14.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="B5L-el-K60" userLabel="Age Stack View">
-                                                <rect key="frame" x="25" y="379" width="364" height="33"/>
+                                                <rect key="frame" x="25" y="383.5" width="364" height="33"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="출생연도" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bnm-6g-Igx">
                                                         <rect key="frame" x="0.0" y="0.0" width="65" height="33"/>
@@ -601,7 +601,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="kej-LN-lY2" userLabel="Height Stack View">
-                                                <rect key="frame" x="25" y="436.5" width="364" height="33"/>
+                                                <rect key="frame" x="25" y="441" width="364" height="33"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="신장(cm)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q4L-IA-EUY">
                                                         <rect key="frame" x="0.0" y="0.0" width="65" height="33"/>
@@ -632,7 +632,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="55q-Oc-KAu" userLabel="Weight Stack View">
-                                                <rect key="frame" x="25" y="494" width="364" height="33"/>
+                                                <rect key="frame" x="25" y="498.5" width="364" height="33"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="무게(kg)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HFM-Df-2zC">
                                                         <rect key="frame" x="0.0" y="0.0" width="65" height="33"/>
@@ -663,13 +663,13 @@
                                                 </subviews>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="소숫점 제외, 숫자 2~3자리를 입력해주세요." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5qW-uv-Ft9">
-                                                <rect key="frame" x="100" y="532" width="209.5" height="14.5"/>
+                                                <rect key="frame" x="100" y="536.5" width="209.5" height="14.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="AaE-GY-9mL" userLabel="Quote Stack View">
-                                                <rect key="frame" x="25" y="551.5" width="364" height="33.5"/>
+                                                <rect key="frame" x="25" y="556" width="364" height="33.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="격언" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="otL-8i-sQ8">
                                                         <rect key="frame" x="0.0" y="0.0" width="65" height="33.5"/>
@@ -699,13 +699,13 @@
                                                 </subviews>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1900~2099 범위 내 입력 바랍니다." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kbR-h4-Ntz">
-                                                <rect key="frame" x="100" y="417" width="176.5" height="14.5"/>
+                                                <rect key="frame" x="100" y="421.5" width="176.5" height="14.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="소숫점 제외, 숫자 2~3자리를 입력해주세요." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QS8-zt-LVB">
-                                                <rect key="frame" x="100" y="474.5" width="209.5" height="14.5"/>
+                                                <rect key="frame" x="100" y="479" width="209.5" height="14.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -824,7 +824,7 @@
                                             <constraint firstAttribute="trailing" secondItem="55q-Oc-KAu" secondAttribute="trailing" constant="25" id="l2N-Dt-8s3"/>
                                             <constraint firstItem="kbR-h4-Ntz" firstAttribute="top" secondItem="B5L-el-K60" secondAttribute="bottom" constant="5" id="nHG-l2-Kk9"/>
                                             <constraint firstAttribute="trailing" secondItem="xl5-5Y-m9Z" secondAttribute="trailing" constant="120" id="oVq-Z2-nek"/>
-                                            <constraint firstItem="IM4-dd-21j" firstAttribute="top" secondItem="Rsu-dR-lea" secondAttribute="bottom" constant="20" id="v3u-bx-nzO"/>
+                                            <constraint firstItem="IM4-dd-21j" firstAttribute="top" secondItem="Rsu-dR-lea" secondAttribute="bottom" constant="24.5" id="v3u-bx-nzO"/>
                                             <constraint firstItem="i7i-8G-Y6R" firstAttribute="leading" secondItem="u3w-op-LOx" secondAttribute="leading" constant="100" id="xkn-Gk-Fx8"/>
                                             <constraint firstItem="kbR-h4-Ntz" firstAttribute="leading" secondItem="u3w-op-LOx" secondAttribute="leading" constant="100" id="xpx-oq-3nC"/>
                                             <constraint firstAttribute="width" secondItem="u3w-op-LOx" secondAttribute="height" multiplier="414:818" id="z5h-h5-SVv"/>

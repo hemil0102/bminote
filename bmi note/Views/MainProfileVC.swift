@@ -243,17 +243,20 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
                 print((editProfileBrain.myProfile?.name)!)
                 mainNameChecker.image = UIImage(systemName: "checkmark.circle.fill")
                 mainNameChecker.tintColor = UIColor.systemGreen
-                mainCheckNameRegEx.text = ""
+                mainCheckNameRegEx.text = " "
             } else {
                 mainCorrectName = false
-                mainNameChecker.image = UIImage(systemName: "")
-                mainCheckNameRegEx.text = "한글 및 영문만 입력 가능합니다."
+                mainNameChecker.image = UIImage(systemName: "checkmark.circle")
+                mainNameChecker.tintColor = UIColor.systemGray
+                mainCheckNameRegEx.text = "한글 및 영문만 입력 가능합니다.(12자 내)"
+                
 
             }
         } else {
             mainCorrectName = false
-            mainNameChecker.image = UIImage(systemName: "")
-            mainCheckNameRegEx.text = "닉네임을 입력해주세요."
+            mainNameChecker.image = UIImage(systemName: "checkmark.circle")
+            mainNameChecker.tintColor = UIColor.systemGray
+            mainCheckNameRegEx.text = "닉네임을 입력해주세요.(12자 내)"
         }
         buttonDecision()
     }
@@ -269,16 +272,18 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
                 print((editProfileBrain.myProfile?.age)!)
                 mainAgeChecker.image = UIImage(systemName: "checkmark.circle.fill")
                 mainAgeChecker.tintColor = UIColor.systemGreen
-                mainCheckAgeRegEx.text = ""
+                mainCheckAgeRegEx.text = " "
             } else {
                 mainCorrectAge = false
-//                ageChecker.image = UIImage(systemName: "")
+                mainAgeChecker.image = UIImage(systemName: "checkmark.circle")
+                mainAgeChecker.tintColor = UIColor.systemGray
                 mainCheckAgeRegEx.text = "1900~2099 범위 내 입력 바랍니다."
 
             }
         } else {
             mainCorrectAge = false
-//            ageChecker.image = UIImage(systemName: "")
+            mainAgeChecker.image = UIImage(systemName: "checkmark.circle")
+            mainAgeChecker.tintColor = UIColor.systemGray
             mainCheckAgeRegEx.text = "출생연도를 입력해주세요."
         }
         buttonDecision()
@@ -294,16 +299,18 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
                 print((editProfileBrain.myProfile?.height)!)
                 mainHeightChecker.image = UIImage(systemName: "checkmark.circle.fill")
                 mainHeightChecker.tintColor = UIColor.systemGreen
-                mainCheckHeightRegEx.text = ""
+                mainCheckHeightRegEx.text = " "
             } else {
                 mainCorrectHeight = false
-                mainHeightChecker.image = UIImage(systemName: "")
+                mainHeightChecker.image = UIImage(systemName: "checkmark.circle")
+                mainHeightChecker.tintColor = UIColor.systemGray
                 mainCheckHeightRegEx.text = "소숫점 제외, 숫자 2~3자리를 입력해주세요."
 
             }
         } else {
             mainCorrectHeight = false
-            mainHeightChecker.image = UIImage(systemName: "")
+            mainHeightChecker.image = UIImage(systemName: "checkmark.circle")
+            mainHeightChecker.tintColor = UIColor.systemGray
             mainCheckHeightRegEx.text = "신장을 입력해주세요."
         }
         buttonDecision()
@@ -320,16 +327,18 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
                 print((editProfileBrain.myProfile?.weight)!)
                 mainWeightChecker.image = UIImage(systemName: "checkmark.circle.fill")
                 mainWeightChecker.tintColor = UIColor.systemGreen
-                mainCheckWeightRegEx.text = ""
+                mainCheckWeightRegEx.text = " "
             } else {
                 mainCorrectWeight = false
-                mainWeightChecker.image = UIImage(systemName: "")
+                mainWeightChecker.image = UIImage(systemName: "checkmark.circle")
+                mainWeightChecker.tintColor = UIColor.systemGray
                 mainCheckWeightRegEx.text = "소숫점 제외, 숫자 2~3자리를 입력해주세요."
 
             }
         } else {
             mainCorrectWeight = false
-//            weightChecker.image = UIImage(systemName: "")
+            mainWeightChecker.image = UIImage(systemName: "checkmark.circle")
+            mainWeightChecker.tintColor = UIColor.systemGray
             mainCheckWeightRegEx.text = "몸무게를 입력해주세요."
         }
         buttonDecision()
