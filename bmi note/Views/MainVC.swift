@@ -299,7 +299,7 @@ extension MainVC {
         let limitMinValue = bmiStd.BMIStdMinValue
         let limitMaxValue = bmiStd.BMIStdMaxValue
         
-        let alphaValue = 0.15
+        let alphaValue = 0.3
         
         var colorData: [UIColor] = []
         
