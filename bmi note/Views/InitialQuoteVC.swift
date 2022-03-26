@@ -63,24 +63,27 @@ class InitialQuoteVC: UIViewController {
         // 악세사리로 추가한다.
         quoteTextField.inputAccessoryView = toolBar
         
-    } // "완료" 클릭 시 데이터를 textfield에 입력 후 입력창 내리기
-        @objc func donePicker() {
-            let row = self.picker.selectedRow(inComponent: 0)
-            self.picker.selectRow(row, inComponent: 0, animated: false)
-            self.quoteTextField.text = self.userInfo.quoteList[row]
-            self.quoteTextField.resignFirstResponder()
-            initialQuoteCheker.image = UIImage(systemName: "checkmark.circle.fill")
-            initialQuoteCheker.tintColor = UIColor.systemGreen
-            toMainOutlet.isEnabled = true
-            
     }
+    
+    // "완료" 클릭 시 데이터를 textfield에 입력 후 입력창 내리기
+    @objc func donePicker() {
+        let row = self.picker.selectedRow(inComponent: 0)
+        self.picker.selectRow(row, inComponent: 0, animated: false)
+        self.quoteTextField.text = self.userInfo.quoteList[row]
+        self.quoteTextField.resignFirstResponder()
+        initialQuoteCheker.image = UIImage(systemName: "checkmark.circle.fill")
+        initialQuoteCheker.tintColor = UIColor.systemGreen
+        toMainOutlet.isEnabled = true
+        
+    }
+    
     // "취소" 클릭 시 textfield의 텍스트 값을 nil로 처리 후 입력창 내리기
-        @objc func cancelPicker() {
-            self.quoteTextField.text = nil
-            self.quoteTextField.resignFirstResponder()
-            initialQuoteCheker.image = UIImage(systemName: "")
-            toMainOutlet.isEnabled = false
-            
+    @objc func cancelPicker() {
+        self.quoteTextField.text = nil
+        self.quoteTextField.resignFirstResponder()
+        initialQuoteCheker.image = UIImage(systemName: "")
+        toMainOutlet.isEnabled = false
+        
     }
 }
 

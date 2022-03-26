@@ -53,7 +53,9 @@ class MainVC: UIViewController {
         //피커뷰 세팅
         configPickerView()
         
+        //네비게이션 조정
         self.navigationController?.navigationBar.topItem?.title = "메인"
+        self.navigationController?.navigationBar.tintColor = UIColor(named: "NewYellow")
         
         //유저데이터 불러오기 - 프로필 정보
         //[Walter]이 작업을 ViewController 에서 할까?
