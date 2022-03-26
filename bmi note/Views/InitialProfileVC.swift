@@ -10,14 +10,58 @@ import Foundation
 
 class InitialProfileVC: UIViewController, UITextFieldDelegate {
     
+    @IBOutlet weak var initialUserInputName: UITextField!
+    @IBOutlet weak var initialCheckNameRegEx: UILabel!
+    @IBOutlet weak var initialNameChecker: UIImageView!
+    
+    @IBOutlet weak var initialUserInputAge: UITextField!
+    @IBOutlet weak var initialCheckAgeRegEx: UILabel!
+    @IBOutlet weak var initialAgeChecker: UIImageView!
+    
+    @IBOutlet weak var initialUserSelectGender: UISegmentedControl!
+    
+    @IBOutlet weak var initialUserInputHeight: UITextField!
+    @IBOutlet weak var initialCheckHeightRegEx: UILabel!
+    @IBOutlet weak var initialHeightChecker: UIImageView!
+    
+    @IBOutlet weak var initialUserInputWeight: UITextField!
+    @IBOutlet weak var initialCheckWeightRegEx: UILabel!
+    @IBOutlet weak var initialWeightChecker: UIImageView!
+    
+    @IBOutlet weak var saveInitialProfileOutlet: UIButton!
+    @IBOutlet weak var initProfileScrollView: UIScrollView!
+    
+    @IBOutlet weak var genderProfileImg: UIImageView!
+    
+    var userInfo = Profile()
+    var userInfoBrain = ProfileBrain()
+    var initialCorrectName = false
+    var initialCorrectAge = false
+    var initialCorrectHeight = false
+    var initialCorrectWeight = false
+    var isExpand : Bool = false
+    
+    var inputCount = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //실시간 유저 입력에 대한 유효성 검사를 위한 addTarget
-        initialUserInputName.addTarget(self, action: #selector(nameTextFieldDidChange), for: .editingChanged) //for와 at이 갖는 의미 그리고 .으로 시작하는 것들에 의미는 뭔가?
+        //for와 at이 갖는 의미 그리고 .으로 시작하는 것들에 의미는 뭔가?
+        initialUserInputName.addTarget(self, action: #selector(nameTextFieldDidChange), for: .editingChanged)
         initialUserInputAge.addTarget(self, action: #selector(ageTextFieldDidChange), for: .editingChanged)
         initialUserInputHeight.addTarget(self, action: #selector(heightTextFieldDidChange), for: .editingChanged)
         initialUserInputWeight.addTarget(self, action: #selector(weightTextFieldDidChange), for: .editingChanged)
+        
+        //Walter's Code 1
+//        initialUserInputName.addTarget(self, action: #selector(nameTextFieldDidChange2), for: .editingChanged)
+//        initialUserInputAge.addTarget(self, action: #selector(ageTextFieldDidChange2), for: .editingChanged)
+//        initialUserInputHeight.addTarget(self, action: #selector(heightTextFieldDidChange2), for: .editingChanged)
+//        initialUserInputWeight.addTarget(self, action: #selector(weightTextFieldDidChange2), for: .editingChanged)
+        
+        //Walter's Code 2
+        //TextField.delegate = self 를 이용한 방법
+        
         //초기 버튼 비활성화
         // 모든 입력이 유효함을 판단하는 if문, 유효할 경우 저장 버튼이 활성화됨.
         buttonDecision()
@@ -41,8 +85,6 @@ class InitialProfileVC: UIViewController, UITextFieldDelegate {
         
         
     }
- 
-    var isExpand : Bool = false
 
     @objc func keyboardWillShow(notification: NSNotification) {
         if !isExpand {
@@ -71,37 +113,6 @@ class InitialProfileVC: UIViewController, UITextFieldDelegate {
         initialUserInputWeight.resignFirstResponder()
     }
     
-    @IBOutlet weak var initialUserInputName: UITextField!
-    @IBOutlet weak var initialCheckNameRegEx: UILabel!
-    @IBOutlet weak var initialNameChecker: UIImageView!
-    
-    @IBOutlet weak var initialUserInputAge: UITextField!
-    @IBOutlet weak var initialCheckAgeRegEx: UILabel!
-    @IBOutlet weak var initialAgeChecker: UIImageView!
-    
-    @IBOutlet weak var initialUserSelectGender: UISegmentedControl!
-    
-    @IBOutlet weak var initialUserInputHeight: UITextField!
-    @IBOutlet weak var initialCheckHeightRegEx: UILabel!
-    @IBOutlet weak var initialHeightChecker: UIImageView!
-    
-    @IBOutlet weak var initialUserInputWeight: UITextField!
-    @IBOutlet weak var initialCheckWeightRegEx: UILabel!
-    @IBOutlet weak var initialWeightChecker: UIImageView!
-    
-    @IBOutlet weak var saveInitialProfileOutlet: UIButton!
-    @IBOutlet weak var initProfileScrollView: UIScrollView!
-    
-    @IBOutlet weak var genderProfileImg: UIImageView!
-    
-    
-    var userInfo = Profile()
-    var userInfoBrain = ProfileBrain()
-    var initialCorrectName = false
-    var initialCorrectAge = false
-    var initialCorrectHeight = false
-    var initialCorrectWeight = false
-    
     
     //남녀 성별 선택 세그먼트
     @IBAction func initUserSelectSeg(_ sender: UISegmentedControl) {
@@ -116,18 +127,26 @@ class InitialProfileVC: UIViewController, UITextFieldDelegate {
     //유저 정보 저장 및 격언 뷰로 전환
     @IBAction func saveInitialProfile(_ sender: UIButton) {
         profileUserData = [ "name" : userInfo.name!, "age" : userInfo.age!, "gender" : userInfo.gender, "height" : userInfo.height!, "weight" : userInfo.weight!, "profileImg" : userInfo.profileImg  ]
+        
+        //[Walter] 가독성을 위해..
+//        profileUserData = [
+//            "name" : userInfo.name!,
+//            "age" : userInfo.age!,
+//            "gender" : userInfo.gender,
+//            "height" : userInfo.height!,
+//            "weight" : userInfo.weight!,
+//            "profileImg" : userInfo.profileImg
+//        ]
+        
         UserDefaults.standard.set(profileUserData, forKey: Constants.profile)
         
         // 격언뷰로 전환
         guard let initQuoteVC = self.storyboard?.instantiateViewController(withIdentifier: "initQuoteVC") as? InitialQuoteVC else { return }
             (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(initQuoteVC , animated: false)
-        
     }
-    
     
     // 개인 신상 정보 입력 유효성 검사
     @objc func nameTextFieldDidChange(_ textField: UITextField) {
-        
         if initialUserInputName.text != "" {
             let nameRe = "[가-힣A-Za-z]{1,12}" //모든 완성형 한글과 대소문자 알파벳만 입력으로 받는다. 문자는 1자리에서 12자리까지 입력 가능.
             let tempName = NSPredicate(format:"SELF MATCHES %@", nameRe) //지정된 정규식에 해당하는 입력이 들어왔는지 체크하는 부분.
@@ -236,19 +255,145 @@ class InitialProfileVC: UIViewController, UITextFieldDelegate {
             saveInitialProfileOutlet.isEnabled = false
         }
     }
-
-  /*  // 화면 터치시 키보드를 숨기는 Function
-   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-           self.view.endEditing(true)
-   } */
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    /*  // 화면 터치시 키보드를 숨기는 Function
+     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+             self.view.endEditing(true)
+     } */
+    
+    // MARK: - Walter's Code 1
+    //이름을 입력받는 TextField
+    @objc func nameTextFieldDidChange2(_ textField: UITextField) {
+        guard let name = textField.text else { return }
+        let nameReg = "[가-힣A-Za-z]{1,12}"    //이름 확인을 위한 정규식
+        if name != ""  {
+            if checkRegexpMatch(regexp: nameReg).evaluate(with: name) {
+                userInfo.name = name
+                initialCheckNameRegEx.alpha = 0
+                updateCheckStatusImgViewWithGreen(imgView: initialNameChecker)
+                increaseInputCount()
+            } else {
+                updateCheckStatusImgViewWithGray(imgView: initialAgeChecker)
+                initialCheckNameRegEx.alpha = 1
+                initialCheckNameRegEx.text = "한글 및 영문만 입력 가능합니다."
+                reduceInputCount()
+            }
+        } else {
+            updateCheckStatusImgViewWithGray(imgView: initialNameChecker)
+            initialCheckNameRegEx.alpha = 1
+            initialCheckNameRegEx.text = "닉네임을 입력해주세요."
+            reduceInputCount()
+        }
+        enableSaveBtn()
     }
-    */
-
+    
+    //나이를 입력받는 TextField
+    @objc func ageTextFieldDidChange2(_ textField: UITextField) {
+        guard let age = textField.text else { return }
+        let ageRe = "(19|20)[0-9]{2}"
+        if age != "" {
+            if checkRegexpMatch(regexp: ageRe).evaluate(with: age) {
+                initialCheckAgeRegEx.alpha = 0
+                updateCheckStatusImgViewWithGreen(imgView: initialAgeChecker)
+                userInfo.age = Int(age)
+                increaseInputCount()
+            } else {
+                updateCheckStatusImgViewWithGray(imgView: initialAgeChecker)
+                initialCheckAgeRegEx.alpha = 1
+                initialCheckAgeRegEx.text = "1900~2099 범위 내 입력 바랍니다."
+                reduceInputCount()
+            }
+        } else {
+            updateCheckStatusImgViewWithGray(imgView: initialAgeChecker)
+            initialCheckAgeRegEx.alpha = 1
+            initialCheckAgeRegEx.text = "출생연도를 입력해주세요."
+            reduceInputCount()
+        }
+        enableSaveBtn()
+    }
+    
+    //키를 입력받는 TextField
+    @objc func heightTextFieldDidChange2(_ textField: UITextField) {
+        guard let height = textField.text else { return }
+        let heightRe = "[0-9]{2,3}"
+        if height != "" {
+            if checkRegexpMatch(regexp: heightRe).evaluate(with: height) {
+                initialCheckHeightRegEx.alpha = 0
+                updateCheckStatusImgViewWithGreen(imgView: initialHeightChecker)
+                userInfo.height = Float(height)
+                increaseInputCount()
+            } else {
+                updateCheckStatusImgViewWithGray(imgView: initialHeightChecker)
+                initialCheckHeightRegEx.alpha = 1
+                initialCheckHeightRegEx.text = "소숫점 제외, 숫자 2~3자리를 입력해주세요."
+                reduceInputCount()
+            }
+        } else {
+            updateCheckStatusImgViewWithGray(imgView: initialHeightChecker)
+            initialCheckHeightRegEx.alpha = 1
+            initialCheckHeightRegEx.text = "신장을 입력해주세요."
+            reduceInputCount()
+        }
+        enableSaveBtn()
+    }
+    
+    //체중을 입력받는 TextField
+    @objc func weightTextFieldDidChange2(_ textField: UITextField) {
+        guard let weight = textField.text else { return }
+        let weightRe = "[0-9]{2,3}"
+        if weight != "" {
+            if checkRegexpMatch(regexp: weightRe).evaluate(with: weight) {
+                initialCheckWeightRegEx.alpha = 0
+                updateCheckStatusImgViewWithGreen(imgView: initialWeightChecker)
+                userInfo.weight = Float(weight)
+                increaseInputCount()
+            } else {
+                updateCheckStatusImgViewWithGray(imgView: initialWeightChecker)
+                initialCheckWeightRegEx.alpha = 1
+                initialCheckWeightRegEx.text = "소숫점 제외, 숫자 2~3자리를 입력해주세요."
+                reduceInputCount()
+            }
+        } else {
+            initialCheckWeightRegEx.alpha = 1
+            updateCheckStatusImgViewWithGray(imgView: initialWeightChecker)
+            initialCheckWeightRegEx.text = "몸무게를 입력해주세요."
+            reduceInputCount()
+        }
+        enableSaveBtn()
+    }
+    
+    //문자열을 정규식 표현으로 만들어 주는 함수
+    func checkRegexpMatch(regexp: String) -> NSPredicate {
+        return NSPredicate(format:"SELF MATCHES %@", regexp)
+    }
+    
+    //입력이 되면 초혹색으로 체크표시 이미지 뷰 업데이트
+    func updateCheckStatusImgViewWithGreen(imgView: UIImageView) {
+        imgView.image = UIImage(systemName: "checkmark.circle.fill")
+        imgView.tintColor = UIColor.systemGreen
+    }
+    
+    //입력이 없으면 회색으로 체크표시 이미지 뷰 업데이트
+    func updateCheckStatusImgViewWithGray(imgView: UIImageView) {
+        imgView.image = UIImage(systemName: "checkmark.circle")
+        imgView.tintColor = UIColor.systemGray
+    }
+    
+    //입력이 완료시 카운트 1증가
+    func increaseInputCount() {
+        self.inputCount += 1
+    }
+    
+    //입력이 없을시 카운트 1감소
+    func reduceInputCount() {
+        self.inputCount -= 1
+    }
+    
+    //입력 카운트에 따라 버튼 활성화
+    func enableSaveBtn() {
+        saveInitialProfileOutlet.isEnabled = inputCount == 4 ? true : false
+    }
 }
+
+//Walter's Code 2
+//extension TextField.delegate
