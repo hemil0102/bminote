@@ -29,6 +29,10 @@ class MainVC: UIViewController {
     @IBOutlet weak var weightInPickerLabel: UILabel!
     
     
+    @IBOutlet weak var graphIndexSV1: UIStackView!
+    @IBOutlet weak var graphTriangleImage: UIImageView!
+    @IBOutlet weak var graphIndexSV2: UIStackView!
+    
     @IBAction func pressedProfileEdit(_ sender: UIButton) {
         performSegue(withIdentifier: "goProfileEditView", sender: self)
  
@@ -225,8 +229,11 @@ extension MainVC {
     func setChart(dataPoints: [String], values: [Double]) {
         
         if (values.count == 0) {
+            graphIndexTurnOnOff(on: false)
             return
         }
+        graphIndexTurnOnOff(on: true)
+        
         var dataEntries: [BarChartDataEntry] = []
         for i in 0..<dataPoints.count {
             let dataEntry = BarChartDataEntry(x: Double(i), y: values[i])
@@ -335,5 +342,17 @@ extension MainVC {
             }
         }
         return colorData
+    }
+    
+    func graphIndexTurnOnOff(on: Bool) {
+        if (on == true) {
+            graphIndexSV1.isHidden = false
+            graphIndexSV2.isHidden = false
+            graphTriangleImage.isHidden = false
+        } else {
+            graphIndexSV1.isHidden = true
+            graphIndexSV2.isHidden = true
+            graphTriangleImage.isHidden = true
+        }
     }
 }
