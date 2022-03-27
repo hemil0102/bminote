@@ -15,8 +15,10 @@ import UIKit
  5. 텍스트 필드에 유저 데이터 불러오기 [ 완료 ]
  6. 유효성 검사 추가 [ 완료 ]
  7. 피커뷰 구현 [ 완료 ]
- 8. 성별 메뉴 구현 [   ]
- 8. 저장 버튼 클릭 시 메인에 반영 필요, 피커뷰와 메인 프로필 [   ]
+ 8. 성별 메뉴 구현 [ 완료 ]
+ 9. 저장 버튼 클릭 시 메인에 반영 필요, 피커뷰와 메인 프로필 [ ]
+ 9-1. 격언 피커뷰 값 저장 안되는 문제 확인 필요 [ ]
+ 9-2. 프로필 수정 몸무게와 키를 메인의 피커뷰 값으로 지정하기 [ ]
  
  ** 왜 버튼 폰트는 시뮬레이션에서 작아지지?
  
@@ -27,7 +29,7 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //유저 불러오기
+        //유저 데이터 불러오기
         readOriginUserData()
         
         //실시간 유저 입력에 대한 유효성 검사를 위한 addTarget
@@ -61,7 +63,6 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
-        //저장버튼 disable, 유저는 네비게이션 버튼으로 메인 진입가능
         // Do any additional setup after loading the view.
     
         
@@ -158,13 +159,14 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
                             "height" : (originDataProfileBrain.myProfile?.height)!,
                             "weight" : (originDataProfileBrain.myProfile?.weight)!,
                             "profileImg" : originDataProfileBrain.myProfile!.profileImg,
-                            "quote" : (originDataProfileBrain.myProfile?.quote)!,
+                            "quote" : mainUserInputQuote.text!,
                             "isUserInput" : true ]
         
         print(profileUserData)
         
         UserDefaults.standard.set(profileUserData, forKey: Constants.profile)
         mainEditUserProfileLabel.setTitle("수정", for: .normal)
+        mainAccountLock.image = UIImage(systemName: "lock.fill")
         mainCorrectName = false
         mainCorrectAge = false
         mainCorrectHeight = false
