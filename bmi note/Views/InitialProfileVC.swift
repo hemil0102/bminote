@@ -126,17 +126,12 @@ class InitialProfileVC: UIViewController, UITextFieldDelegate {
     
     //유저 정보 저장 및 격언 뷰로 전환
     @IBAction func saveInitialProfile(_ sender: UIButton) {
-        profileUserData = [ "name" : userInfo.name!, "age" : userInfo.age!, "gender" : userInfo.gender, "height" : userInfo.height!, "weight" : userInfo.weight!, "profileImg" : userInfo.profileImg  ]
-        
-        //[Walter] 가독성을 위해..
-//        profileUserData = [
-//            "name" : userInfo.name!,
-//            "age" : userInfo.age!,
-//            "gender" : userInfo.gender,
-//            "height" : userInfo.height!,
-//            "weight" : userInfo.weight!,
-//            "profileImg" : userInfo.profileImg
-//        ]
+        profileUserData = [ "name" : userInfo.name!,
+                            "age" : userInfo.age!,
+                            "gender" : userInfo.gender,
+                            "height" : userInfo.height!,
+                            "weight" : userInfo.weight!,
+                            "profileImg" : userInfo.profileImg  ]
         
         UserDefaults.standard.set(profileUserData, forKey: Constants.profile)
         
