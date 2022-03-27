@@ -48,7 +48,7 @@ class MainVC: UIViewController {
         
         //그래프 세팅
         initSetChart()
-        setChart(dataPoints: bmiBrain.bmiDateArray, values: bmiBrain.bmiValueArray) //현재 임시값
+        setChart(dataPoints: bmiBrain.bmiDateArray, values: bmiBrain.bmiValueArray)
   
         //피커뷰 세팅
         configPickerView()
@@ -89,7 +89,7 @@ class MainVC: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: true) // 뷰 컨트롤러가 나타날 때 컨트롤 바를 숨기기
         
         initSetChart()  //[Walter] 이건 무슨 함수? //
-        setChart(dataPoints: bmiBrain.bmiDateArray, values: bmiBrain.bmiValueArray) //현재 임시값
+        setChart(dataPoints: bmiBrain.bmiDateArray, values: bmiBrain.bmiValueArray) 
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -182,7 +182,7 @@ extension MainVC: UIPickerViewDelegate, UIPickerViewDataSource {
                 height = Int(mainProfileBrain.myProfile?.height ?? -1.0)
                 weight = Int(mainProfileBrain.myProfile?.weight ?? -1.0)
                 
-                bmiBrain.setCurrentBMI(Int(height), Int(weight))
+                //bmiBrain.setCurrentBMI(Int(height), Int(weight))
                 
                 let heightIndex = bmiBrain.getArrayIndex(arr: bmiBrain.bmiPickerRange.heightMinMaxArray, value: Int(height)) ?? 0
                 let weightIndex = bmiBrain.getArrayIndex(arr: bmiBrain.bmiPickerRange.weightMinMaxArray, value: Int(weight)) ?? 0
@@ -223,6 +223,10 @@ extension MainVC {
     
     //그래프 세팅
     func setChart(dataPoints: [String], values: [Double]) {
+        
+        if (values.count == 0) {
+            return
+        }
         var dataEntries: [BarChartDataEntry] = []
         for i in 0..<dataPoints.count {
             let dataEntry = BarChartDataEntry(x: Double(i), y: values[i])
