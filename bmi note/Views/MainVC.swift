@@ -194,7 +194,22 @@ extension MainVC: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func setInitialValuePV() {
+        
+        //[Harry] 피커 뷰 값은 유저 데이터에 기반하여 최신 유저 데이터 값을 갖고 오도록 구현
+        height = Int(mainProfileBrain.myProfile?.height ?? -1.0)
+        weight = Int(mainProfileBrain.myProfile?.weight ?? -1.0)
+        
+        //bmiBrain.setCurrentBMI(Int(height), Int(weight))
+        
+        let heightIndex = bmiBrain.getArrayIndex(arr: bmiBrain.bmiPickerRange.heightMinMaxArray, value: Int(height)) ?? 0
+        let weightIndex = bmiBrain.getArrayIndex(arr: bmiBrain.bmiPickerRange.weightMinMaxArray, value: Int(weight)) ?? 0
+        
+        inputPickerView.selectRow(heightIndex, inComponent: 0, animated: false)
+        inputPickerView.selectRow(weightIndex, inComponent: 1, animated: false) //초기값 세팅
+        
+        /*
         if let data = bmiBrain.bmiDatas {
+            
             if (data.count == 0) {
                 
                 height = Int(mainProfileBrain.myProfile?.height ?? -1.0)
@@ -210,9 +225,13 @@ extension MainVC: UIPickerViewDelegate, UIPickerViewDataSource {
                 
             } else {
                 
+                /* [Harry]
                 height = Int(bmiBrain.bmiDatas?.last?.heightForBMI ?? -1.0)
                 weight = Int(bmiBrain.bmiDatas?.last?.weightForBMI ?? -1.0)
+                */
                 
+                height = Int(mainProfileBrain.myProfile?.height ?? -1.0)
+                weight = Int(mainProfileBrain.myProfile?.weight ?? -1.0)
                 //bmiBrain.setCurrentBMI(Int(height), Int(weight))
                 let heightIndex = bmiBrain.getArrayIndex(arr: bmiBrain.bmiPickerRange.heightMinMaxArray, value: Int(height)) ?? 0
                 let weightIndex = bmiBrain.getArrayIndex(arr: bmiBrain.bmiPickerRange.weightMinMaxArray, value: Int(weight)) ?? 0
@@ -223,7 +242,7 @@ extension MainVC: UIPickerViewDelegate, UIPickerViewDataSource {
         } else {
             print("bmiDatas nil")
         }
-      }
+      } */
 }
 
 //MARK: - 그래프 뷰 익스텐션
