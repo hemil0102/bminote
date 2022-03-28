@@ -243,6 +243,7 @@ extension MainVC: UIPickerViewDelegate, UIPickerViewDataSource {
             print("bmiDatas nil")
         }
       } */
+    }
 }
 
 //MARK: - 그래프 뷰 익스텐션
