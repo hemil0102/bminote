@@ -247,7 +247,15 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
             self.mainProfileScrollView.contentSize = CGSize(width: self.view.frame.width, height: self.mainProfileScrollView.frame.height + 250 )
         }
         isExpand = true
-        
+        if mainUserInputWeight.isEditing {
+            let userInfo:NSDictionary = notification.userInfo! as NSDictionary;
+            let keyboardFrame:NSValue = userInfo.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as! NSValue
+            let keyboardRectangle = keyboardFrame.cgRectValue;
+            let keyboardHeight = keyboardRectangle.size.height;
+            print("실행됨")
+            self.view.frame.size.height -= keyboardHeight
+    
+        }
     }
     
     
@@ -255,6 +263,15 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
         if isExpand {
             self.mainProfileScrollView.contentSize = CGSize(width: self.view.frame.width, height: self.mainProfileScrollView.frame.height - 250 )
             self.isExpand = false
+        }
+        if mainUserInputWeight.isEditing {
+            let userInfo:NSDictionary = notification.userInfo! as NSDictionary;
+            let keyboardFrame:NSValue = userInfo.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as! NSValue
+            let keyboardRectangle = keyboardFrame.cgRectValue;
+            let keyboardHeight = keyboardRectangle.size.height;
+            print("실행됨")
+            self.view.frame.size.height += keyboardHeight
+    
         }
     }
     
