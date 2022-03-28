@@ -39,7 +39,7 @@ struct ProfileBrain {
         if selectedIndex == 0 {
             image = "Movel Logo - Yellow.png"
         } else if selectedIndex == 1 {
-            image = "Movel Logo - Emerald.png"
+            image = "Movel Logo - Grey.png"
         }
         
         return image

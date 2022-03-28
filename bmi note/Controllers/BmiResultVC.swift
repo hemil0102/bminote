@@ -36,6 +36,9 @@ class BmiResultVC: UIViewController {
         findUserBmiInRange()        //User의 BMI가 어디에 속하는지 체크
         changeBMIImg(index: bmiStatusRangeIdx)      //User의 BMI수치에 따라 BMI이미지 교체
         visibleArrows(index: bmiStatusRangeIdx)     //User의 BMI수치에 따라 BMI이미지 아래 화살표 교체
+        
+        // 네비 타이틀 색 변경
+        self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor(named: "NewOrange") ?? UIColor.black]
     }
     
     //직전 View에 전달한 BMI 정보 셋팅하기

@@ -84,6 +84,8 @@ class InitialProfileVC: UIViewController, UITextFieldDelegate {
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(endEditing)))
         
         
+        
+        
     }
 
     @objc func keyboardWillShow(notification: NSNotification) {

@@ -26,6 +26,9 @@ class HistoryListVC: UIViewController {
         //tableView DataSource, Delegate protocol 준수
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        
+        //네비 타이틀 색 변경
+        self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor(named: "NewGreen") ?? UIColor.black]
     }
     
     //XIB Table View Cell 연결
