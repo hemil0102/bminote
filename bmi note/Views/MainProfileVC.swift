@@ -124,7 +124,7 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
         if mainEditUserProfileLabel.currentTitle! == "수정"
         {
             enableTextField()
-            
+            mainUserInputWeight.becomeFirstResponder()
             mainAccountLock.image = UIImage(systemName: "lock.open.fill")
             mainEditUserProfileLabel.setTitle("취소", for: .normal)
             mainCorrectName = true
@@ -147,6 +147,9 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
             mainCorrectWeight = false
             mainCorrectQuote = false
             buttonDecision()
+            if mainUserInputWeight.isEditing {
+                self.view.frame.origin.y = 0
+            }
             
         }
     }
@@ -227,7 +230,7 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
         mainUserInputHeight.isUserInteractionEnabled = true
         mainUserInputWeight.isUserInteractionEnabled = true
         mainUserInputQuote.isUserInteractionEnabled = true
-        mainUserInputWeight.becomeFirstResponder()
+        
     }
     
     //키보드 내리기
@@ -246,8 +249,8 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
         if !isExpand {
             self.mainProfileScrollView.contentSize = CGSize(width: self.view.frame.width, height: self.mainProfileScrollView.frame.height + 250 )
         }
-        isExpand = true
-        if mainUserInputWeight.isEditing {
+        
+        if mainUserInputWeight.isFirstResponder &&  mainEditUserProfileLabel.currentTitle! == "수정" {
             let userInfo:NSDictionary = notification.userInfo! as NSDictionary;
             let keyboardFrame:NSValue = userInfo.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as! NSValue
             let keyboardRectangle = keyboardFrame.cgRectValue;
@@ -256,6 +259,7 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
             self.view.frame.size.height -= keyboardHeight
     
         }
+        isExpand = true
     }
     
     
@@ -264,15 +268,14 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
             self.mainProfileScrollView.contentSize = CGSize(width: self.view.frame.width, height: self.mainProfileScrollView.frame.height - 250 )
             self.isExpand = false
         }
-        if mainUserInputWeight.isEditing {
-            let userInfo:NSDictionary = notification.userInfo! as NSDictionary;
-            let keyboardFrame:NSValue = userInfo.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as! NSValue
-            let keyboardRectangle = keyboardFrame.cgRectValue;
-            let keyboardHeight = keyboardRectangle.size.height;
-            print("실행됨")
-            self.view.frame.size.height += keyboardHeight
-    
-        }
+        
+        let userInfo:NSDictionary = notification.userInfo! as NSDictionary;
+        let keyboardFrame:NSValue = userInfo.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as! NSValue
+        let keyboardRectangle = keyboardFrame.cgRectValue;
+        let keyboardHeight = keyboardRectangle.size.height;
+        print("실행됨2")
+        self.view.frame.size.height += keyboardHeight
+
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
