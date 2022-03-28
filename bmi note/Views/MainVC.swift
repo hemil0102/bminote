@@ -121,6 +121,7 @@ class MainVC: UIViewController {
         
         if segue.identifier == "goProfileEditView" {
             guard let secondVC = segue.destination as? MainProfileVC else { return }
+            secondVC.editingDataProfileBrain = mainProfileBrain
             secondVC.originDataProfileBrain = mainProfileBrain
         }
         

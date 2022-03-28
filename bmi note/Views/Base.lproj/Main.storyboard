@@ -56,7 +56,7 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="rmy-KW-BkW"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemGray6Color"/>
                         <constraints>
                             <constraint firstItem="SIa-IP-6E6" firstAttribute="centerX" secondItem="hUH-vC-m1i" secondAttribute="centerX" id="6vc-bN-Vte"/>
                             <constraint firstItem="DxH-FY-gSY" firstAttribute="centerY" secondItem="hUH-vC-m1i" secondAttribute="centerY" multiplier="0.65" id="A0Z-3n-3Ib"/>
@@ -310,7 +310,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" systemColor="systemGray6Color"/>
                                         <constraints>
                                             <constraint firstItem="DWb-1A-il6" firstAttribute="leading" secondItem="Ki3-k8-cSk" secondAttribute="leading" constant="25" id="4Nh-y9-OJr"/>
                                             <constraint firstItem="bvn-mh-t4T" firstAttribute="centerX" secondItem="Ki3-k8-cSk" secondAttribute="centerX" id="58Q-f0-ExY"/>
@@ -359,7 +359,7 @@
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Mk4-HI-m0d"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemGray6Color"/>
                         <constraints>
                             <constraint firstItem="YEt-eb-u4K" firstAttribute="leading" secondItem="Mk4-HI-m0d" secondAttribute="leading" id="0Us-sP-usa"/>
                             <constraint firstItem="YEt-eb-u4K" firstAttribute="top" secondItem="Mk4-HI-m0d" secondAttribute="top" id="BV2-rL-L2A"/>
@@ -471,7 +471,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="oSv-Xe-rk9" secondAttribute="trailing" constant="25" id="0DT-go-Bt6"/>
                                     <constraint firstItem="uqj-A9-QsJ" firstAttribute="centerX" secondItem="2NP-y9-ozp" secondAttribute="centerX" id="1RL-xU-zsk"/>
@@ -489,7 +489,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="RdF-LM-0I6"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemGray6Color"/>
                         <constraints>
                             <constraint firstItem="2NP-y9-ozp" firstAttribute="trailing" secondItem="RdF-LM-0I6" secondAttribute="trailing" id="BZ0-BS-BHF"/>
                             <constraint firstItem="2NP-y9-ozp" firstAttribute="leading" secondItem="RdF-LM-0I6" secondAttribute="leading" id="JAZ-Ja-3fw"/>
@@ -808,7 +808,7 @@
                                                 </subviews>
                                             </stackView>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" systemColor="systemGray6Color"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="Xaf-TP-3m8" secondAttribute="trailing" constant="97" id="2EV-wg-pal"/>
                                             <constraint firstItem="i7i-8G-Y6R" firstAttribute="top" secondItem="IM4-dd-21j" secondAttribute="bottom" constant="5" id="4g7-Qe-eMW"/>
@@ -857,7 +857,7 @@
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="MEY-zj-oiv"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemGray6Color"/>
                         <constraints>
                             <constraint firstItem="55Z-GR-69x" firstAttribute="trailing" secondItem="MEY-zj-oiv" secondAttribute="trailing" id="0vR-b8-1yC"/>
                             <constraint firstItem="55Z-GR-69x" firstAttribute="bottom" secondItem="MEY-zj-oiv" secondAttribute="bottom" id="Ch2-Yf-loy"/>
@@ -1183,7 +1183,7 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemGray6Color"/>
                         <constraints>
                             <constraint firstItem="PMu-cB-bej" firstAttribute="top" secondItem="Y1g-AR-LaW" secondAttribute="bottom" constant="15" id="9p1-UZ-5L8"/>
                             <constraint firstItem="dnY-Tt-uyQ" firstAttribute="centerY" secondItem="Wq0-0A-TkH" secondAttribute="centerY" id="Bcz-5g-78H"/>
@@ -1247,7 +1247,7 @@
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="h3a-Oi-6ow"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemGray6Color"/>
                         <constraints>
                             <constraint firstItem="2Vg-Gp-CfZ" firstAttribute="leading" secondItem="h3a-Oi-6ow" secondAttribute="leading" id="T22-Je-UNy"/>
                             <constraint firstItem="h3a-Oi-6ow" firstAttribute="bottom" secondItem="2Vg-Gp-CfZ" secondAttribute="bottom" id="Zcp-Sx-2Ld"/>
@@ -1623,7 +1623,7 @@
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="SgF-nJ-80A"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemGray6Color"/>
                         <constraints>
                             <constraint firstItem="SgF-nJ-80A" firstAttribute="trailing" secondItem="gzJ-Nu-3AZ" secondAttribute="trailing" constant="35" id="DK1-Im-M0r"/>
                             <constraint firstAttribute="trailing" secondItem="Lfq-Tp-5gE" secondAttribute="trailing" constant="30" id="GbA-5k-XYx"/>

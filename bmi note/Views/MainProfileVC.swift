@@ -53,10 +53,12 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
         mainUserInputAge.delegate = self
         mainUserInputHeight.delegate = self
         mainUserInputWeight.delegate = self
+        mainUserInputQuote.delegate = self
         mainUserInputName.returnKeyType = .done
         mainUserInputAge.returnKeyType = .done
         mainUserInputHeight.returnKeyType = .done
         mainUserInputWeight.returnKeyType = .done
+        mainUserInputQuote.returnKeyType = .done
         
         
         //키보드가 나탈 떄
@@ -68,8 +70,8 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
         
     }
     
-    var originDataProfileBrain = ProfileBrain() // 유저데이터 원본 데이터 및 새로운 값을 저장
-    var photoBrain = ProfileBrain() // 사진을 불러 오기 위한
+    var editingDataProfileBrain = ProfileBrain() // 에디팅에 사용될 객체
+    var originDataProfileBrain = ProfileBrain() // 데이터 복원 또는 데이터 참조를 위한 객체
     //저장 버튼이 수정을 입력해야만 활성화될 수 있도록 초기는 false로 설정한다.
     var mainCorrectName = false
     var mainCorrectAge = false
@@ -111,9 +113,9 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
     @IBAction func mainUserSelectGender(_ sender: UISegmentedControl) {
         // Segment Index에 따라서 남여를 지정, 굳이 함수화 할 필요는 없지만 관리차원으로 getGenderType() 함수를 Brain에 형성, 값이 없을 수 없어서 force unwrap 함.
             let gender = mainUserSelectGender.titleForSegment(at: sender.selectedSegmentIndex)! //선택된 세그먼트 인덱스의 타이틀
-            originDataProfileBrain.myProfile?.gender = photoBrain.getGenderType(selectedIndexTitle: gender) //선택된 세그먼트의 성별 정보를 userInfo에 저장
-            originDataProfileBrain.myProfile?.profileImg = photoBrain.getGenderImage(selectedIndex: sender.selectedSegmentIndex) //선택된 성별에 따라 남, 녀 미모지를 선택
-            mainProfileimg.image = UIImage(named: originDataProfileBrain.myProfile!.profileImg) //이미지 뷰에 선택된 성별 이미지를 보여줌
+            editingDataProfileBrain.myProfile?.gender = originDataProfileBrain.getGenderType(selectedIndexTitle: gender) //선택된 세그먼트의 성별 정보를 userInfo에 저장
+            editingDataProfileBrain.myProfile?.profileImg = originDataProfileBrain.getGenderImage(selectedIndex: sender.selectedSegmentIndex) //선택된 성별에 따라 남, 녀 미모지를 선택
+            mainProfileimg.image = UIImage(named: editingDataProfileBrain.myProfile!.profileImg) //이미지 뷰에 선택된 성별 이미지를 보여줌
     }
     
     @IBAction func mainEditUserProfile(_ sender: UIButton) {
@@ -153,12 +155,12 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var saveEditedDateOutlet: UIButton!
     @IBAction func saveEditedData(_ sender: UIButton) {
-        profileUserData = [ "name" : (originDataProfileBrain.myProfile?.name)!,
-                            "age" : (originDataProfileBrain.myProfile?.age)!,
-                            "gender" : (originDataProfileBrain.myProfile?.gender)!,
-                            "height" : (originDataProfileBrain.myProfile?.height)!,
-                            "weight" : (originDataProfileBrain.myProfile?.weight)!,
-                            "profileImg" : originDataProfileBrain.myProfile!.profileImg,
+        profileUserData = [ "name" : (editingDataProfileBrain.myProfile?.name)!,
+                            "age" : (editingDataProfileBrain.myProfile?.age)!,
+                            "gender" : (editingDataProfileBrain.myProfile?.gender)!,
+                            "height" : (editingDataProfileBrain.myProfile?.height)!,
+                            "weight" : (editingDataProfileBrain.myProfile?.weight)!,
+                            "profileImg" : editingDataProfileBrain.myProfile!.profileImg,
                             "quote" : mainUserInputQuote.text!,
                             "isUserInput" : true ]
         
@@ -180,6 +182,7 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
     //초기에 불러올 유저데이터 및 취소를 눌렀을 때 원복될 데이터
     func readOriginUserData() {
         mainUserInputName.text = originDataProfileBrain.myProfile?.name
+        print(originDataProfileBrain.myProfile?.age ?? 0)
         mainUserInputAge.text = "\((originDataProfileBrain.myProfile?.age)!)"
         
         if originDataProfileBrain.myProfile?.gender == "여" {
@@ -236,6 +239,7 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
         mainUserInputQuote.resignFirstResponder()
     }
     
+    // 키보드 수행시 스크롤 가능 기능 구현 부분
     var isExpand : Bool = false
 
     @objc func keyboardWillShow(notification: NSNotification) {
@@ -243,7 +247,9 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
             self.mainProfileScrollView.contentSize = CGSize(width: self.view.frame.width, height: self.mainProfileScrollView.frame.height + 250 )
         }
         isExpand = true
+        
     }
+    
     
     @objc func keyboardWillHide(notification: NSNotification) {
         if isExpand {
@@ -307,8 +313,8 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
             let tempName = NSPredicate(format:"SELF MATCHES %@", nameRe) //지정된 정규식에 해당하는 입력이 들어왔는지 체크하는 부분.
             if tempName.evaluate(with: mainUserInputName.text) {
                 mainCorrectName = true
-                originDataProfileBrain.myProfile?.name = mainUserInputName.text
-                print((originDataProfileBrain.myProfile?.name)!)
+                editingDataProfileBrain.myProfile?.name = mainUserInputName.text
+                print((editingDataProfileBrain.myProfile?.name)!)
                 mainNameChecker.image = UIImage(systemName: "checkmark.circle.fill")
                 mainNameChecker.tintColor = UIColor.systemGreen
                 mainCheckNameRegEx.text = " "
@@ -336,8 +342,8 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
             let tempAge = NSPredicate(format:"SELF MATCHES %@", ageRe)
             if tempAge.evaluate(with: mainUserInputAge.text) {
                 mainCorrectAge = true
-                originDataProfileBrain.myProfile?.age = Int(mainUserInputAge.text!)! //입력이 있고 숫자가 있으므로 force unwrap
-                print((originDataProfileBrain.myProfile?.age)!)
+                editingDataProfileBrain.myProfile?.age = Int(mainUserInputAge.text!)! //입력이 있고 숫자가 있으므로 force unwrap
+                print((editingDataProfileBrain.myProfile?.age)!)
                 mainAgeChecker.image = UIImage(systemName: "checkmark.circle.fill")
                 mainAgeChecker.tintColor = UIColor.systemGreen
                 mainCheckAgeRegEx.text = " "
@@ -363,8 +369,8 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
             let tempHeight = NSPredicate(format:"SELF MATCHES %@", heightRe)
             if tempHeight.evaluate(with: mainUserInputHeight.text) {
                 mainCorrectHeight = true
-                originDataProfileBrain.myProfile?.height = Float(mainUserInputHeight.text!)! //입력이 있고 숫자가 있으므로 force unwrap
-                print((originDataProfileBrain.myProfile?.height)!)
+                editingDataProfileBrain.myProfile?.height = Float(mainUserInputHeight.text!)! //입력이 있고 숫자가 있으므로 force unwrap
+                print((editingDataProfileBrain.myProfile?.height)!)
                 mainHeightChecker.image = UIImage(systemName: "checkmark.circle.fill")
                 mainHeightChecker.tintColor = UIColor.systemGreen
                 mainCheckHeightRegEx.text = " "
@@ -391,8 +397,8 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
             let tempWeight = NSPredicate(format:"SELF MATCHES %@", weightRe)
             if tempWeight.evaluate(with: mainUserInputWeight.text) {
                 mainCorrectWeight = true
-                originDataProfileBrain.myProfile?.weight = Float(mainUserInputWeight.text!)! //입력이 있고 숫자가 있으므로 force unwrap
-                print((originDataProfileBrain.myProfile?.weight)!)
+                editingDataProfileBrain.myProfile?.weight = Float(mainUserInputWeight.text!)! //입력이 있고 숫자가 있으므로 force unwrap
+                print((editingDataProfileBrain.myProfile?.weight)!)
                 mainWeightChecker.image = UIImage(systemName: "checkmark.circle.fill")
                 mainWeightChecker.tintColor = UIColor.systemGreen
                 mainCheckWeightRegEx.text = " "
