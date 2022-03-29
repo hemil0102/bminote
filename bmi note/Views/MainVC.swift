@@ -315,12 +315,12 @@ extension MainVC {
 
         //리미트라인
         let limit = ChartLimitLine(limit: limitMinValue, label: "")
-        limit.lineColor = .green //라인 색 변경
+        limit.lineColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1.0) //라인 색 변경
         barChartView.leftAxis.addLimitLine(limit)
         limit.lineWidth = 1.0
         
         let limit2 = ChartLimitLine(limit: limitMaxValue, label: "")
-        limit2.lineColor = .green //라인 색 변경
+        limit2.lineColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1.0) //라인 색 변경
         barChartView.leftAxis.addLimitLine(limit2)
         limit2.lineWidth = 1.0
         
