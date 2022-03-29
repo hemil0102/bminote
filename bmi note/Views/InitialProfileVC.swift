@@ -65,7 +65,6 @@ class InitialProfileVC: UIViewController, UITextFieldDelegate {
         //초기 버튼 비활성화
         // 모든 입력이 유효함을 판단하는 if문, 유효할 경우 저장 버튼이 활성화됨.
         buttonDecision()
-        
         //키보드 화면 가림 방지 구현
         initialUserInputName.delegate = self
         initialUserInputAge.delegate = self
@@ -256,8 +255,10 @@ class InitialProfileVC: UIViewController, UITextFieldDelegate {
     func buttonDecision() {
         if initialCorrectName && initialCorrectAge && initialCorrectHeight && initialCorrectWeight {
             saveInitialProfileOutlet.isEnabled = true
+            saveInitialProfileOutlet.setTitleColor(.white, for: .normal)
         } else {
             saveInitialProfileOutlet.isEnabled = false
+            saveInitialProfileOutlet.setTitleColor(.systemGray5, for: .normal)
         }
     }
     
@@ -421,6 +422,7 @@ extension UIScrollView {
         return totalRect.union(view.frame)
     }
 }
+
 
 //Walter's Code 2
 //extension TextField.delegate

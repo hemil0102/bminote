@@ -20,6 +20,7 @@ class InitialQuoteVC: UIViewController {
         userName.text = "\(savedUserName ?? "나모블")님 :)"
         
         toMainOutlet.isEnabled = false
+        toMainOutlet.setTitleColor(.systemGray5, for: .normal)
         
         configPickerView()
         configToolbar()
@@ -50,7 +51,7 @@ class InitialQuoteVC: UIViewController {
         let toolBar = UIToolbar()
         toolBar.barStyle = UIBarStyle.default
         toolBar.isTranslucent = true
-        toolBar.tintColor = UIColor(named: "Default")
+        toolBar.tintColor = UIColor(named: "pickerViewColor")
         toolBar.sizeToFit()
         // 만들어줄 버튼
         // flexibleSpace는 취소~완료 간의 거리를 만들어준다.
@@ -74,6 +75,7 @@ class InitialQuoteVC: UIViewController {
         initialQuoteCheker.image = UIImage(systemName: "checkmark.circle.fill")
         initialQuoteCheker.tintColor = UIColor.systemGreen
         toMainOutlet.isEnabled = true
+        toMainOutlet.setTitleColor(.white, for: .normal)
         
     }
     
@@ -81,8 +83,10 @@ class InitialQuoteVC: UIViewController {
     @objc func cancelPicker() {
         self.quoteTextField.text = nil
         self.quoteTextField.resignFirstResponder()
-        initialQuoteCheker.image = UIImage(systemName: "")
+        initialQuoteCheker.image = UIImage(systemName: "checkmark.circle")
+        initialQuoteCheker.tintColor = UIColor.systemGray
         toMainOutlet.isEnabled = false
+        toMainOutlet.setTitleColor(.systemGray5, for: .normal)
         
     }
 }
@@ -126,7 +130,7 @@ extension InitialQuoteVC: UIPickerViewDelegate, UIPickerViewDataSource {
         }
         
         pickerLabel?.text = userInfo.quoteList[row]
-        pickerLabel?.textColor = UIColor.black
+        pickerLabel?.textColor = UIColor(named: "pickerViewColor")
 
         return pickerLabel!
     }
