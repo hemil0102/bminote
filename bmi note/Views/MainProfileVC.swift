@@ -444,7 +444,7 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
             saveEditedDateOutlet.setTitleColor(.white, for: .normal)
         } else {
             saveEditedDateOutlet.isEnabled = false
-            saveEditedDateOutlet.setTitleColor(.systemBrown, for: .normal)
+            saveEditedDateOutlet.setTitleColor(.systemGray5, for: .normal)
         }
     }
     /*

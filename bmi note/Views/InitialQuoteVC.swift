@@ -20,6 +20,7 @@ class InitialQuoteVC: UIViewController {
         userName.text = "\(savedUserName ?? "나모블")님 :)"
         
         toMainOutlet.isEnabled = false
+        toMainOutlet.setTitleColor(.systemGray5, for: .normal)
         
         configPickerView()
         configToolbar()
@@ -74,6 +75,7 @@ class InitialQuoteVC: UIViewController {
         initialQuoteCheker.image = UIImage(systemName: "checkmark.circle.fill")
         initialQuoteCheker.tintColor = UIColor.systemGreen
         toMainOutlet.isEnabled = true
+        toMainOutlet.setTitleColor(.white, for: .normal)
         
     }
     
@@ -84,6 +86,7 @@ class InitialQuoteVC: UIViewController {
         initialQuoteCheker.image = UIImage(systemName: "checkmark.circle")
         initialQuoteCheker.tintColor = UIColor.systemGray
         toMainOutlet.isEnabled = false
+        toMainOutlet.setTitleColor(.systemGray5, for: .normal)
         
     }
 }
