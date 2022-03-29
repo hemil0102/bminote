@@ -24,7 +24,7 @@ struct BMIBrain {
     var bmiPickerRange = BMIPicker()
     
     //Key값 상수
-    let historyKeyValue: String = Constants.history //history key값 상수
+    let historyKeyValue: String = Key.history //history key값 상수
     
     //기본 이니셜라이저
     init() {

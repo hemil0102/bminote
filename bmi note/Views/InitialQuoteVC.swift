@@ -13,7 +13,7 @@ class InitialQuoteVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //뷰가 로드될 때 앞에 저장되었던 딕셔너리 형태의 유저 정보를 불러온다.
-        let savedUserProfile = UserDefaults.standard.dictionary(forKey: Constants.profile)
+        let savedUserProfile = UserDefaults.standard.dictionary(forKey: Key.profile)
         //불러온 유저 정보에서 이름 값을 할당.
         let savedUserName = savedUserProfile?["name"] as? String
         //레이블에 저장된 유저 이름을 표시해준다.
@@ -38,7 +38,7 @@ class InitialQuoteVC: UIViewController {
         
         profileUserData["quote"] = quoteTextField.text
         profileUserData["isUserInput"] = true
-        UserDefaults.standard.set(profileUserData, forKey: Constants.profile)
+        UserDefaults.standard.set(profileUserData, forKey: Key.profile)
         
             guard let NaviVC = self.storyboard?.instantiateViewController(withIdentifier: "naviVC") as? UINavigationController else { return }
                 (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(NaviVC , animated: false)

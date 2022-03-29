@@ -135,7 +135,7 @@ class InitialProfileVC: UIViewController, UITextFieldDelegate {
                             "weight" : userInfo.weight!,
                             "profileImg" : userInfo.profileImg  ]
         
-        UserDefaults.standard.set(profileUserData, forKey: Constants.profile)
+        UserDefaults.standard.set(profileUserData, forKey: Key.profile)
         
         // 격언뷰로 전환
         guard let initQuoteVC = self.storyboard?.instantiateViewController(withIdentifier: "initQuoteVC") as? InitialQuoteVC else { return }
