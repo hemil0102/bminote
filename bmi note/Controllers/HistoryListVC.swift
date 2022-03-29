@@ -33,7 +33,7 @@ class HistoryListVC: UIViewController {
     
     //XIB Table View Cell 연결
     func setTableViewXIBCell() {
-        self.tableView.register(UINib(nibName: Constants.historyListCell, bundle: nil), forCellReuseIdentifier: Constants.historyListCellIdentifier)
+        self.tableView.register(UINib(nibName: Key.historyListCell, bundle: nil), forCellReuseIdentifier: Key.historyListCellIdentifier)
     }
     
     //전 화면에서 받아온 데이터를 로컬변수로 대입, 기록된 데이터가 없을 때 '기록이 없습니다' 출력
@@ -52,7 +52,7 @@ extension HistoryListVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        guard let bmiResultVC = self.storyboard?.instantiateViewController(withIdentifier: Constants.bmiResultVC) as? BmiResultVC else {
+        guard let bmiResultVC = self.storyboard?.instantiateViewController(withIdentifier: Key.bmiResultVC) as? BmiResultVC else {
             return
         }
         //indexPath.row 값 던져주기
@@ -72,7 +72,7 @@ extension HistoryListVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.historyListCellIdentifier) as! HistoryListCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: Key.historyListCellIdentifier) as! HistoryListCell
         
         //Cell 안의 View에 데이터 셋팅하기
         let row = indexPath.row     //항목 Index

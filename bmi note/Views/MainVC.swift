@@ -60,9 +60,6 @@ class MainVC: UIViewController {
         //네비게이션 조정
         self.navigationController?.navigationBar.topItem?.title = "메인"
         self.navigationController?.navigationBar.tintColor = UIColor(named: "NewYellow")
-        
-
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -73,7 +70,7 @@ class MainVC: UIViewController {
         setChart(dataPoints: bmiBrain.bmiDateArray, values: bmiBrain.bmiValueArray)
         
         //유저데이터 불러오기 - 프로필 정보
-        let savedUserProfile = UserDefaults.standard.dictionary(forKey: Constants.profile)
+        let savedUserProfile = UserDefaults.standard.dictionary(forKey: Key.profile)
         
         if let userInfo = savedUserProfile {
             let uName = userInfo["name"] as? String
@@ -84,7 +81,6 @@ class MainVC: UIViewController {
             let uQuote = userInfo["quote"] as? String
             let uProfileImg = userInfo["profileImg"] as? String
             let mainProfile = Profile(name: uName, age: uAge, gender: uGender!, profileImg: uProfileImg!, height: uHeight, weight: uWeight, quote: uQuote)
-            mainProfileBrain = ProfileBrain()
             mainProfileBrain.myProfile = mainProfile
             print("\(String(describing: mainProfileBrain.myProfile))")
         }
@@ -118,7 +114,7 @@ class MainVC: UIViewController {
         
         print(profileUserData)
         
-        UserDefaults.standard.set(profileUserData, forKey: Constants.profile)
+        UserDefaults.standard.set(profileUserData, forKey: Key.profile)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

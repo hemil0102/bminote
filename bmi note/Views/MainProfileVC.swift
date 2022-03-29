@@ -60,14 +60,12 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
         mainUserInputWeight.returnKeyType = .done
         mainUserInputQuote.returnKeyType = .done
         
-        
-        //키보드가 나탈 떄
+        //키보드가 나타날 떄
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         //네비 타이틀 색 변경
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor(named: "NewYellow") ?? UIColor.black]
-        
     }
     
     var editingDataProfileBrain = ProfileBrain() // 에디팅에 사용될 객체
@@ -169,7 +167,7 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
         
         print(profileUserData)
         
-        UserDefaults.standard.set(profileUserData, forKey: Constants.profile)
+        UserDefaults.standard.set(profileUserData, forKey: Key.profile)
         mainEditUserProfileLabel.setTitle("수정", for: .normal)
         mainAccountLock.image = UIImage(systemName: "lock.fill")
         mainCorrectName = false

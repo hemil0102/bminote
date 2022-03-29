@@ -28,7 +28,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         //[Walter] 첫 실행에서는 UserDefault 값 자체가 없으므로,
-        let userDidInput = UserDefaults.standard.dictionary(forKey: Constants.profile)
+        let userDidInput = UserDefaults.standard.dictionary(forKey: Key.profile)
         
         //[Walter] 이 구문이 실행되지 않음
         if let checkUserDidInput = userDidInput {

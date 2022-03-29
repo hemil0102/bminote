@@ -7,8 +7,7 @@
 
 import Foundation
 
-struct Constants {
-        
+struct Key {        
     static let historyListCell = "HistoryListCell"
     static let historyListCellIdentifier = "HistoryListCell"
     static let bmiResultVC = "BmiResultVC"
