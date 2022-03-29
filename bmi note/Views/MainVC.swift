@@ -14,7 +14,7 @@ class MainVC: UIViewController {
     let bmiStd = BMIStandard()
     var bmiBrain = BMIBrain()
 
-    var mainProfileBrain = ProfileBrain()
+    var mainProfileBrain = ProfileBrain() //모든 뷰에 이 객체를 전달, 최신 상태를 유지
     
     var height: Int = 0
     var weight: Int = 0
@@ -61,8 +61,18 @@ class MainVC: UIViewController {
         self.navigationController?.navigationBar.topItem?.title = "메인"
         self.navigationController?.navigationBar.tintColor = UIColor(named: "NewYellow")
         
+
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: true) // 뷰 컨트롤러가 나타날 때 컨트롤 바를 숨기기
+        
+        initSetChart()  //[Walter] 이건 무슨 함수? //
+        setChart(dataPoints: bmiBrain.bmiDateArray, values: bmiBrain.bmiValueArray)
+        
         //유저데이터 불러오기 - 프로필 정보
-        //[Walter]이 작업을 ViewController 에서 할까?
         let savedUserProfile = UserDefaults.standard.dictionary(forKey: Constants.profile)
         
         if let userInfo = savedUserProfile {
@@ -74,40 +84,49 @@ class MainVC: UIViewController {
             let uQuote = userInfo["quote"] as? String
             let uProfileImg = userInfo["profileImg"] as? String
             let mainProfile = Profile(name: uName, age: uAge, gender: uGender!, profileImg: uProfileImg!, height: uHeight, weight: uWeight, quote: uQuote)
-            mainProfileBrain = ProfileBrain()      //모든 뷰에 이 객체를 전달, 최신 상태를 유지
+            mainProfileBrain = ProfileBrain()
             mainProfileBrain.myProfile = mainProfile
             print("\(String(describing: mainProfileBrain.myProfile))")
         }
         
         mainUserName.text = mainProfileBrain.myProfile?.name //메인화면 유저 이름 출력
         mainUserQuote.text = mainProfileBrain.myProfile?.quote //메인화면 유저 격언 출력
-        mainUserProfileImage.image = UIImage(named: mainProfileBrain.myProfile!.profileImg) //메인화면 유저 프로필 출력
+        mainUserProfileImage.image = UIImage(named: mainProfileBrain.myProfile!.profileImg)
+        
+        //메인화면 유저 프로필 출력
         mainUserProTips.text = "\"Pro Tip\"" + " \(mainProfileBrain.getProTips())"
+        
         //피커뷰 초기값 세팅
         setInitialValuePV()
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: true) // 뷰 컨트롤러가 나타날 때 컨트롤 바를 숨기기
-        
-        initSetChart()  //[Walter] 이건 무슨 함수? //
-        setChart(dataPoints: bmiBrain.bmiDateArray, values: bmiBrain.bmiValueArray) 
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         
-        navigationController?.setNavigationBarHidden(false, animated: true) // 뷰 컨트롤러가 사라질 때 다음 화면에서 네비가 나오게 하기
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        // 뷰 컨트롤러가 사라질 때 다음 화면에서 네비가 나오게 하기
         
         bmiBrain.saveResultToUserDefaults()
+        // 유저 데이터 저장하기
+        profileUserData = [ "name" : (mainProfileBrain.myProfile?.name)!,
+                            "age" : (mainProfileBrain.myProfile?.age)!,
+                            "gender" : (mainProfileBrain.myProfile?.gender)!,
+                            "height" : height,
+                            "weight" : weight,
+                            "profileImg" : mainProfileBrain.myProfile!.profileImg,
+                            "quote" : (mainProfileBrain.myProfile?.quote)!,
+                            "isUserInput" : true ]
+        
+        print(profileUserData)
+        
+        UserDefaults.standard.set(profileUserData, forKey: Constants.profile)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "goProfileEditView" {
             guard let secondVC = segue.destination as? MainProfileVC else { return }
-            secondVC.editProfileBrain = mainProfileBrain
+            secondVC.editingDataProfileBrain = mainProfileBrain
+            secondVC.originDataProfileBrain = mainProfileBrain
         }
         
         if segue.identifier == "goBmiResultView" {
@@ -180,7 +199,22 @@ extension MainVC: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func setInitialValuePV() {
+        
+        //[Harry] 피커 뷰 값은 유저 데이터에 기반하여 최신 유저 데이터 값을 갖고 오도록 구현
+        height = Int(mainProfileBrain.myProfile?.height ?? -1.0)
+        weight = Int(mainProfileBrain.myProfile?.weight ?? -1.0)
+        
+        //bmiBrain.setCurrentBMI(Int(height), Int(weight))
+        
+        let heightIndex = bmiBrain.getArrayIndex(arr: bmiBrain.bmiPickerRange.heightMinMaxArray, value: Int(height)) ?? 0
+        let weightIndex = bmiBrain.getArrayIndex(arr: bmiBrain.bmiPickerRange.weightMinMaxArray, value: Int(weight)) ?? 0
+        
+        inputPickerView.selectRow(heightIndex, inComponent: 0, animated: false)
+        inputPickerView.selectRow(weightIndex, inComponent: 1, animated: false) //초기값 세팅
+        
+        /*
         if let data = bmiBrain.bmiDatas {
+            
             if (data.count == 0) {
                 
                 height = Int(mainProfileBrain.myProfile?.height ?? -1.0)
@@ -196,9 +230,13 @@ extension MainVC: UIPickerViewDelegate, UIPickerViewDataSource {
                 
             } else {
                 
+                /* [Harry]
                 height = Int(bmiBrain.bmiDatas?.last?.heightForBMI ?? -1.0)
                 weight = Int(bmiBrain.bmiDatas?.last?.weightForBMI ?? -1.0)
+                */
                 
+                height = Int(mainProfileBrain.myProfile?.height ?? -1.0)
+                weight = Int(mainProfileBrain.myProfile?.weight ?? -1.0)
                 //bmiBrain.setCurrentBMI(Int(height), Int(weight))
                 let heightIndex = bmiBrain.getArrayIndex(arr: bmiBrain.bmiPickerRange.heightMinMaxArray, value: Int(height)) ?? 0
                 let weightIndex = bmiBrain.getArrayIndex(arr: bmiBrain.bmiPickerRange.weightMinMaxArray, value: Int(weight)) ?? 0
@@ -209,7 +247,8 @@ extension MainVC: UIPickerViewDelegate, UIPickerViewDataSource {
         } else {
             print("bmiDatas nil")
         }
-      }
+      } */
+    }
 }
 
 //MARK: - 그래프 뷰 익스텐션

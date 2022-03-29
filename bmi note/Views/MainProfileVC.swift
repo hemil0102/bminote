@@ -15,8 +15,10 @@ import UIKit
  5. 텍스트 필드에 유저 데이터 불러오기 [ 완료 ]
  6. 유효성 검사 추가 [ 완료 ]
  7. 피커뷰 구현 [ 완료 ]
- 8. 성별 메뉴 구현 [   ]
- 8. 저장 버튼 클릭 시 메인에 반영 필요, 피커뷰와 메인 프로필 [   ]
+ 8. 성별 메뉴 구현 [ 완료 ]
+ 9. 저장 버튼 클릭 시 메인에 반영 필요, 피커뷰와 메인 프로필 [ ]
+ 9-1. 격언 피커뷰 값 저장 안되는 문제 확인 필요 [ ]
+ 9-2. 프로필 수정 몸무게와 키를 메인의 피커뷰 값으로 지정하기 [ ]
  
  ** 왜 버튼 폰트는 시뮬레이션에서 작아지지?
  
@@ -27,19 +29,8 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        mainUserInputName.text = editProfileBrain.myProfile?.name
-        mainUserInputAge.text = "\((editProfileBrain.myProfile?.age)!)"
-        
-        if editProfileBrain.myProfile?.gender == "여" {
-            mainUserSelectGender.selectedSegmentIndex = 0
-        } else {
-            mainUserSelectGender.selectedSegmentIndex = 1
-        }
-        
-        mainUserInputHeight.text = "\(Int((editProfileBrain.myProfile?.height)!))"
-        mainUserInputWeight.text = "\(Int((editProfileBrain.myProfile?.weight)!))"
-        mainUserInputQuote.text = "\((editProfileBrain.myProfile?.quote)!)"
-        mainProfileimg.image = UIImage(named: editProfileBrain.myProfile!.profileImg)
+        //유저 데이터 불러오기
+        readOriginUserData()
         
         //실시간 유저 입력에 대한 유효성 검사를 위한 addTarget
         mainUserInputName.addTarget(self, action: #selector(nameTextFieldDidChange), for: .editingChanged) //for와 at이 갖는 의미 그리고 .으로 시작하는 것들에 의미는 뭔가?
@@ -53,6 +44,7 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
         //제스처가 실행될 떄 키보드를 내릴 수 있도록
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(endEditing)))
         
+        //피커뷰 구현부
         mainConfigPickerView()
         mainConfigToolbar()
         
@@ -61,26 +53,31 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
         mainUserInputAge.delegate = self
         mainUserInputHeight.delegate = self
         mainUserInputWeight.delegate = self
+        mainUserInputQuote.delegate = self
         mainUserInputName.returnKeyType = .done
         mainUserInputAge.returnKeyType = .done
         mainUserInputHeight.returnKeyType = .done
         mainUserInputWeight.returnKeyType = .done
+        mainUserInputQuote.returnKeyType = .done
         
         
         //키보드가 나탈 떄
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-        // Do any additional setup after loading the view.
+        
+        //네비 타이틀 색 변경
+        self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor(named: "NewYellow") ?? UIColor.black]
         
     }
     
-    var editProfileBrain = ProfileBrain()
-    var photoBrain = ProfileBrain()
-    var mainCorrectName = true
-    var mainCorrectAge = true
-    var mainCorrectHeight = true
-    var mainCorrectWeight = true
-    var mainCorrectQuote = true
+    var editingDataProfileBrain = ProfileBrain() // 에디팅에 사용될 객체
+    var originDataProfileBrain = ProfileBrain() // 데이터 복원 또는 데이터 참조를 위한 객체
+    //저장 버튼이 수정을 입력해야만 활성화될 수 있도록 초기는 false로 설정한다.
+    var mainCorrectName = false
+    var mainCorrectAge = false
+    var mainCorrectHeight = false
+    var mainCorrectWeight = false
+    var mainCorrectQuote = false
     let picker = UIPickerView() //피커뷰 생성
     let userInfo = Profile() // 피커뷰 격언 리스트 생성을 위한
     
@@ -109,15 +106,16 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var mainUserSelectGender: UISegmentedControl!
     @IBOutlet weak var mainProfileimg: UIImageView!
     
+    @IBOutlet weak var mainAccountLock: UIImageView!
     @IBOutlet weak var mainEditUserProfileLabel: UIButton!
     @IBOutlet weak var mainSaveUserProfileLabel: UIButton!
     
     @IBAction func mainUserSelectGender(_ sender: UISegmentedControl) {
         // Segment Index에 따라서 남여를 지정, 굳이 함수화 할 필요는 없지만 관리차원으로 getGenderType() 함수를 Brain에 형성, 값이 없을 수 없어서 force unwrap 함.
             let gender = mainUserSelectGender.titleForSegment(at: sender.selectedSegmentIndex)! //선택된 세그먼트 인덱스의 타이틀
-            editProfileBrain.myProfile?.gender = photoBrain.getGenderType(selectedIndexTitle: gender) //선택된 세그먼트의 성별 정보를 userInfo에 저장
-            editProfileBrain.myProfile?.profileImg = photoBrain.getGenderImage(selectedIndex: sender.selectedSegmentIndex) //선택된 성별에 따라 남, 녀 미모지를 선택
-            mainProfileimg.image = UIImage(named: editProfileBrain.myProfile!.profileImg) //이미지 뷰에 선택된 성별 이미지를 보여줌
+            editingDataProfileBrain.myProfile?.gender = originDataProfileBrain.getGenderType(selectedIndexTitle: gender) //선택된 세그먼트의 성별 정보를 userInfo에 저장
+            editingDataProfileBrain.myProfile?.profileImg = originDataProfileBrain.getGenderImage(selectedIndex: sender.selectedSegmentIndex) //선택된 성별에 따라 남, 녀 미모지를 선택
+            mainProfileimg.image = UIImage(named: editingDataProfileBrain.myProfile!.profileImg) //이미지 뷰에 선택된 성별 이미지를 보여줌
     }
     
     @IBAction func mainEditUserProfile(_ sender: UIButton) {
@@ -126,13 +124,32 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
         if mainEditUserProfileLabel.currentTitle! == "수정"
         {
             enableTextField()
+            mainUserInputWeight.becomeFirstResponder()
+            mainAccountLock.image = UIImage(systemName: "lock.open.fill")
             mainEditUserProfileLabel.setTitle("취소", for: .normal)
+            mainCorrectName = true
+            mainCorrectAge = true
+            mainCorrectHeight = true
+            mainCorrectWeight = true
+            mainCorrectQuote = true
+            buttonDecision()
             
         } else if mainEditUserProfileLabel.currentTitle == "취소"
         {
             
+            readOriginUserData()
             disableTextField()
+            mainAccountLock.image = UIImage(systemName: "lock.fill")
             mainEditUserProfileLabel.setTitle("수정", for: .normal)
+            mainCorrectName = false
+            mainCorrectAge = false
+            mainCorrectHeight = false
+            mainCorrectWeight = false
+            mainCorrectQuote = false
+            buttonDecision()
+            if mainUserInputWeight.isEditing {
+                self.view.frame.origin.y = 0
+            }
             
         }
     }
@@ -141,9 +158,61 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var saveEditedDateOutlet: UIButton!
     @IBAction func saveEditedData(_ sender: UIButton) {
+        profileUserData = [ "name" : (editingDataProfileBrain.myProfile?.name)!,
+                            "age" : (editingDataProfileBrain.myProfile?.age)!,
+                            "gender" : (editingDataProfileBrain.myProfile?.gender)!,
+                            "height" : (editingDataProfileBrain.myProfile?.height)!,
+                            "weight" : (editingDataProfileBrain.myProfile?.weight)!,
+                            "profileImg" : editingDataProfileBrain.myProfile!.profileImg,
+                            "quote" : mainUserInputQuote.text!,
+                            "isUserInput" : true ]
+        
+        print(profileUserData)
+        
+        UserDefaults.standard.set(profileUserData, forKey: Constants.profile)
+        mainEditUserProfileLabel.setTitle("수정", for: .normal)
+        mainAccountLock.image = UIImage(systemName: "lock.fill")
+        mainCorrectName = false
+        mainCorrectAge = false
+        mainCorrectHeight = false
+        mainCorrectWeight = false
+        mainCorrectQuote = false
+        buttonDecision()
+        disableTextField()
+        
     }
     
+    //초기에 불러올 유저데이터 및 취소를 눌렀을 때 원복될 데이터
+    func readOriginUserData() {
+        mainUserInputName.text = originDataProfileBrain.myProfile?.name
+        print(originDataProfileBrain.myProfile?.age ?? 0)
+        mainUserInputAge.text = "\((originDataProfileBrain.myProfile?.age)!)"
+        
+        if originDataProfileBrain.myProfile?.gender == "여" {
+            mainUserSelectGender.selectedSegmentIndex = 0
+        } else {
+            mainUserSelectGender.selectedSegmentIndex = 1
+        }
+        
+        mainUserInputHeight.text = "\(Int((originDataProfileBrain.myProfile?.height)!))"
+        mainUserInputWeight.text = "\(Int((originDataProfileBrain.myProfile?.weight)!))"
+        mainUserInputQuote.text = "\((originDataProfileBrain.myProfile?.quote)!)"
+        mainProfileimg.image = UIImage(named: originDataProfileBrain.myProfile!.profileImg)
+        
+        mainNameChecker.image = UIImage(systemName: "checkmark.circle.fill")
+        mainNameChecker.tintColor = UIColor.systemGreen
+        mainAgeChecker.image = UIImage(systemName: "checkmark.circle.fill")
+        mainAgeChecker.tintColor = UIColor.systemGreen
+        mainHeightChecker.image = UIImage(systemName: "checkmark.circle.fill")
+        mainHeightChecker.tintColor = UIColor.systemGreen
+        mainWeightChecker.image = UIImage(systemName: "checkmark.circle.fill")
+        mainWeightChecker.tintColor = UIColor.systemGreen
+        mainQuoteChecker.image = UIImage(systemName: "checkmark.circle.fill")
+        mainQuoteChecker.tintColor = UIColor.systemGreen
+        
+    }
     
+    //모든 텍스트 필드를 비활성화
     func disableTextField() {
         mainUserInputName.isUserInteractionEnabled = false
         mainUserInputAge.isUserInteractionEnabled = false
@@ -153,6 +222,7 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
         mainUserInputQuote.isUserInteractionEnabled = false
     }
     
+    //모든 텍스트 필드를 활성화
     func enableTextField() {
         mainUserInputName.isUserInteractionEnabled = true
         mainUserInputAge.isUserInteractionEnabled = true
@@ -160,29 +230,52 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
         mainUserInputHeight.isUserInteractionEnabled = true
         mainUserInputWeight.isUserInteractionEnabled = true
         mainUserInputQuote.isUserInteractionEnabled = true
+        
     }
     
+    //키보드 내리기
     @objc func endEditing() {
         mainUserInputName.resignFirstResponder()
         mainUserInputAge.resignFirstResponder()
         mainUserInputHeight.resignFirstResponder()
         mainUserInputWeight.resignFirstResponder()
+        mainUserInputQuote.resignFirstResponder()
     }
     
+    // 키보드 수행시 스크롤 가능 기능 구현 부분
     var isExpand : Bool = false
 
     @objc func keyboardWillShow(notification: NSNotification) {
         if !isExpand {
             self.mainProfileScrollView.contentSize = CGSize(width: self.view.frame.width, height: self.mainProfileScrollView.frame.height + 250 )
         }
+        
+        if mainUserInputWeight.isFirstResponder &&  mainEditUserProfileLabel.currentTitle! == "수정" {
+            let userInfo:NSDictionary = notification.userInfo! as NSDictionary;
+            let keyboardFrame:NSValue = userInfo.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as! NSValue
+            let keyboardRectangle = keyboardFrame.cgRectValue;
+            let keyboardHeight = keyboardRectangle.size.height;
+            print("실행됨")
+            self.view.frame.size.height -= keyboardHeight
+    
+        }
         isExpand = true
     }
+    
     
     @objc func keyboardWillHide(notification: NSNotification) {
         if isExpand {
             self.mainProfileScrollView.contentSize = CGSize(width: self.view.frame.width, height: self.mainProfileScrollView.frame.height - 250 )
             self.isExpand = false
         }
+        
+        let userInfo:NSDictionary = notification.userInfo! as NSDictionary;
+        let keyboardFrame:NSValue = userInfo.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as! NSValue
+        let keyboardRectangle = keyboardFrame.cgRectValue;
+        let keyboardHeight = keyboardRectangle.size.height;
+        print("실행됨2")
+        self.view.frame.size.height += keyboardHeight
+
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -210,7 +303,7 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
         mainUserInputQuote.inputAccessoryView = toolBar
         
     } // "완료" 클릭 시 데이터를 textfield에 입력 후 입력창 내리기
-        @objc func donePicker() {
+    @objc func donePicker() {
             let row = self.picker.selectedRow(inComponent: 0)
             self.picker.selectRow(row, inComponent: 0, animated: false)
             self.mainUserInputQuote.text = self.userInfo.quoteList[row]
@@ -222,10 +315,11 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
             
     }
     // "취소" 클릭 시 textfield의 텍스트 값을 nil로 처리 후 입력창 내리기
-        @objc func cancelPicker() {
+    @objc func cancelPicker() {
             self.mainUserInputQuote.text = nil
             self.mainUserInputQuote.resignFirstResponder()
-            mainQuoteChecker.image = UIImage(systemName: "")
+            mainQuoteChecker.image = UIImage(systemName: "checkmark.circle")
+            mainQuoteChecker.tintColor = UIColor.systemGray
             mainCorrectQuote = false
             buttonDecision()
             
@@ -239,8 +333,8 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
             let tempName = NSPredicate(format:"SELF MATCHES %@", nameRe) //지정된 정규식에 해당하는 입력이 들어왔는지 체크하는 부분.
             if tempName.evaluate(with: mainUserInputName.text) {
                 mainCorrectName = true
-                editProfileBrain.myProfile?.name = mainUserInputName.text
-                print((editProfileBrain.myProfile?.name)!)
+                editingDataProfileBrain.myProfile?.name = mainUserInputName.text
+                print((editingDataProfileBrain.myProfile?.name)!)
                 mainNameChecker.image = UIImage(systemName: "checkmark.circle.fill")
                 mainNameChecker.tintColor = UIColor.systemGreen
                 mainCheckNameRegEx.text = " "
@@ -268,8 +362,8 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
             let tempAge = NSPredicate(format:"SELF MATCHES %@", ageRe)
             if tempAge.evaluate(with: mainUserInputAge.text) {
                 mainCorrectAge = true
-                editProfileBrain.myProfile?.age = Int(mainUserInputAge.text!)! //입력이 있고 숫자가 있으므로 force unwrap
-                print((editProfileBrain.myProfile?.age)!)
+                editingDataProfileBrain.myProfile?.age = Int(mainUserInputAge.text!)! //입력이 있고 숫자가 있으므로 force unwrap
+                print((editingDataProfileBrain.myProfile?.age)!)
                 mainAgeChecker.image = UIImage(systemName: "checkmark.circle.fill")
                 mainAgeChecker.tintColor = UIColor.systemGreen
                 mainCheckAgeRegEx.text = " "
@@ -295,8 +389,8 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
             let tempHeight = NSPredicate(format:"SELF MATCHES %@", heightRe)
             if tempHeight.evaluate(with: mainUserInputHeight.text) {
                 mainCorrectHeight = true
-                editProfileBrain.myProfile?.height = Float(mainUserInputHeight.text!)! //입력이 있고 숫자가 있으므로 force unwrap
-                print((editProfileBrain.myProfile?.height)!)
+                editingDataProfileBrain.myProfile?.height = Float(mainUserInputHeight.text!)! //입력이 있고 숫자가 있으므로 force unwrap
+                print((editingDataProfileBrain.myProfile?.height)!)
                 mainHeightChecker.image = UIImage(systemName: "checkmark.circle.fill")
                 mainHeightChecker.tintColor = UIColor.systemGreen
                 mainCheckHeightRegEx.text = " "
@@ -323,8 +417,8 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
             let tempWeight = NSPredicate(format:"SELF MATCHES %@", weightRe)
             if tempWeight.evaluate(with: mainUserInputWeight.text) {
                 mainCorrectWeight = true
-                editProfileBrain.myProfile?.weight = Float(mainUserInputWeight.text!)! //입력이 있고 숫자가 있으므로 force unwrap
-                print((editProfileBrain.myProfile?.weight)!)
+                editingDataProfileBrain.myProfile?.weight = Float(mainUserInputWeight.text!)! //입력이 있고 숫자가 있으므로 force unwrap
+                print((editingDataProfileBrain.myProfile?.weight)!)
                 mainWeightChecker.image = UIImage(systemName: "checkmark.circle.fill")
                 mainWeightChecker.tintColor = UIColor.systemGreen
                 mainCheckWeightRegEx.text = " "
@@ -347,8 +441,10 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
     func buttonDecision() {
         if mainCorrectName && mainCorrectAge && mainCorrectHeight && mainCorrectWeight && mainCorrectQuote {
             saveEditedDateOutlet.isEnabled = true
+            saveEditedDateOutlet.setTitleColor(.white, for: .normal)
         } else {
             saveEditedDateOutlet.isEnabled = false
+            saveEditedDateOutlet.setTitleColor(.systemBrown, for: .normal)
         }
     }
     /*
