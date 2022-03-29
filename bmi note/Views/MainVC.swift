@@ -90,7 +90,7 @@ class MainVC: UIViewController {
         }
         
         mainUserName.text = mainProfileBrain.myProfile?.name //메인화면 유저 이름 출력
-        mainUserQuote.text = mainProfileBrain.myProfile?.quote //메인화면 유저 격언 출력
+        mainUserQuote.text = "\(" ")" + "\(mainProfileBrain.myProfile?.quote ?? "나는 할 수 있다")" //메인화면 유저 격언 출력
         mainUserProfileImage.image = UIImage(named: mainProfileBrain.myProfile!.profileImg)
         
         //메인화면 유저 프로필 출력
@@ -189,7 +189,7 @@ extension MainVC: UIPickerViewDelegate, UIPickerViewDataSource {
         switch component {
         case 0:
             self.height = bmiBrain.bmiPickerRange.heightMinMaxArray[row]
-            self.heightInPickerLabel.text = "키 \(self.height)cm"
+            self.heightInPickerLabel.text = "신장 \(self.height)cm"
         case 1:
             self.weight = bmiBrain.bmiPickerRange.weightMinMaxArray[row]
             self.weightInPickerLabel.text = "체중 \(self.weight)kg"
@@ -315,12 +315,12 @@ extension MainVC {
 
         //리미트라인
         let limit = ChartLimitLine(limit: limitMinValue, label: "")
-        limit.lineColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1.0) //라인 색 변경
+        limit.lineColor = UIColor(red: 120/255, green: 192/255, blue: 184/255, alpha: 1.0) //라인 색 변경
         barChartView.leftAxis.addLimitLine(limit)
         limit.lineWidth = 1.0
         
         let limit2 = ChartLimitLine(limit: limitMaxValue, label: "")
-        limit2.lineColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1.0) //라인 색 변경
+        limit2.lineColor = UIColor(red: 120/255, green: 192/255, blue: 184/255, alpha: 1.0) //라인 색 변경
         barChartView.leftAxis.addLimitLine(limit2)
         limit2.lineWidth = 1.0
         
@@ -358,11 +358,17 @@ extension MainVC {
         //이전값 전부 컬러 알파값 적용
         for i in 0 ..< data.count {
             if data[i] > limitMaxValue {
-                colorData.append(UIColor(red: 255/255, green: 149/255, blue: 0, alpha: alphaValue))
+                //[Harry] 모벨 로고 오렌지
+                colorData.append(UIColor(red: 231/255, green: 150/255, blue: 107/255, alpha: alphaValue))
+                //colorData.append(UIColor(red: 255/255, green: 149/255, blue: 0, alpha: alphaValue))
             } else if data[i] < limitMinValue {
-                colorData.append(UIColor(red: 0, green: 122/255, blue: 255/255, alpha: alphaValue))
+                //[Harry] 모벨 로고 에메랄드
+                colorData.append(UIColor(red: 117/255, green: 142/255, blue: 230/255, alpha: alphaValue))
+                //colorData.append(UIColor(red: 0, green: 122/255, blue: 255/255, alpha: alphaValue))
             } else {
-                colorData.append(UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: alphaValue))
+                //[Harry] 모벨 로고 라일락
+                colorData.append(UIColor(red: 120/255, green: 192/255, blue: 184/255, alpha: alphaValue))
+                //colorData.append(UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: alphaValue))
             }
         }
         
@@ -372,11 +378,14 @@ extension MainVC {
             
             if let value = data.last {
                 if value > limitMaxValue {
-                    colorData.append(UIColor(red: 255/255, green: 149/255, blue: 0, alpha: 1.0))
+                    colorData.append(UIColor(red: 231/255, green: 150/255, blue: 107/255, alpha: 1.0))
+                    //colorData.append(UIColor(red: 255/255, green: 149/255, blue: 0, alpha: 1.0))
                 } else if value < limitMinValue {
-                    colorData.append(UIColor(red: 0, green: 122/255, blue: 255/255, alpha: 1.0))
+                    colorData.append(UIColor(red: 117/255, green: 142/255, blue: 230/255, alpha: 1.0))
+                    //colorData.append(UIColor(red: 0, green: 122/255, blue: 255/255, alpha: 1.0))
                 } else {
-                    colorData.append(UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1.0))
+                    colorData.append(UIColor(red: 120/255, green: 192/255, blue: 184/255, alpha: 1.0))
+                    //colorData.append(UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1.0))
                 }
             }
         }

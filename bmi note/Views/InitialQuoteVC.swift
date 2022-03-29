@@ -50,7 +50,7 @@ class InitialQuoteVC: UIViewController {
         let toolBar = UIToolbar()
         toolBar.barStyle = UIBarStyle.default
         toolBar.isTranslucent = true
-        toolBar.tintColor = UIColor.black
+        toolBar.tintColor = UIColor(named: "Default")
         toolBar.sizeToFit()
         // 만들어줄 버튼
         // flexibleSpace는 취소~완료 간의 거리를 만들어준다.

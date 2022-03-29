@@ -126,7 +126,6 @@
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="XRO-Yt-4za" secondAttribute="height" multiplier="10:1.3" id="nNM-CO-RkE"/>
                                                         </constraints>
-                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
@@ -163,7 +162,6 @@
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="jdJ-7H-iL5" secondAttribute="height" multiplier="10:1.3" id="1CS-IE-z5Y"/>
                                                         </constraints>
-                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                     </textField>
@@ -254,7 +252,6 @@
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="4Jr-Yq-uHH" secondAttribute="height" multiplier="10:1.3" id="8fs-e2-6ZQ"/>
                                                         </constraints>
-                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                     </textField>
@@ -291,7 +288,6 @@
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="isB-i1-Aie" secondAttribute="height" multiplier="10:1.3" id="pam-Lj-agW"/>
                                                         </constraints>
-                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                     </textField>
@@ -553,7 +549,6 @@
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="GGq-xH-oFt" secondAttribute="height" multiplier="10:1.3" id="lxf-ap-OWJ"/>
                                                         </constraints>
-                                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
@@ -593,7 +588,6 @@
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="q0p-0Q-QTQ" secondAttribute="height" multiplier="10:1.3" id="sAd-aA-Y8b"/>
                                                         </constraints>
-                                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                     </textField>
@@ -624,7 +618,6 @@
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="OYs-rP-wBY" secondAttribute="height" multiplier="10:1.3" id="NIa-5Q-SCr"/>
                                                         </constraints>
-                                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                     </textField>
@@ -655,7 +648,6 @@
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="tjO-nh-ExO" secondAttribute="height" multiplier="10:1.3" id="qif-Ia-56m"/>
                                                         </constraints>
-                                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                     </textField>
@@ -683,7 +675,7 @@
                                                             <constraint firstAttribute="width" constant="65" id="Uem-zY-9Gw"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                                        <color key="textColor" systemColor="systemYellowColor"/>
+                                                        <color key="textColor" name="NewYellow"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="M0c-gB-cOs">
@@ -895,7 +887,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="zMd-Zf-cdR" userLabel="Top Stack View">
                                 <rect key="frame" x="20" y="108" width="374" height="100"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="252" image="Movel Logo - Grey" translatesAutoresizingMaskIntoConstraints="NO" id="wU2-Se-6xd">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="252" image="Movel Logo - Yellow" translatesAutoresizingMaskIntoConstraints="NO" id="wU2-Se-6xd">
                                         <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                         <color key="tintColor" red="0.9529411793" green="0.73333334920000004" blue="0.2941176593" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
@@ -942,7 +934,6 @@
                                                 <rect key="frame" x="0.0" y="83" width="266" height="17"/>
                                                 <color key="tintColor" red="0.9529411793" green="0.73333334920000004" blue="0.2941176593" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -952,7 +943,7 @@
                                                         <real key="value" value="0.0"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="LabelBgColor">
-                                                        <color key="value" red="0.89803922179999995" green="0.89803922179999995" blue="0.91764706370000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <color key="value" name="LDBGColor"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
@@ -992,7 +983,7 @@
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Wq0-0A-TkH" secondAttribute="height" multiplier="10:0.8" id="jJh-7l-Zo1"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                         <userDefinedRuntimeAttributes>
@@ -1020,7 +1011,6 @@
                                                             <constraint firstAttribute="height" constant="12" id="GPX-Vs-wPZ"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
-                                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="triangle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="VVC-n8-HqT">
@@ -1051,12 +1041,11 @@
                                                             <constraint firstAttribute="height" constant="13" id="h26-aB-GTD"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
-                                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="R0V-6G-8ge">
                                                         <rect key="frame" x="43" y="2.5" width="10" height="7.5"/>
-                                                        <color key="tintColor" red="0.5647059083" green="0.98823523520000001" blue="0.46666663889999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <color key="tintColor" name="NewGreen"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="10" id="DJi-ks-fNL"/>
                                                             <constraint firstAttribute="height" constant="10" id="rPI-dO-ASA"/>
@@ -1098,7 +1087,7 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="T4M-wK-DUJ" userLabel="Cal Stack View">
-                                <rect key="frame" x="20" y="532" width="374" height="221.5"/>
+                                <rect key="frame" x="20" y="532" width="374" height="218"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BMI Calculation" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QNt-uB-Yq0" customClass="RoundLabel" customModule="bmi_note" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="30"/>
@@ -1106,7 +1095,7 @@
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="QNt-uB-Yq0" secondAttribute="height" multiplier="10:0.8" id="yZs-Gu-f9N"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                         <userDefinedRuntimeAttributes>
@@ -1122,24 +1111,24 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="8M6-bq-JPi">
-                                        <rect key="frame" x="0.0" y="35" width="374" height="21.5"/>
+                                        <rect key="frame" x="0.0" y="35" width="374" height="18"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="신장(cm)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nIE-wJ-PiE">
-                                                <rect key="frame" x="0.0" y="0.0" width="169" height="21.5"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="168.5" height="18"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="몸무게(kg)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Low-pt-vib">
-                                                <rect key="frame" x="174" y="0.0" width="200" height="21.5"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                <rect key="frame" x="173.5" y="0.0" width="200.5" height="18"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                     </stackView>
                                     <pickerView contentMode="scaleToFill" verticalCompressionResistancePriority="300" translatesAutoresizingMaskIntoConstraints="NO" id="QcJ-U2-ib8">
-                                        <rect key="frame" x="0.0" y="61.5" width="374" height="160"/>
+                                        <rect key="frame" x="0.0" y="58" width="374" height="160"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="lessThanOrEqual" constant="160" id="Fr4-cW-OW2"/>
                                         </constraints>
@@ -1150,7 +1139,7 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MF0-sY-WGS" customClass="RoundButton" customModule="bmi_note" customModuleProvider="target">
-                                <rect key="frame" x="125" y="783.5" width="165" height="40"/>
+                                <rect key="frame" x="125" y="780" width="165" height="40"/>
                                 <color key="backgroundColor" red="0.90196073060000004" green="0.58823531870000001" blue="0.4196078479" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="eza-pz-uUv"/>
@@ -1687,7 +1676,7 @@
             <size key="intrinsicContentSize" width="33" height="35"/>
         </designable>
         <designable name="QNt-uB-Yq0">
-            <size key="intrinsicContentSize" width="134.5" height="21.5"/>
+            <size key="intrinsicContentSize" width="114.5" height="18"/>
         </designable>
         <designable name="SiP-fX-i19">
             <size key="intrinsicContentSize" width="33" height="35"/>
@@ -1696,7 +1685,7 @@
             <size key="intrinsicContentSize" width="65" height="20.5"/>
         </designable>
         <designable name="Wq0-0A-TkH">
-            <size key="intrinsicContentSize" width="101" height="21.5"/>
+            <size key="intrinsicContentSize" width="86" height="18"/>
         </designable>
         <designable name="Y1g-AR-LaW">
             <size key="intrinsicContentSize" width="379" height="17"/>
@@ -1706,7 +1695,6 @@
         </designable>
     </designables>
     <resources>
-        <image name="Movel Logo - Grey" width="900" height="900"/>
         <image name="Movel Logo - Yellow" width="900" height="900"/>
         <image name="arrow.right.circle" catalog="system" width="128" height="121"/>
         <image name="bmi_01_underweight_1" width="91" height="127"/>
@@ -1725,8 +1713,17 @@
         <namedColor name="Color">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <namedColor name="LDBGColor">
+            <color red="0.8883204362868885" green="0.89711568813131315" blue="0.89711568813131315" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
         <namedColor name="LDTextColor">
             <color red="0.39234331674589035" green="0.39622790404040409" blue="0.39622790404040409" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="NewGreen">
+            <color red="0.47058826679999999" green="0.75294119120000003" blue="0.72156864399999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="NewYellow">
+            <color red="0.99199998378753662" green="0.72200000286102295" blue="0.15299999713897705" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
