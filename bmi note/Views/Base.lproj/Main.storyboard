@@ -1200,6 +1200,9 @@
                     <navigationItem key="navigationItem" title="Main Screen" id="NcY-ac-IJh"/>
                     <connections>
                         <outlet property="barChartView" destination="fih-3f-WRd" id="fsf-rT-W8S"/>
+                        <outlet property="graphIndexSV1" destination="vW1-fV-yZe" id="tHq-0A-mJf"/>
+                        <outlet property="graphIndexSV2" destination="3wP-rt-KCL" id="Alc-QH-hGf"/>
+                        <outlet property="graphTriangleImage" destination="jgi-bF-yAS" id="Vfm-SI-olr"/>
                         <outlet property="heightInPickerLabel" destination="nIE-wJ-PiE" id="tqQ-d3-ndU"/>
                         <outlet property="inputPickerView" destination="QcJ-U2-ib8" id="YGT-SJ-dU3"/>
                         <outlet property="mainUserName" destination="4n4-eb-5FV" id="sik-L3-UWp"/>
