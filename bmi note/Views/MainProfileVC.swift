@@ -63,7 +63,7 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
         //키보드가 나타날 떄
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-        
+
         //네비 타이틀 색 변경
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor(named: "NewYellow") ?? UIColor.black]
     }
@@ -255,20 +255,25 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
     var isExpand : Bool = false
 
     @objc func keyboardWillShow(notification: NSNotification) {
+        
+        let userInfo:NSDictionary = notification.userInfo! as NSDictionary;
+        let keyboardFrame:NSValue = userInfo.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as! NSValue
+        let keyboardRectangle = keyboardFrame.cgRectValue;
+        let keyboardHeight = keyboardRectangle.size.height;
+        
         if !isExpand {
             self.mainProfileScrollView.contentSize = CGSize(width: self.view.frame.width, height: self.mainProfileScrollView.frame.height + 250 )
         }
         
         if mainUserInputWeight.isFirstResponder &&  mainEditUserProfileLabel.currentTitle! == "수정" {
-            let userInfo:NSDictionary = notification.userInfo! as NSDictionary;
-            let keyboardFrame:NSValue = userInfo.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as! NSValue
-            let keyboardRectangle = keyboardFrame.cgRectValue;
-            let keyboardHeight = keyboardRectangle.size.height;
             print("실행됨")
             self.view.frame.size.height -= keyboardHeight
-    
+        } else if mainUserInputQuote.isFirstResponder {
+            print("실행됨P")
+            self.view.frame.size.height += 100
         }
-        isExpand = true
+        
+        
     }
     
     
