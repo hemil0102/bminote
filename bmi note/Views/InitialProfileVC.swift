@@ -151,7 +151,7 @@ class InitialProfileVC: UIViewController, UITextFieldDelegate {
                 userInfo.name = initialUserInputName.text
                 print(userInfo.name!)
                 initialNameChecker.image = UIImage(systemName: "checkmark.circle.fill")
-                initialNameChecker.tintColor = UIColor.systemGreen
+                initialNameChecker.tintColor = UIColor(named: "NewGreen")
                 initialCheckNameRegEx.text = " "
             } else {
                 initialCorrectName = false
@@ -179,7 +179,7 @@ class InitialProfileVC: UIViewController, UITextFieldDelegate {
                 userInfo.age = Int(initialUserInputAge.text!)! //입력이 있고 숫자가 있으므로 force unwrap
                 print(userInfo.age!)
                 initialAgeChecker.image = UIImage(systemName: "checkmark.circle.fill")
-                initialAgeChecker.tintColor = UIColor.systemGreen
+                initialAgeChecker.tintColor = UIColor(named: "NewGreen")
                 initialCheckAgeRegEx.text = " "
             } else {
                 initialCorrectAge = false
@@ -206,7 +206,7 @@ class InitialProfileVC: UIViewController, UITextFieldDelegate {
                 userInfo.height = Float(initialUserInputHeight.text!)! //입력이 있고 숫자가 있으므로 force unwrap
                 print(userInfo.height!)
                 initialHeightChecker.image = UIImage(systemName: "checkmark.circle.fill")
-                initialHeightChecker.tintColor = UIColor.systemGreen
+                initialHeightChecker.tintColor = UIColor(named: "NewGreen")
                 initialCheckHeightRegEx.text = " "
             } else {
                 initialCorrectHeight = false
@@ -234,7 +234,7 @@ class InitialProfileVC: UIViewController, UITextFieldDelegate {
                 userInfo.weight = Float(initialUserInputWeight.text!)! //입력이 있고 숫자가 있으므로 force unwrap
                 print(userInfo.weight!)
                 initialWeightChecker.image = UIImage(systemName: "checkmark.circle.fill")
-                initialWeightChecker.tintColor = UIColor.systemGreen
+                initialWeightChecker.tintColor = UIColor(named: "NewGreen")
                 initialCheckWeightRegEx.text = " "
             } else {
                 initialCorrectWeight = false
@@ -254,11 +254,14 @@ class InitialProfileVC: UIViewController, UITextFieldDelegate {
     
     func buttonDecision() {
         if initialCorrectName && initialCorrectAge && initialCorrectHeight && initialCorrectWeight {
-            saveInitialProfileOutlet.isEnabled = true
+            saveInitialProfileOutlet.isUserInteractionEnabled = true
             saveInitialProfileOutlet.setTitleColor(.white, for: .normal)
+            saveInitialProfileOutlet.alpha = 1.0
         } else {
-            saveInitialProfileOutlet.isEnabled = false
-            saveInitialProfileOutlet.setTitleColor(.systemGray5, for: .normal)
+            saveInitialProfileOutlet.isUserInteractionEnabled = false
+            saveInitialProfileOutlet.setTitleColor(.white, for: .normal)
+            saveInitialProfileOutlet.alpha = 0.5
+            //saveInitialProfileOutlet.setTitleColor(.systemGray5, for: .normal)
         }
     }
     

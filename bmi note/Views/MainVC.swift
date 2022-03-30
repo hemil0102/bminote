@@ -66,6 +66,9 @@ class MainVC: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true) // 뷰 컨트롤러가 나타날 때 컨트롤 바를 숨기기
         
+        heightInPickerLabel.text = "신장(cm)"
+        weightInPickerLabel.text = "체중(kg)"
+        
         initSetChart()  //[Walter] 이건 무슨 함수? //
         setChart(dataPoints: bmiBrain.bmiDateArray, values: bmiBrain.bmiValueArray)
         
@@ -185,10 +188,10 @@ extension MainVC: UIPickerViewDelegate, UIPickerViewDataSource {
         switch component {
         case 0:
             self.height = bmiBrain.bmiPickerRange.heightMinMaxArray[row]
-            self.heightInPickerLabel.text = "신장 \(self.height)cm"
+            self.heightInPickerLabel.text = "신장(\(self.height)cm)"
         case 1:
             self.weight = bmiBrain.bmiPickerRange.weightMinMaxArray[row]
-            self.weightInPickerLabel.text = "체중 \(self.weight)kg"
+            self.weightInPickerLabel.text = "체중(\(self.weight)kg)"
         default:
             break
         }

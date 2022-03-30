@@ -19,8 +19,8 @@ class InitialQuoteVC: UIViewController {
         //레이블에 저장된 유저 이름을 표시해준다.
         userName.text = "\(savedUserName ?? "나모블")님 :)"
         
-        toMainOutlet.isEnabled = false
-        toMainOutlet.setTitleColor(.systemGray5, for: .normal)
+        toMainOutlet.isUserInteractionEnabled = false
+        toMainOutlet.alpha = 0.5
         
         configPickerView()
         configToolbar()
@@ -73,9 +73,10 @@ class InitialQuoteVC: UIViewController {
         self.quoteTextField.text = self.userInfo.quoteList[row]
         self.quoteTextField.resignFirstResponder()
         initialQuoteCheker.image = UIImage(systemName: "checkmark.circle.fill")
-        initialQuoteCheker.tintColor = UIColor.systemGreen
-        toMainOutlet.isEnabled = true
+        initialQuoteCheker.tintColor = UIColor(named: "NewGreen")
+        toMainOutlet.isUserInteractionEnabled = true
         toMainOutlet.setTitleColor(.white, for: .normal)
+        toMainOutlet.alpha = 1.0
         
     }
     
@@ -85,8 +86,9 @@ class InitialQuoteVC: UIViewController {
         self.quoteTextField.resignFirstResponder()
         initialQuoteCheker.image = UIImage(systemName: "checkmark.circle")
         initialQuoteCheker.tintColor = UIColor.systemGray
-        toMainOutlet.isEnabled = false
-        toMainOutlet.setTitleColor(.systemGray5, for: .normal)
+        toMainOutlet.isUserInteractionEnabled = false
+        toMainOutlet.setTitleColor(.white, for: .normal)
+        toMainOutlet.alpha = 0.5
         
     }
 }

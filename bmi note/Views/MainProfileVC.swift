@@ -107,6 +107,8 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var mainAccountLock: UIImageView!
     @IBOutlet weak var mainEditUserProfileLabel: UIButton!
     @IBOutlet weak var mainSaveUserProfileLabel: UIButton!
+    @IBOutlet weak var mainSaveChecker: UIImageView!
+    
     
     @IBAction func mainUserSelectGender(_ sender: UISegmentedControl) {
         // Segment Index에 따라서 남여를 지정, 굳이 함수화 할 필요는 없지만 관리차원으로 getGenderType() 함수를 Brain에 형성, 값이 없을 수 없어서 force unwrap 함.
@@ -125,6 +127,9 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
             mainUserInputWeight.becomeFirstResponder()
             mainAccountLock.image = UIImage(systemName: "lock.open.fill")
             mainEditUserProfileLabel.setTitle("취소", for: .normal)
+            //mainSaveChecker.image = UIImage(systemName: "checkmark.circle")
+            //mainSaveChecker.tintColor = UIColor.systemGray
+            mainSaveChecker.alpha = 0
             mainCorrectName = true
             mainCorrectAge = true
             mainCorrectHeight = true
@@ -139,6 +144,8 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
             disableTextField()
             mainAccountLock.image = UIImage(systemName: "lock.fill")
             mainEditUserProfileLabel.setTitle("수정", for: .normal)
+            mainSaveChecker.image = UIImage(systemName: "lock.open")
+            mainSaveChecker.alpha = 0
             mainCorrectName = false
             mainCorrectAge = false
             mainCorrectHeight = false
@@ -170,6 +177,9 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
         UserDefaults.standard.set(profileUserData, forKey: Key.profile)
         mainEditUserProfileLabel.setTitle("수정", for: .normal)
         mainAccountLock.image = UIImage(systemName: "lock.fill")
+        mainSaveChecker.image = UIImage(systemName: "checkmark.circle.fill")
+        mainSaveChecker.tintColor = UIColor(named: "NewGreen")
+        mainSaveChecker.alpha = 1
         mainCorrectName = false
         mainCorrectAge = false
         mainCorrectHeight = false
@@ -198,15 +208,16 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
         mainProfileimg.image = UIImage(named: originDataProfileBrain.myProfile!.profileImg)
         
         mainNameChecker.image = UIImage(systemName: "checkmark.circle.fill")
-        mainNameChecker.tintColor = UIColor.systemGreen
+        mainNameChecker.tintColor = UIColor(named: "NewGreen")
         mainAgeChecker.image = UIImage(systemName: "checkmark.circle.fill")
-        mainAgeChecker.tintColor = UIColor.systemGreen
+        mainAgeChecker.tintColor = UIColor(named: "NewGreen")
         mainHeightChecker.image = UIImage(systemName: "checkmark.circle.fill")
-        mainHeightChecker.tintColor = UIColor.systemGreen
+        mainHeightChecker.tintColor = UIColor(named: "NewGreen")
         mainWeightChecker.image = UIImage(systemName: "checkmark.circle.fill")
-        mainWeightChecker.tintColor = UIColor.systemGreen
+        mainWeightChecker.tintColor = UIColor(named: "NewGreen")
         mainQuoteChecker.image = UIImage(systemName: "checkmark.circle.fill")
-        mainQuoteChecker.tintColor = UIColor.systemGreen
+        mainQuoteChecker.tintColor = UIColor(named: "NewGreen")
+        mainSaveChecker.alpha = 0
         
     }
     
@@ -287,7 +298,7 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
         let toolBar = UIToolbar()
         toolBar.barStyle = UIBarStyle.default
         toolBar.isTranslucent = true
-        toolBar.tintColor = UIColor.black
+        toolBar.tintColor = UIColor(named: "pickerViewColor")
         toolBar.sizeToFit()
         // 만들어줄 버튼
         // flexibleSpace는 취소~완료 간의 거리를 만들어준다.
@@ -307,7 +318,7 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
             self.mainUserInputQuote.text = self.userInfo.quoteList[row]
             self.mainUserInputQuote.resignFirstResponder()
             mainQuoteChecker.image = UIImage(systemName: "checkmark.circle.fill")
-            mainQuoteChecker.tintColor = UIColor.systemGreen
+            mainQuoteChecker.tintColor = UIColor(named: "NewGreen")
             mainCorrectQuote = true
             buttonDecision()
             
@@ -334,7 +345,7 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
                 editingDataProfileBrain.myProfile?.name = mainUserInputName.text
                 print((editingDataProfileBrain.myProfile?.name)!)
                 mainNameChecker.image = UIImage(systemName: "checkmark.circle.fill")
-                mainNameChecker.tintColor = UIColor.systemGreen
+                mainNameChecker.tintColor = UIColor(named: "NewGreen")
                 mainCheckNameRegEx.text = " "
             } else {
                 mainCorrectName = false
@@ -363,7 +374,7 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
                 editingDataProfileBrain.myProfile?.age = Int(mainUserInputAge.text!)! //입력이 있고 숫자가 있으므로 force unwrap
                 print((editingDataProfileBrain.myProfile?.age)!)
                 mainAgeChecker.image = UIImage(systemName: "checkmark.circle.fill")
-                mainAgeChecker.tintColor = UIColor.systemGreen
+                mainAgeChecker.tintColor = UIColor(named: "NewGreen")
                 mainCheckAgeRegEx.text = " "
             } else {
                 mainCorrectAge = false
@@ -390,7 +401,7 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
                 editingDataProfileBrain.myProfile?.height = Float(mainUserInputHeight.text!)! //입력이 있고 숫자가 있으므로 force unwrap
                 print((editingDataProfileBrain.myProfile?.height)!)
                 mainHeightChecker.image = UIImage(systemName: "checkmark.circle.fill")
-                mainHeightChecker.tintColor = UIColor.systemGreen
+                mainHeightChecker.tintColor = UIColor(named: "NewGreen")
                 mainCheckHeightRegEx.text = " "
             } else {
                 mainCorrectHeight = false
@@ -418,7 +429,7 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
                 editingDataProfileBrain.myProfile?.weight = Float(mainUserInputWeight.text!)! //입력이 있고 숫자가 있으므로 force unwrap
                 print((editingDataProfileBrain.myProfile?.weight)!)
                 mainWeightChecker.image = UIImage(systemName: "checkmark.circle.fill")
-                mainWeightChecker.tintColor = UIColor.systemGreen
+                mainWeightChecker.tintColor = UIColor(named: "NewGreen")
                 mainCheckWeightRegEx.text = " "
             } else {
                 mainCorrectWeight = false
@@ -438,11 +449,12 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
     
     func buttonDecision() {
         if mainCorrectName && mainCorrectAge && mainCorrectHeight && mainCorrectWeight && mainCorrectQuote {
-            saveEditedDateOutlet.isEnabled = true
-            saveEditedDateOutlet.setTitleColor(.white, for: .normal)
+            saveEditedDateOutlet.isUserInteractionEnabled = true
+            saveEditedDateOutlet.alpha = 1.0
+            
         } else {
-            saveEditedDateOutlet.isEnabled = false
-            saveEditedDateOutlet.setTitleColor(.systemGray5, for: .normal)
+            saveEditedDateOutlet.isUserInteractionEnabled = false
+            saveEditedDateOutlet.alpha = 0.5
         }
     }
     /*
@@ -497,7 +509,7 @@ extension MainProfileVC: UIPickerViewDelegate, UIPickerViewDataSource {
         }
         
         pickerLabel?.text = userInfo.quoteList[row]
-        pickerLabel?.textColor = UIColor.black
+        pickerLabel?.textColor = UIColor(named: "pickerViewColor")
 
         return pickerLabel!
     }

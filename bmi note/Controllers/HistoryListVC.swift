@@ -87,11 +87,11 @@ extension HistoryListVC: UITableViewDataSource {
         let limitMaxValue = bmiStd.BMIStdMaxValue
         
       if historyData[row].bmi > limitMaxValue {
-          cell.bmiValue.textColor = .systemOrange
+          cell.bmiValue.textColor = UIColor(red: 231/255, green: 150/255, blue: 107/255, alpha: 1.0)
       } else if historyData[row].bmi < limitMinValue {
-          cell.bmiValue.textColor = .systemBlue
+          cell.bmiValue.textColor = UIColor(red: 117/255, green: 142/255, blue: 230/255, alpha: 1.0)
       } else {
-          cell.bmiValue.textColor = .systemGreen
+          cell.bmiValue.textColor = UIColor(red: 120/255, green: 192/255, blue: 184/255, alpha: 1.0)
       }
         
         return cell
