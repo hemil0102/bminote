@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class BmiResultVC: UIViewController {
     @IBOutlet var statusImg:[UIImageView]!      //BMI 상태 이미지
@@ -21,6 +22,7 @@ class BmiResultVC: UIViewController {
     var bmiInfo:BMI?        //직전 화면에서 BMI 정보를 받는 변수, 종민님 이 변수로 전달해주세요!
     var bmi:Double = 0      //전달받은 BMI수치
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -39,6 +41,12 @@ class BmiResultVC: UIViewController {
         
         // 네비 타이틀 색 변경
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor(named: "NewOrange") ?? UIColor.black]
+    }
+    
+    @IBAction func linkToWHO(_ sender: UIButton) {
+        let whoUrl = NSURL(string: "https://www.euro.who.int/en/health-topics/disease-prevention/nutrition/a-healthy-lifestyle/body-mass-index-bmi")
+        let whoSafariView: SFSafariViewController = SFSafariViewController(url: whoUrl! as URL)
+        self.present(whoSafariView, animated: true, completion: nil)
     }
     
     //직전 View에 전달한 BMI 정보 셋팅하기

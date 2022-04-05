@@ -19,6 +19,9 @@ class MainVC: UIViewController {
     var height: Int = 0
     var weight: Int = 0
     
+    //컬러 지정
+    
+    
     @IBOutlet weak var inputPickerView: UIPickerView!   //pickerView 변수
     @IBOutlet weak var barChartView: BarChartView!      //그래프용 변수
     @IBOutlet weak var mainUserName: UILabel! //메인 화면 프로필 유저 이름
@@ -50,6 +53,8 @@ class MainVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        mainUserQuote.layer.cornerRadius = 6
         //그래프 세팅
         initSetChart()
         setChart(dataPoints: bmiBrain.bmiDateArray, values: bmiBrain.bmiValueArray)
@@ -60,12 +65,16 @@ class MainVC: UIViewController {
         //네비게이션 조정
         self.navigationController?.navigationBar.topItem?.title = "메인"
         self.navigationController?.navigationBar.tintColor = UIColor(named: "NewYellow")
+        
+
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true) // 뷰 컨트롤러가 나타날 때 컨트롤 바를 숨기기
         
+    
         heightInPickerLabel.text = "신장(cm)"
         weightInPickerLabel.text = "체중(kg)"
         

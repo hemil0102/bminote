@@ -22,16 +22,16 @@ class RoundLabel: UILabel {
         }
     }
     
-    @IBInspectable var borderColor: UIColor = UIColor.clear{
+    @IBInspectable var borderColor: UIColor = UIColor.clear {
         didSet{
             self.layer.borderColor = borderColor.cgColor
         }
     }
     
-    @IBInspectable var LabelBgColor: UIColor = UIColor.clear{
+    @IBInspectable var LabelBgColor: UIColor = UIColor.clear {
         didSet{
             self.layer.backgroundColor = LabelBgColor.cgColor
-        }
+    }
     }
     
 }
