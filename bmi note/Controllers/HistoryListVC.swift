@@ -41,7 +41,6 @@ class HistoryListVC: UIViewController {
         if let data = receivedData {
             historyData = data.reversed()
             isThereRecordLabel.isHidden = data.count == 0 ? false : true
-//            print("날짜 : \(historyData.first?.regDate)")
         }
     }
 }

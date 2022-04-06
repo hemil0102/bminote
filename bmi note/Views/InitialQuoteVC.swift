@@ -8,8 +8,6 @@
 import UIKit
 
 class InitialQuoteVC: UIViewController {
-
-
     override func viewDidLoad() {
         super.viewDidLoad()
         //뷰가 로드될 때 앞에 저장되었던 딕셔너리 형태의 유저 정보를 불러온다.
@@ -24,7 +22,6 @@ class InitialQuoteVC: UIViewController {
         
         configPickerView()
         configToolbar()
-
     }
     
     let picker = UIPickerView() //피커뷰 생성
@@ -45,7 +42,6 @@ class InitialQuoteVC: UIViewController {
                 (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(NaviVC , animated: false)
     }
     
-    
     func configToolbar() {
         // toolbar를 만들어준다.
         let toolBar = UIToolbar()
@@ -63,7 +59,6 @@ class InitialQuoteVC: UIViewController {
         toolBar.isUserInteractionEnabled = true
         // 악세사리로 추가한다.
         quoteTextField.inputAccessoryView = toolBar
-        
     }
     
     // "완료" 클릭 시 데이터를 textfield에 입력 후 입력창 내리기
@@ -77,7 +72,6 @@ class InitialQuoteVC: UIViewController {
         toMainOutlet.isUserInteractionEnabled = true
         toMainOutlet.setTitleColor(.white, for: .normal)
         toMainOutlet.alpha = 1.0
-        
     }
     
     // "취소" 클릭 시 textfield의 텍스트 값을 nil로 처리 후 입력창 내리기
@@ -89,7 +83,6 @@ class InitialQuoteVC: UIViewController {
         toMainOutlet.isUserInteractionEnabled = false
         toMainOutlet.setTitleColor(.white, for: .normal)
         toMainOutlet.alpha = 0.5
-        
     }
 }
 
@@ -112,7 +105,6 @@ extension InitialQuoteVC: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     // pickerview 내 선택지의 값들을 원하는 데이터로 채워준다.
-    
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return userInfo.quoteList[row]
     }
@@ -136,5 +128,4 @@ extension InitialQuoteVC: UIPickerViewDelegate, UIPickerViewDataSource {
 
         return pickerLabel!
     }
-    
 }

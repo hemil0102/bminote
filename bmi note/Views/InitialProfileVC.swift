@@ -45,7 +45,6 @@ class InitialProfileVC: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         //실시간 유저 입력에 대한 유효성 검사를 위한 addTarget
         //for와 at이 갖는 의미 그리고 .으로 시작하는 것들에 의미는 뭔가?
         initialUserInputName.addTarget(self, action: #selector(nameTextFieldDidChange), for: .editingChanged)
@@ -58,9 +57,6 @@ class InitialProfileVC: UIViewController, UITextFieldDelegate {
 //        initialUserInputAge.addTarget(self, action: #selector(ageTextFieldDidChange2), for: .editingChanged)
 //        initialUserInputHeight.addTarget(self, action: #selector(heightTextFieldDidChange2), for: .editingChanged)
 //        initialUserInputWeight.addTarget(self, action: #selector(weightTextFieldDidChange2), for: .editingChanged)
-        
-        //Walter's Code 2
-        //TextField.delegate = self 를 이용한 방법
         
         //초기 버튼 비활성화
         // 모든 입력이 유효함을 판단하는 if문, 유효할 경우 저장 버튼이 활성화됨.
@@ -81,10 +77,6 @@ class InitialProfileVC: UIViewController, UITextFieldDelegate {
         
         //제스처가 실행될 떄 키보드를 내릴 수 있도록
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(endEditing)))
-        
-        
-        
-        
     }
 
     @objc func keyboardWillShow(notification: NSNotification) {
@@ -158,7 +150,6 @@ class InitialProfileVC: UIViewController, UITextFieldDelegate {
                 initialNameChecker.image = UIImage(systemName: "checkmark.circle")
                 initialNameChecker.tintColor = UIColor.systemGray
                 initialCheckNameRegEx.text = " 한글 및 영문만 입력 가능합니다.(최대 12자)"
-
             }
         } else {
             initialCorrectName = false
@@ -170,7 +161,6 @@ class InitialProfileVC: UIViewController, UITextFieldDelegate {
     }
     
     @objc func ageTextFieldDidChange(_ textField: UITextField) {
-
         if initialUserInputAge.text != "" {
             let ageRe = "(19|20)[0-9]{2}" //앞자리는 19또는 20이란 조건을 주고 뒷 자리는 2자리의 모든 숫자를 조건으로 지정.
             let tempAge = NSPredicate(format:"SELF MATCHES %@", ageRe)
@@ -213,7 +203,6 @@ class InitialProfileVC: UIViewController, UITextFieldDelegate {
                 initialHeightChecker.image = UIImage(systemName: "checkmark.circle")
                 initialHeightChecker.tintColor = UIColor.systemGray
                 initialCheckHeightRegEx.text = "소숫점 제외, 숫자 2~3자리를 입력해주세요."
-
             }
         } else {
             initialCorrectHeight = false
@@ -225,7 +214,6 @@ class InitialProfileVC: UIViewController, UITextFieldDelegate {
     }
     
     @objc func weightTextFieldDidChange(_ textField: UITextField) {
-        
         if initialUserInputWeight.text != "" {
             let weightRe = "[0-9]{2,3}" // 1~3자리의 숫자를 입력 받는다.
             let tempWeight = NSPredicate(format:"SELF MATCHES %@", weightRe)
@@ -241,7 +229,6 @@ class InitialProfileVC: UIViewController, UITextFieldDelegate {
                 initialWeightChecker.image = UIImage(systemName: "checkmark.circle")
                 initialWeightChecker.tintColor = UIColor.systemGray
                 initialCheckWeightRegEx.text = "소숫점 제외, 숫자 2~3자리를 입력해주세요."
-
             }
         } else {
             initialCorrectWeight = false
@@ -264,11 +251,6 @@ class InitialProfileVC: UIViewController, UITextFieldDelegate {
             //saveInitialProfileOutlet.setTitleColor(.systemGray5, for: .normal)
         }
     }
-    
-    /*  // 화면 터치시 키보드를 숨기는 Function
-     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-             self.view.endEditing(true)
-     } */
     
     // MARK: - Walter's Code 1
     //이름을 입력받는 TextField
@@ -404,7 +386,6 @@ class InitialProfileVC: UIViewController, UITextFieldDelegate {
     }
 }
 
-
 extension UIScrollView {
     func updateContentSize() {
         let unionCalculatedTotalRect = recursiveUnionInDepthFor(view: self)
@@ -425,7 +406,3 @@ extension UIScrollView {
         return totalRect.union(view.frame)
     }
 }
-
-
-//Walter's Code 2
-//extension TextField.delegate

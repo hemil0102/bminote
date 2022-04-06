@@ -20,8 +20,6 @@ import UIKit
  9-1. 격언 피커뷰 값 저장 안되는 문제 확인 필요 [ ]
  9-2. 프로필 수정 몸무게와 키를 메인의 피커뷰 값으로 지정하기 [ ]
  
- ** 왜 버튼 폰트는 시뮬레이션에서 작아지지?
- 
 */
 class MainProfileVC: UIViewController, UITextFieldDelegate {
 
@@ -97,7 +95,6 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var mainCheckWeightRegEx: UILabel!
     @IBOutlet weak var mainWeightChecker: UIImageView!
     
-    
     @IBOutlet weak var mainUserInputQuote: UITextField!
     @IBOutlet weak var mainQuoteChecker: UIImageView!
     
@@ -109,6 +106,7 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var mainSaveUserProfileLabel: UIButton!
     @IBOutlet weak var mainSaveChecker: UIImageView!
     
+    @IBOutlet weak var saveEditedDateOutlet: UIButton!
     
     @IBAction func mainUserSelectGender(_ sender: UISegmentedControl) {
         // Segment Index에 따라서 남여를 지정, 굳이 함수화 할 필요는 없지만 관리차원으로 getGenderType() 함수를 Brain에 형성, 값이 없을 수 없어서 force unwrap 함.
@@ -119,10 +117,7 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func mainEditUserProfile(_ sender: UIButton) {
-        
-
-        if mainEditUserProfileLabel.currentTitle! == "수정"
-        {
+        if mainEditUserProfileLabel.currentTitle! == "수정" {
             enableTextField()
             mainUserInputWeight.becomeFirstResponder()
             mainAccountLock.image = UIImage(systemName: "lock.open.fill")
@@ -137,8 +132,7 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
             mainCorrectQuote = true
             buttonDecision()
             
-        } else if mainEditUserProfileLabel.currentTitle == "취소"
-        {
+        } else if mainEditUserProfileLabel.currentTitle == "취소" {
             
             readOriginUserData()
             disableTextField()
@@ -155,13 +149,9 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
             if mainUserInputWeight.isEditing {
                 self.view.frame.origin.y = 0
             }
-            
         }
     }
     
-    
-    
-    @IBOutlet weak var saveEditedDateOutlet: UIButton!
     @IBAction func saveEditedData(_ sender: UIButton) {
         profileUserData = [ "name" : (editingDataProfileBrain.myProfile?.name)!,
                             "age" : (editingDataProfileBrain.myProfile?.age)!,
@@ -187,7 +177,6 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
         mainCorrectQuote = false
         buttonDecision()
         disableTextField()
-        
     }
     
     //초기에 불러올 유저데이터 및 취소를 눌렀을 때 원복될 데이터
@@ -218,7 +207,6 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
         mainQuoteChecker.image = UIImage(systemName: "checkmark.circle.fill")
         mainQuoteChecker.tintColor = UIColor(named: "NewGreen")
         mainSaveChecker.alpha = 0
-        
     }
     
     //모든 텍스트 필드를 비활성화
@@ -239,7 +227,6 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
         mainUserInputHeight.isUserInteractionEnabled = true
         mainUserInputWeight.isUserInteractionEnabled = true
         mainUserInputQuote.isUserInteractionEnabled = true
-        
     }
     
     //키보드 내리기
@@ -255,7 +242,6 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
     var isExpand : Bool = false
 
     @objc func keyboardWillShow(notification: NSNotification) {
-        
         let userInfo:NSDictionary = notification.userInfo! as NSDictionary;
         let keyboardFrame:NSValue = userInfo.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as! NSValue
         let keyboardRectangle = keyboardFrame.cgRectValue;
@@ -272,8 +258,6 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
             print("실행됨P")
             self.view.frame.size.height += 100
         }
-        
-        
     }
     
     
@@ -289,7 +273,6 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
         let keyboardHeight = keyboardRectangle.size.height;
         print("실행됨2")
         self.view.frame.size.height += keyboardHeight
-
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -326,8 +309,8 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
             mainQuoteChecker.tintColor = UIColor(named: "NewGreen")
             mainCorrectQuote = true
             buttonDecision()
-            
     }
+    
     // "취소" 클릭 시 textfield의 텍스트 값을 nil로 처리 후 입력창 내리기
     @objc func cancelPicker() {
             self.mainUserInputQuote.text = nil
@@ -357,8 +340,6 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
                 mainNameChecker.image = UIImage(systemName: "checkmark.circle")
                 mainNameChecker.tintColor = UIColor.systemGray
                 mainCheckNameRegEx.text = "한글 및 영문만 입력 가능합니다.(12자 내)"
-                
-
             }
         } else {
             mainCorrectName = false
@@ -370,7 +351,6 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
     }
     
     @objc func ageTextFieldDidChange(_ textField: UITextField) {
-
         if mainUserInputAge.text != "" {
             let ageRe = "(19|20)[0-9]{2}" //앞자리는 19또는 20이란 조건을 주고 뒷 자리는 2자리의 모든 숫자를 조건으로 지정.
             let tempAge = NSPredicate(format:"SELF MATCHES %@", ageRe)
@@ -462,18 +442,7 @@ class MainProfileVC: UIViewController, UITextFieldDelegate {
             saveEditedDateOutlet.alpha = 0.5
         }
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
-
 
 extension MainProfileVC: UIPickerViewDelegate, UIPickerViewDataSource {
     // delegate, datasource 연결 및 picker를 textfied의 inputview로 설정한다
@@ -518,5 +487,4 @@ extension MainProfileVC: UIPickerViewDelegate, UIPickerViewDataSource {
 
         return pickerLabel!
     }
-    
 }
