@@ -13,14 +13,11 @@ class MainVC: UIViewController {
     //표준 BMI
     let bmiStd = BMIStandard()
     var bmiBrain = BMIBrain()
-
+    
     var mainProfileBrain = ProfileBrain() //모든 뷰에 이 객체를 전달, 최신 상태를 유지
     
     var height: Int = 0
     var weight: Int = 0
-    
-    //컬러 지정
-    
     
     @IBOutlet weak var inputPickerView: UIPickerView!   //pickerView 변수
     @IBOutlet weak var barChartView: BarChartView!      //그래프용 변수
@@ -37,44 +34,39 @@ class MainVC: UIViewController {
     @IBOutlet weak var graphIndexSV2: UIStackView!
     
     @IBAction func pressedProfileEdit(_ sender: UIButton) {
-        performSegue(withIdentifier: "goProfileEditView", sender: self)
- 
+        performSegue(withIdentifier: Key.profileIdentifier, sender: self)
     }
     
     @IBAction func pressedCalculateBMI(_ sender: UIButton) {
         bmiBrain.setCurrentBMI(height, weight)      //[Walter] 바로 setCurrentBMI를 호출해도 댐
-        performSegue(withIdentifier: "goBmiResultView", sender: self)
+        performSegue(withIdentifier: Key.bmiResultIdentifier, sender: self)
     }
-
+    
     @IBAction func pressedHistoryList(_ sender: UIButton) {
-        performSegue(withIdentifier: "goHistoryListView", sender: self)
+        performSegue(withIdentifier: Key.historyListIdentifier, sender: self)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        mainUserQuote.layer.cornerRadius = 6
-        //그래프 세팅
-        initSetChart()
-        setChart(dataPoints: bmiBrain.bmiDateArray, values: bmiBrain.bmiValueArray)
-  
-        //피커뷰 세팅
-        configPickerView()
-        
         //네비게이션 조정
         self.navigationController?.navigationBar.topItem?.title = "메인"
         self.navigationController?.navigationBar.tintColor = UIColor(named: "NewYellow")
         
-
+        mainUserQuote.layer.cornerRadius = 6
         
+        //그래프 세팅
+        initSetChart()
+        setChart(dataPoints: bmiBrain.bmiDateArray, values: bmiBrain.bmiValueArray)
+        
+        //피커뷰 세팅
+        configPickerView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true) // 뷰 컨트롤러가 나타날 때 컨트롤 바를 숨기기
         
-    
         heightInPickerLabel.text = "신장(cm)"
         weightInPickerLabel.text = "체중(kg)"
         
@@ -107,7 +99,7 @@ class MainVC: UIViewController {
         //피커뷰 초기값 세팅
         setInitialValuePV()
     }
-
+    
     override func viewWillDisappear(_ animated: Bool) {
         
         navigationController?.setNavigationBarHidden(false, animated: true)
@@ -124,22 +116,21 @@ class MainVC: UIViewController {
                             "quote" : (mainProfileBrain.myProfile?.quote)!,
                             "isUserInput" : true ]
         
-        print(profileUserData)
+        //        print(profileUserData)
         
         UserDefaults.standard.set(profileUserData, forKey: Key.profile)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if segue.identifier == "goProfileEditView" {
+        if segue.identifier == Key.profileIdentifier {
             guard let secondVC = segue.destination as? MainProfileVC else { return }
             secondVC.editingDataProfileBrain = mainProfileBrain
             secondVC.originDataProfileBrain = mainProfileBrain
         }
         
-        if segue.identifier == "goBmiResultView" {
+        if segue.identifier == Key.bmiResultIdentifier {
             guard let secondVC = segue.destination as? BmiResultVC else { return }
-
+            
             if let data = bmiBrain.bmiDatas?.last {
                 secondVC.bmiInfo = data
             } else {
@@ -147,7 +138,7 @@ class MainVC: UIViewController {
             }
         }
         
-        if segue.identifier == "goHistoryListView" {
+        if segue.identifier == Key.historyListIdentifier {
             guard let secondVC = segue.destination as? HistoryListVC else { return }
             secondVC.receivedData = bmiBrain.bmiDatas   //[Walter] 그냥 배열을 넘기는 방식으로 처리
         }
@@ -156,7 +147,6 @@ class MainVC: UIViewController {
 
 //MARK: - 피커뷰 익스텐션
 extension MainVC: UIPickerViewDelegate, UIPickerViewDataSource {
-    
     func configPickerView() {
         inputPickerView.delegate = self
         inputPickerView.dataSource = self
@@ -193,7 +183,6 @@ extension MainVC: UIPickerViewDelegate, UIPickerViewDataSource {
     
     //피커뷰 신장/키를 BMIBrain 으로 전달하는 함수
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
         switch component {
         case 0:
             self.height = bmiBrain.bmiPickerRange.heightMinMaxArray[row]
@@ -207,7 +196,6 @@ extension MainVC: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func setInitialValuePV() {
-        
         //[Harry] 피커 뷰 값은 유저 데이터에 기반하여 최신 유저 데이터 값을 갖고 오도록 구현
         height = Int(mainProfileBrain.myProfile?.height ?? -1.0)
         weight = Int(mainProfileBrain.myProfile?.weight ?? -1.0)
@@ -219,43 +207,6 @@ extension MainVC: UIPickerViewDelegate, UIPickerViewDataSource {
         
         inputPickerView.selectRow(heightIndex, inComponent: 0, animated: false)
         inputPickerView.selectRow(weightIndex, inComponent: 1, animated: false) //초기값 세팅
-        
-        /*
-        if let data = bmiBrain.bmiDatas {
-            
-            if (data.count == 0) {
-                
-                height = Int(mainProfileBrain.myProfile?.height ?? -1.0)
-                weight = Int(mainProfileBrain.myProfile?.weight ?? -1.0)
-                
-                //bmiBrain.setCurrentBMI(Int(height), Int(weight))
-                
-                let heightIndex = bmiBrain.getArrayIndex(arr: bmiBrain.bmiPickerRange.heightMinMaxArray, value: Int(height)) ?? 0
-                let weightIndex = bmiBrain.getArrayIndex(arr: bmiBrain.bmiPickerRange.weightMinMaxArray, value: Int(weight)) ?? 0
-                
-                inputPickerView.selectRow(heightIndex, inComponent: 0, animated: false)
-                inputPickerView.selectRow(weightIndex, inComponent: 1, animated: false) //초기값 세팅
-                
-            } else {
-                
-                /* [Harry]
-                height = Int(bmiBrain.bmiDatas?.last?.heightForBMI ?? -1.0)
-                weight = Int(bmiBrain.bmiDatas?.last?.weightForBMI ?? -1.0)
-                */
-                
-                height = Int(mainProfileBrain.myProfile?.height ?? -1.0)
-                weight = Int(mainProfileBrain.myProfile?.weight ?? -1.0)
-                //bmiBrain.setCurrentBMI(Int(height), Int(weight))
-                let heightIndex = bmiBrain.getArrayIndex(arr: bmiBrain.bmiPickerRange.heightMinMaxArray, value: Int(height)) ?? 0
-                let weightIndex = bmiBrain.getArrayIndex(arr: bmiBrain.bmiPickerRange.weightMinMaxArray, value: Int(weight)) ?? 0
-                
-                inputPickerView.selectRow(heightIndex, inComponent: 0, animated: false)
-                inputPickerView.selectRow(weightIndex, inComponent: 1, animated: false) //초기값 세팅
-            }
-        } else {
-            print("bmiDatas nil")
-        }
-      } */
     }
 }
 
@@ -270,11 +221,10 @@ extension MainVC {
         
         bmiBrain.setAxisValues()
     }
-
+    
     
     //그래프 세팅
     func setChart(dataPoints: [String], values: [Double]) {
-        
         if (values.count == 0) {
             graphIndexTurnOnOff(on: false)
             return
@@ -290,8 +240,6 @@ extension MainVC {
         let chartDataSet = BarChartDataSet(entries: dataEntries, label: "Quantity")
         
         //차트컬러
-        //chartDataSet.colors = [.systemGreen, .systemRed, .systemCyan]
-        //chartDataSet.colors = [.systemGreen]
         chartDataSet.colors = barColors(with: bmiBrain.bmiValueArray)
         
         //데이터 삽입
@@ -317,10 +265,9 @@ extension MainVC {
     }
     
     func setChartSubdetails() {
-        
         let limitMinValue = bmiStd.BMIStdMinValue
         let limitMaxValue = bmiStd.BMIStdMaxValue
-
+        
         //리미트라인
         let limit = ChartLimitLine(limit: limitMinValue, label: "")
         limit.lineColor = UIColor(red: 120/255, green: 192/255, blue: 184/255, alpha: 1.0) //라인 색 변경
@@ -341,18 +288,14 @@ extension MainVC {
         barChartView.xAxis.labelPosition = .bottom
         barChartView.xAxis.drawLabelsEnabled = false
         
-        
         //격자 제거
         barChartView.leftAxis.drawGridLinesEnabled = false
         barChartView.xAxis.drawGridLinesEnabled = false
         
-        //축 삭제
-        
-
         //애니메이션
         barChartView.animate(xAxisDuration: 0.0, yAxisDuration: 1.0)
         
-        }
+    }
     
     //그래프 리미트 초과에 따른 그래프별 색 배열 지정
     func barColors(with data: [Double]) -> [UIColor] {
@@ -368,15 +311,12 @@ extension MainVC {
             if data[i] > limitMaxValue {
                 //[Harry] 모벨 로고 오렌지
                 colorData.append(UIColor(red: 231/255, green: 150/255, blue: 107/255, alpha: alphaValue))
-                //colorData.append(UIColor(red: 255/255, green: 149/255, blue: 0, alpha: alphaValue))
             } else if data[i] < limitMinValue {
                 //[Harry] 모벨 로고 에메랄드
                 colorData.append(UIColor(red: 117/255, green: 142/255, blue: 230/255, alpha: alphaValue))
-                //colorData.append(UIColor(red: 0, green: 122/255, blue: 255/255, alpha: alphaValue))
             } else {
                 //[Harry] 모벨 로고 라일락
                 colorData.append(UIColor(red: 120/255, green: 192/255, blue: 184/255, alpha: alphaValue))
-                //colorData.append(UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: alphaValue))
             }
         }
         
@@ -387,13 +327,10 @@ extension MainVC {
             if let value = data.last {
                 if value > limitMaxValue {
                     colorData.append(UIColor(red: 231/255, green: 150/255, blue: 107/255, alpha: 1.0))
-                    //colorData.append(UIColor(red: 255/255, green: 149/255, blue: 0, alpha: 1.0))
                 } else if value < limitMinValue {
                     colorData.append(UIColor(red: 117/255, green: 142/255, blue: 230/255, alpha: 1.0))
-                    //colorData.append(UIColor(red: 0, green: 122/255, blue: 255/255, alpha: 1.0))
                 } else {
                     colorData.append(UIColor(red: 120/255, green: 192/255, blue: 184/255, alpha: 1.0))
-                    //colorData.append(UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1.0))
                 }
             }
         }
