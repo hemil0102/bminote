@@ -1,0 +1,255 @@
+
+/* Class = "UILabel"; text = "소숫점 제외, 숫자 2~3자리를 입력해주세요."; ObjectID = "07Q-IA-kPL"; */
+"07Q-IA-kPL.text" = "소숫점 제외, 숫자 2~3자리를 입력해주세요.";
+
+/* Class = "UILabel"; text = "1900~2099 범위 내 입력 바랍니다."; ObjectID = "0Vl-kn-A55"; */
+"0Vl-kn-A55.text" = "1900~2099 범위 내 입력 바랍니다.";
+
+/* Class = "UILabel"; text = "최근값"; ObjectID = "0ux-Uz-FII"; */
+"0ux-Uz-FII.text" = "최근값";
+
+/* Class = "UILabel"; text = "40.0 ~ "; ObjectID = "1PK-bK-uvj"; */
+"1PK-bK-uvj.text" = "40.0 ~ ";
+
+/* Class = "UILabel"; text = "한글 및 영문만 입력 가능합니다. (12자 내)"; ObjectID = "2oF-kW-T4F"; */
+"2oF-kW-T4F.text" = "한글 및 영문만 입력 가능합니다. (12자 내)";
+
+/* Class = "UITextField"; placeholder = "예: 178"; ObjectID = "4Jr-Yq-uHH"; */
+"4Jr-Yq-uHH.placeholder" = "예: 178";
+
+/* Class = "UILabel"; text = "나모블"; ObjectID = "4n4-eb-5FV"; */
+"4n4-eb-5FV.text" = "나모블";
+
+/* Class = "UINavigationItem"; title = "프로필 설정"; ObjectID = "4u5-02-GwO"; */
+"4u5-02-GwO.title" = "프로필 설정";
+
+/* Class = "UILabel"; text = "소숫점 제외, 숫자 2~3자리를 입력해주세요."; ObjectID = "5qW-uv-Ft9"; */
+"5qW-uv-Ft9.text" = "소숫점 제외, 숫자 2~3자리를 입력해주세요.";
+
+/* Class = "UIButton"; configuration.title = "입장!"; ObjectID = "6Uo-hR-gfb"; */
+"6Uo-hR-gfb.configuration.title" = "입장!";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "6Uo-hR-gfb"; */
+"6Uo-hR-gfb.normalTitle" = "Button";
+
+/* Class = "UISegmentedControl"; 6kl-gb-BoH.segmentTitles[0] = "여"; ObjectID = "6kl-gb-BoH"; */
+"6kl-gb-BoH.segmentTitles[0]" = "여";
+
+/* Class = "UISegmentedControl"; 6kl-gb-BoH.segmentTitles[1] = "남"; ObjectID = "6kl-gb-BoH"; */
+"6kl-gb-BoH.segmentTitles[1]" = "남";
+
+/* Class = "UILabel"; text = "25.0 ~ 29.9"; ObjectID = "6vN-3S-RNZ"; */
+"6vN-3S-RNZ.text" = "25.0 ~ 29.9";
+
+/* Class = "UILabel"; text = "저체중"; ObjectID = "9an-gl-9fy"; */
+"9an-gl-9fy.text" = "저체중";
+
+/* Class = "UILabel"; text = "BMI 기준표"; ObjectID = "AHE-7W-NJ4"; */
+"AHE-7W-NJ4.text" = "BMI 기준표";
+
+/* Class = "UILabel"; text = "출생연도"; ObjectID = "Bnm-6g-Igx"; */
+"Bnm-6g-Igx.text" = "출생연도";
+
+/* Class = "UILabel"; text = "나모블 :)"; ObjectID = "DsC-9F-KrG"; */
+"DsC-9F-KrG.text" = "나모블 :)";
+
+/* Class = "UILabel"; text = "비만"; ObjectID = "F2L-OD-DTC"; */
+"F2L-OD-DTC.text" = "비만";
+
+/* Class = "UILabel"; text = "무게(kg)"; ObjectID = "G7R-Cf-wFm"; */
+"G7R-Cf-wFm.text" = "무게(kg)";
+
+/* Class = "UITextField"; placeholder = "예: 나모블"; ObjectID = "GGq-xH-oFt"; */
+"GGq-xH-oFt.placeholder" = "예: 나모블";
+
+/* Class = "UILabel"; text = "무게(kg)"; ObjectID = "HFM-Df-2zC"; */
+"HFM-Df-2zC.text" = "무게(kg)";
+
+/* Class = "UINavigationItem"; title = "BMI 측정 기록"; ObjectID = "I55-hZ-4Te"; */
+"I55-hZ-4Te.title" = "BMI 측정 기록";
+
+/* Class = "UILabel"; text = " 실패는 성공의 어머니! 실패를 두려워하지 말자!"; ObjectID = "Joa-bN-D4I"; */
+"Joa-bN-D4I.text" = " 실패는 성공의 어머니! 실패를 두려워하지 말자!";
+
+/* Class = "UILabel"; text = "저체중"; ObjectID = "LD9-On-hYW"; */
+"LD9-On-hYW.text" = "저체중";
+
+/* Class = "UILabel"; text = "고도비만"; ObjectID = "LP0-EL-MPD"; */
+"LP0-EL-MPD.text" = "고도비만";
+
+/* Class = "UILabel"; text = "몸무게(kg)"; ObjectID = "Low-pt-vib"; */
+"Low-pt-vib.text" = "몸무게(kg)";
+
+/* Class = "UIButton"; normalTitle = "BMI 측정"; ObjectID = "MF0-sY-WGS"; */
+"MF0-sY-WGS.normalTitle" = "BMI 측정";
+
+/* Class = "UILabel"; text = "소숫점 제외, 숫자 2~3자리를 입력해주세요."; ObjectID = "MgN-3L-GAx"; */
+"MgN-3L-GAx.text" = "소숫점 제외, 숫자 2~3자리를 입력해주세요.";
+
+/* Class = "UILabel"; text = "⌃"; ObjectID = "NKs-fL-VfI"; */
+"NKs-fL-VfI.text" = "⌃";
+
+/* Class = "UIButton"; normalTitle = "수정"; ObjectID = "NTa-pP-P2f"; */
+"NTa-pP-P2f.normalTitle" = "수정";
+
+/* Class = "UINavigationItem"; title = "Main Screen"; ObjectID = "NcY-ac-IJh"; */
+"NcY-ac-IJh.title" = "Main Screen";
+
+/* Class = "UITextField"; placeholder = "예: 178"; ObjectID = "OYs-rP-wBY"; */
+"OYs-rP-wBY.placeholder" = "예: 178";
+
+/* Class = "UILabel"; text = "⌃"; ObjectID = "Osg-9x-Y84"; */
+"Osg-9x-Y84.text" = "⌃";
+
+/* Class = "UILabel"; text = "정상체중"; ObjectID = "PRq-80-cqL"; */
+"PRq-80-cqL.text" = "정상체중";
+
+/* Class = "UILabel"; text = "신장(cm)"; ObjectID = "Q4L-IA-EUY"; */
+"Q4L-IA-EUY.text" = "신장(cm)";
+
+/* Class = "UILabel"; text = "BMI Calculation"; ObjectID = "QNt-uB-Yq0"; */
+"QNt-uB-Yq0.text" = "BMI Calculation";
+
+/* Class = "UILabel"; text = "소숫점 제외, 숫자 2~3자리를 입력해주세요."; ObjectID = "QS8-zt-LVB"; */
+"QS8-zt-LVB.text" = "소숫점 제외, 숫자 2~3자리를 입력해주세요.";
+
+/* Class = "UILabel"; text = "⌃"; ObjectID = "Qb5-Mc-gmp"; */
+"Qb5-Mc-gmp.text" = "⌃";
+
+/* Class = "UILabel"; text = "성별"; ObjectID = "R2Y-e9-mRM"; */
+"R2Y-e9-mRM.text" = "성별";
+
+/* Class = "UISegmentedControl"; R2m-Jr-W3z.segmentTitles[0] = "여"; ObjectID = "R2m-Jr-W3z"; */
+"R2m-Jr-W3z.segmentTitles[0]" = "여";
+
+/* Class = "UISegmentedControl"; R2m-Jr-W3z.segmentTitles[1] = "남"; ObjectID = "R2m-Jr-W3z"; */
+"R2m-Jr-W3z.segmentTitles[1]" = "남";
+
+/* Class = "UIButton"; normalTitle = "저장"; ObjectID = "SiP-fX-i19"; */
+"SiP-fX-i19.normalTitle" = "저장";
+
+/* Class = "UILabel"; text = "⌃"; ObjectID = "TzM-wv-6rT"; */
+"TzM-wv-6rT.text" = "⌃";
+
+/* Class = "UILabel"; text = "18.5 ~ 24.9"; ObjectID = "UEd-v9-75m"; */
+"UEd-v9-75m.text" = "18.5 ~ 24.9";
+
+/* Class = "UILabel"; text = "BMI 결과"; ObjectID = "V1w-E0-yGq"; */
+"V1w-E0-yGq.text" = "BMI 결과";
+
+/* Class = "UILabel"; text = "Hello :)"; ObjectID = "VuV-ZE-t8x"; */
+"VuV-ZE-t8x.text" = "Hello :)";
+
+/* Class = "UILabel"; text = "BMI History"; ObjectID = "Wq0-0A-TkH"; */
+"Wq0-0A-TkH.text" = "BMI History";
+
+/* Class = "UILabel"; text = "75kg"; ObjectID = "WtA-fh-4o1"; */
+"WtA-fh-4o1.text" = "75kg";
+
+/* Class = "UITextField"; placeholder = "예: 나모블"; ObjectID = "XRO-Yt-4za"; */
+"XRO-Yt-4za.placeholder" = "예: 나모블";
+
+/* Class = "UILabel"; text = " \"Pro Tip\" 아침 식사 시간이 수면 시간을 결정한다는 연구가 있어요."; ObjectID = "Y1g-AR-LaW"; */
+"Y1g-AR-LaW.text" = " \"Pro Tip\" 아침 식사 시간이 수면 시간을 결정한다는 연구가 있어요.";
+
+/* Class = "UILabel"; text = "닉네임"; ObjectID = "aGS-TZ-iQn"; */
+"aGS-TZ-iQn.text" = "닉네임";
+
+/* Class = "UILabel"; text = "30.0 ~ 39.9"; ObjectID = "bsS-oq-gid"; */
+"bsS-oq-gid.text" = "30.0 ~ 39.9";
+
+/* Class = "UILabel"; text = "180cm"; ObjectID = "cMq-6a-4h9"; */
+"cMq-6a-4h9.text" = "180cm";
+
+/* Class = "UINavigationItem"; title = "BMI 상세 결과"; ObjectID = "edS-ur-BTa"; */
+"edS-ur-BTa.title" = "BMI 상세 결과";
+
+/* Class = "UIButton"; configuration.title = "저장"; ObjectID = "fbW-zq-cWY"; */
+"fbW-zq-cWY.configuration.title" = "저장";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "fbW-zq-cWY"; */
+"fbW-zq-cWY.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "한글 및 영문만 입력 가능합니다. (12자 내)"; ObjectID = "i7i-8G-Y6R"; */
+"i7i-8G-Y6R.text" = "한글 및 영문만 입력 가능합니다. (12자 내)";
+
+/* Class = "UILabel"; text = "과체중"; ObjectID = "iOI-84-cKa"; */
+"iOI-84-cKa.text" = "과체중";
+
+/* Class = "UITextField"; placeholder = "예: 72"; ObjectID = "isB-i1-Aie"; */
+"isB-i1-Aie.placeholder" = "예: 72";
+
+/* Class = "UITextField"; placeholder = "예: 1990"; ObjectID = "jdJ-7H-iL5"; */
+"jdJ-7H-iL5.placeholder" = "예: 1990";
+
+/* Class = "UILabel"; text = "1900~2099 범위 내 입력 바랍니다."; ObjectID = "kbR-h4-Ntz"; */
+"kbR-h4-Ntz.text" = "1900~2099 범위 내 입력 바랍니다.";
+
+/* Class = "UILabel"; text = "⌃"; ObjectID = "n1V-XT-yuG"; */
+"n1V-XT-yuG.text" = "⌃";
+
+/* Class = "UILabel"; text = "신장(cm)"; ObjectID = "nIE-wJ-PiE"; */
+"nIE-wJ-PiE.text" = "신장(cm)";
+
+/* Class = "UILabel"; text = "비만(Class I, Class II)"; ObjectID = "nTX-nG-NhO"; */
+"nTX-nG-NhO.text" = "비만(Class I, Class II)";
+
+/* Class = "UILabel"; text = "격언"; ObjectID = "otL-8i-sQ8"; */
+"otL-8i-sQ8.text" = "격언";
+
+/* Class = "UIButton"; configuration.title = "WHO"; ObjectID = "poF-ny-Zvq"; */
+"poF-ny-Zvq.configuration.title" = "WHO";
+
+/* Class = "UIButton"; normalTitle = "WHO"; ObjectID = "poF-ny-Zvq"; */
+"poF-ny-Zvq.normalTitle" = "WHO";
+
+/* Class = "UITextField"; placeholder = "예: 1990"; ObjectID = "q0p-0Q-QTQ"; */
+"q0p-0Q-QTQ.placeholder" = "예: 1990";
+
+/* Class = "UILabel"; text = "반가워요!"; ObjectID = "qVp-my-r1H"; */
+"qVp-my-r1H.text" = "반가워요!";
+
+/* Class = "UILabel"; text = "과체중"; ObjectID = "qja-pC-0OG"; */
+"qja-pC-0OG.text" = "과체중";
+
+/* Class = "UILabel"; text = "정상체중"; ObjectID = "s0h-dw-Gyd"; */
+"s0h-dw-Gyd.text" = "정상체중";
+
+/* Class = "UILabel"; text = "~ 18.5"; ObjectID = "sdO-DQ-Ts7"; */
+"sdO-DQ-Ts7.text" = "~ 18.5";
+
+/* Class = "UILabel"; text = "측정 기록이 없습니다."; ObjectID = "tVA-Ih-888"; */
+"tVA-Ih-888.text" = "측정 기록이 없습니다.";
+
+/* Class = "UILabel"; text = "닉네임"; ObjectID = "tgg-NA-mL9"; */
+"tgg-NA-mL9.text" = "닉네임";
+
+/* Class = "UITextField"; placeholder = "예: 72"; ObjectID = "tjO-nh-ExO"; */
+"tjO-nh-ExO.placeholder" = "예: 72";
+
+/* Class = "UILabel"; text = "BMI(체질량지수)를 기록하기 앞서서 \n멋진 격언을 선택해볼까요?"; ObjectID = "uqj-A9-QsJ"; */
+"uqj-A9-QsJ.text" = "BMI(체질량지수)를 기록하기 앞서서 \n멋진 격언을 선택해볼까요?";
+
+/* Class = "UILabel"; text = "성별"; ObjectID = "wax-jw-7vL"; */
+"wax-jw-7vL.text" = "성별";
+
+/* Class = "UILabel"; text = "적정 범위"; ObjectID = "xWU-NO-9Gs"; */
+"xWU-NO-9Gs.text" = "적정 범위";
+
+/* Class = "UILabel"; text = "고도비만"; ObjectID = "xyb-E2-Hx7"; */
+"xyb-E2-Hx7.text" = "고도비만";
+
+/* Class = "UILabel"; text = "여러분의 BMI를 계산해볼까요?"; ObjectID = "y8y-y5-n4z"; */
+"y8y-y5-n4z.text" = "여러분의 BMI를 계산해볼까요?";
+
+/* Class = "UILabel"; text = "출생연도"; ObjectID = "yTt-vv-rIw"; */
+"yTt-vv-rIw.text" = "출생연도";
+
+/* Class = "UILabel"; text = "신장(cm)"; ObjectID = "ygv-A7-evv"; */
+"ygv-A7-evv.text" = "신장(cm)";
+
+/* Class = "UILabel"; text = "23.5"; ObjectID = "yhf-a2-QKJ"; */
+"yhf-a2-QKJ.text" = "23.5";
+
+/* Class = "UILabel"; text = "프로필 설정"; ObjectID = "yxs-Ab-5QN"; */
+"yxs-Ab-5QN.text" = "프로필 설정";

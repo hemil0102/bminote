@@ -71,6 +71,8 @@
 		984ED8876A961E1D5AC82563 /* Pods-bmi note-bmi noteUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bmi note-bmi noteUITests.release.xcconfig"; path = "Target Support Files/Pods-bmi note-bmi noteUITests/Pods-bmi note-bmi noteUITests.release.xcconfig"; sourceTree = "<group>"; };
 		B12EE53998A3AFF1828A92F0 /* Pods_bmi_noteTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_bmi_noteTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1A746D800577BF9E8D92D27 /* Pods-bmi noteTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bmi noteTests.debug.xcconfig"; path = "Target Support Files/Pods-bmi noteTests/Pods-bmi noteTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D02C9C6427FF048B006F9F0F /* ko-KR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ko-KR"; path = "ko-KR.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		D02C9C6527FF048B006F9F0F /* ko-KR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ko-KR"; path = "ko-KR.lproj/Main.strings"; sourceTree = "<group>"; };
 		D03CA07527EC9F450089AECF /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RoundButton.swift; path = "bmi note/Views/RoundButton.swift"; sourceTree = SOURCE_ROOT; };
 		D04B7C3627D21C4700D83A1F /* InitialQuoteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InitialQuoteVC.swift; path = "bmi note/Views/InitialQuoteVC.swift"; sourceTree = SOURCE_ROOT; };
 		D04B7C3827D21C8900D83A1F /* InitialProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InitialProfileVC.swift; path = "bmi note/Views/InitialProfileVC.swift"; sourceTree = SOURCE_ROOT; };
@@ -325,11 +327,12 @@
 			};
 			buildConfigurationList = D0FCB75827CF917000322DF9 /* Build configuration list for PBXProject "bmi note" */;
 			compatibilityVersion = "Xcode 13.0";
-			developmentRegion = en;
+			developmentRegion = ko;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
+				ko,
 				Base,
+				"ko-KR",
 			);
 			mainGroup = D0FCB75427CF916F00322DF9;
 			productRefGroup = D0FCB75E27CF917000322DF9 /* Products */;
@@ -537,6 +540,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				D0FCB76727CF917000322DF9 /* Base */,
+				D02C9C6527FF048B006F9F0F /* ko-KR */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -545,6 +549,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				D0FCB76F27CF917200322DF9 /* Base */,
+				D02C9C6427FF048B006F9F0F /* ko-KR */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -556,6 +561,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -617,6 +623,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -685,12 +692,12 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.01;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Harry.bmi-note";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -716,12 +723,12 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.01;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Harry.bmi-note";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

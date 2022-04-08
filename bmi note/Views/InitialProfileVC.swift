@@ -71,6 +71,7 @@ class InitialProfileVC: UIViewController, UITextFieldDelegate {
         initialUserInputHeight.returnKeyType = .done
         initialUserInputWeight.returnKeyType = .done
         
+        saveInitialProfileOutlet.setTitle("저장", for: .normal)
         //키보드가 나탈 떄
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)

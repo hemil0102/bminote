@@ -17,6 +17,7 @@ class InitialQuoteVC: UIViewController {
         //레이블에 저장된 유저 이름을 표시해준다.
         userName.text = "\(savedUserName ?? "나모블")님 :)"
         
+        toMainOutlet.setTitle("입장!", for: .normal)
         toMainOutlet.isUserInteractionEnabled = false
         toMainOutlet.alpha = 0.5
         
